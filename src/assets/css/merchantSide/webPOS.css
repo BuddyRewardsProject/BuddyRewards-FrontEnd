@@ -1,0 +1,70 @@
+.inPutWidth {
+  width: 100%;
+}
+.inPutWidth2 {
+  width: 39%;
+}
+.outterInput {
+  margin: 15px;
+}
+.outterInputPrice {
+  margin-bottom: 15px;
+}
+.inputFontSize{
+  text-align: center;
+  border: 1px solid #c3c3c3;
+    border-radius: 5px;
+  padding: 9px;
+  font-size: 29px;
+}
+.paddingBarCodeIcon{
+  padding-top: 15px;
+  padding-left: 15px;
+    padding-right: 15px;
+}
+.paddingBtm{
+
+ 
+  padding-bottom: 15px;
+}
+.fexk{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+ }
+
+ .HeaderWebPOS{
+  
+  font-size: 35px;
+  font-family: DBHeaventDB, serif;
+  
+
+}
+.cardInfoWebPOS1{
+  font-size: 35px;
+}
+.cardInfoWebPOS2{
+  font-size: 20px;
+}
+.cardInfoWebPOS3{
+  font-size: 30px;
+}
+.WebPosIconSize {
+  font-size: 39px;
+  color:#59DD9A;
+  
+}
+.WebPosStarIconSize {
+  font-size: 29px;
+  color:#FFC107;
+  
+}
+.textPointWebPOS{
+  
+  font-size: 35px;
+  font-family: DBHeaventDB, serif;
+  
+
+}
