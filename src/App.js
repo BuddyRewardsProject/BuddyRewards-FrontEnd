@@ -46,7 +46,6 @@ class App extends Component {
         <Router history={browserHistory}>
           <Switch>
             <Route exact path="/" component={Home} />
-
             <Route exact path="/merchant/login" component={Login} />
             <Route
               exact
