@@ -10,6 +10,7 @@ import CustomerCard from "./pages/customer/CustomerCard";
 import CustomerCardDetail from "./pages/customer/CustomerCardDetail";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import dev from "./pages/Home2";
 import PinMerchantLogin from "./pages/PinMerchantLogin";
 import StaffView from "./pages/StaffView";
 import WebPOS from "./pages/WebPOS";
@@ -89,6 +90,7 @@ class App extends Component {
             />
             <Route exact path="/customer/login" component={CustomerLogin} />
             <Route exact path="/customer/mycard" component={CustomerCard} />
+            <Route exact path="/dev" component={dev} />
             <Route exact path="/customer/mycard/detail" component={CustomerCardDetail} />
             <Route exact path="/merchant/branch/webPOS" component={WebPOS} />
             <Route exact path="/merchant/branch/webPOS2" component={WebPOS2} />

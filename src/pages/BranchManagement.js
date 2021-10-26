@@ -15,15 +15,16 @@ const BgGradient = styled.div`
   height: 200px;
   background: ${color.Gradient};
 `;
-
+const MarginTop = styled.div`
+  margin-top: 8%;
+`;
 const BranchNameSize = styled.h2`
   font-size: 48px;
   font-style: bold;
   color: white;
 `;
-const MarginTop = styled.div`
-  margin-top: 15vh;
-`;
+
+
 
 class BranchManagement extends Component {
   constructor(props) {
@@ -240,9 +241,9 @@ class BranchManagement extends Component {
         <BgGradient>
           <div className="container">
             <div className="row align-items-center">
-              <div className="col-lg-1 col-md-2"></div>
-              <MarginTop className="col">
-                <BranchNameSize>Branch Management</BranchNameSize>
+            <div className="col-lg-1 col-md-2"></div>
+            <MarginTop className="col">
+                <BranchNameSize className="text-center">branch Management</BranchNameSize>
               </MarginTop>
               <div className="col-lg-1 col-md-2"></div>
             </div>

@@ -188,9 +188,9 @@ class StaffManagement extends Component {
         <BgGradient>
           <div className="container">
             <div className="row align-items-center">
-              <div className="col-lg-1 col-md-2 "></div>
+            <div className="col-lg-1 col-md-2"></div>
               <MarginTop className="col">
-                <BranchNameSize>Staff Management</BranchNameSize>
+                <BranchNameSize className="text-center">staff Management</BranchNameSize>
               </MarginTop>
               <div className="col-lg-1 col-md-2"></div>
             </div>
