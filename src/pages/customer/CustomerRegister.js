@@ -72,7 +72,7 @@ class CustomerRegister extends Component {
       customerGender: customerGender,
       customerDOB: customerDOB
     }
-    axios.post('/customer/v1/add', {
+    axios.post('/customer/v1/register', {
       data
     })
       .then((response) => {

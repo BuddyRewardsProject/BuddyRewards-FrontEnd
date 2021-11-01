@@ -86,7 +86,7 @@ class WebPOS extends Component {
     }
 
 
-    axios.post('/merchant/v1/branch/webpos', {
+    axios.post('/merchant/v1/branch/webpos/customerInfo', {
       data
 
 
