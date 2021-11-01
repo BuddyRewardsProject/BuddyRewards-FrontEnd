@@ -195,7 +195,7 @@ export default class Register extends Component {
                     onChange={(v) => this.onHandlePinInput(v)}
                     type="numeric"
                     inputMode="tel"
-                    focus={true}
+                    focus={false}
                     style={{ padding: "10px" }}
                     inputStyle={{ borderColor: "grey" }}
                     inputFocusStyle={{ borderColor: "green" }}

@@ -24,12 +24,32 @@ code {
 .BoxSghome{
   border-radius: 9px;
   background-color: #f9f9f9;
-  height: 120px;
-  margin: 5px;
  
+
 }
+.btnindexPrimary{
+  color: #fff;
+  background: linear-gradient(180deg, #F7931E 0%, #FF7676 100%);
+  font-size: 20px;
+  border-radius: 6px;
+ }
+ .boxindexPR{
+  border-radius: 9px;
+  background-color: #f9f9f9;
+ }
+ .boxindex1{
+  border-radius: 9px;
+  background: linear-gradient(180deg, rgba(249,249,249,1) 0%, rgba(247,147,30,0.4960236536020658) 100%);
+ }
+ .boxindex2{
+  border-radius: 9px;
+  background: linear-gradient(180deg, rgba(249,249,249,1) 0%, rgba(111,207,151,0.5) 100%);
+ }
 .maG4{
   margin: 4px;
+}
+.mgL5{
+  margin-left: 5px;
 }
 .overlap-box {
     top: -15px;
