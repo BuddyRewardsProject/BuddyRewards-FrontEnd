@@ -285,7 +285,7 @@ class BranchManagement extends Component {
                         </div>
                         <h5 className="card-title mt-3 mb-1" key={s.branch_name}>{s.branch_name}</h5>
                         <h6 className="card-title" key={s.master_account}>
-                          {s.master_account === 0 ? "สาขาย่อย" : null}{s.master_account === 1 ? "สาขาหลัก" : null}
+                          {s.master_account === 0 ? "สาขาย่อย" : null}{s.master_account === 1 ? "ร้านหลัก" : null}
                         </h6>
                       </div>
                     </div>

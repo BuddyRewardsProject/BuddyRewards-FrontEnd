@@ -6,6 +6,13 @@ import $ from "jquery";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import message from 'antd/lib/message/index';
+import sha512 from "js-sha512"
+import { setCustomer } from "../../actions/customerAuthActions";
+import jwt from 'jsonwebtoken'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+const SECRET_KEY = '2aaf1e7d17a8d4706225480585767166cabd'
 
 const HEADER = styled.text`
 font-size: 35px;
@@ -24,16 +31,20 @@ class CustomerLogin extends Component {
     e.preventDefault();
     var email = $('#customerEmail').val()
     var passwordInput = $('#password').val()
-    this.login(email, passwordInput)
+    var hash = sha512.hmac.create(SECRET_KEY);
+    hash.update(passwordInput);
+    this.login(email, hash.hex())
   }
 
   login(email, password) {
     axios.post('/customer/v1/login', {
       email: email,
-      password: password
+      hashpassword: password
     })
       .then((response) => {
         if (response.data.status === "error") return message.error(response.data.errorMessage);
+        this.props.setCustomer(jwt.decode(response.data.customerToken)) 
+        localStorage.setItem("customerToken", response.data.customerToken);
         window.location.href = '/customer/home';
       })
       .catch((error) => {
@@ -46,9 +57,12 @@ class CustomerLogin extends Component {
       if (e.which === 13) {
         var email = $('#customerEmail').val()
         var passwordInput = $('#password').val()
-        this.login(email, passwordInput)
+        var hash = sha512.hmac.create(SECRET_KEY);
+        hash.update(passwordInput);
+        this.login(email, hash.hex())
       }
     });
+    console.log(this.props)
   }
 
   render() {
@@ -114,4 +128,11 @@ class CustomerLogin extends Component {
   }
 }
 
-export default CustomerLogin;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ setCustomer }, dispatch)
+}
+const mapStateToProps = (state) => {
+  return state
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerLogin);

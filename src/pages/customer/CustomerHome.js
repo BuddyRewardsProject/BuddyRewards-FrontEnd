@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-
 import Navigation from "../../layouts/Navigation";
-
-
+import { connect } from 'react-redux'
+import { logoutCustomer } from '../../actions/customerAuthActions'
 import liff from "@line/liff";
 import NavTop from "../../layouts/NavTop";
 import { Helmet } from "react-helmet";
@@ -75,4 +74,9 @@ class CustomerHome extends Component {
   }
 }
 
-export default CustomerHome;
+const mapDispatch = { logoutCustomer };
+const mapStateToProps = (state) => {
+  return state
+}
+
+export default connect(mapStateToProps, mapDispatch)(CustomerHome)
