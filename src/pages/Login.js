@@ -140,7 +140,7 @@ class Login extends Component {
             </Link>
           </div>
         </div>
-        <footer class="text-center text-white fixed-bottom mt-3 mb-3"> <div><img src={logoBW} alt="buddyrewards" width="130" /></div>
+        <footer class="position-absolute bottom-0 start-50 translate-middle-x"> <div><img src={logoBW} alt="buddyrewards" width="130" /></div>
                   
                    </footer>
                    

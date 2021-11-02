@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Navbar from "../layouts/Navbar";
+import Navbar from "../layouts/NavbarNew";
 import color from "../config/color";
 import logo from "../assets/img/logoM.svg";
 

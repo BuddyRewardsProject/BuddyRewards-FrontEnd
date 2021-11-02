@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Navbar from "../layouts/Navbar";
+import Navbar from "../layouts/NavbarNew";
 import { Link } from "react-router-dom";
 import liff from "@line/liff";
 import styled from "styled-components";
@@ -63,6 +63,8 @@ class Home extends Component {
         <h1 class="display-5 fw-bold">ยินดีต้อนรับ buddyRewards</h1>
           <p>รวมบัตรสะสมแต้มไว้ในที่เดียว</p>
           <p>พร้อมรับสิทธิ์ประโยชน์จาก ร้านค้า partner ของเรา</p>
+         
+
           <button class="btn btnindexPrimary btn-md" type="button">เกี่ยวกับเรา</button>
         
     </div>
