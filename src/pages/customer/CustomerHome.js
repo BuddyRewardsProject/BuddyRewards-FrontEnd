@@ -16,10 +16,28 @@ class CustomerHome extends Component {
     this.state = {
       merchantId: null,
       merchantName: null,
+      accessToken:null
     };
   }
 
   componentDidMount() {
+    liff.init({
+      liffId: '1656382933-9DzLvxlE', // Use own liffId
+  })
+      .then(() => {
+
+        if (!liff.isLoggedIn()) {
+          liff.login();
+        }
+        const accessToken = liff.getAccessToken();
+        alert(accessToken);
+        console.log(accessToken);
+        this.setState({ accessToken: accessToken })
+      })
+      .catch((err) => {
+          console.log(err);
+      });
+
     document.getElementById("width").innerHTML =
       "Screen width is " + window.screen.width;
     document.getElementById("height").innerHTML =
@@ -64,6 +82,10 @@ class CustomerHome extends Component {
         <h1>{liff.getOS()}</h1>
         <h1>
           <p id="width"></p>
+          {this.state.accessToken}
+
+
+          
           <p id="height"></p>
         </h1>
         <h1>{liff.getLanguage()}</h1>
