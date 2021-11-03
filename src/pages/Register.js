@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Navbar from "../layouts/Navbar";
+import Navbar from "../layouts/NavbarNew";
 import color from "../config/color";
 import logo from "../assets/img/logoM.svg";
 
@@ -195,7 +195,7 @@ export default class Register extends Component {
                     onChange={(v) => this.onHandlePinInput(v)}
                     type="numeric"
                     inputMode="tel"
-                    focus={true}
+                    focus={false}
                     style={{ padding: "10px" }}
                     inputStyle={{ borderColor: "grey" }}
                     inputFocusStyle={{ borderColor: "green" }}

@@ -17,7 +17,7 @@ const NavTopWebPOS = () => {
   
   return (
     <BgNav className=" navbar fixed-top "><div className=" AllPD ">
-            <img src={logo} class="img-fluid "  alt="" width="390"  />
+            <img src={logo} class="img-fluid "  alt="" width="300"  />
            
           </div> 
       <div class="body">

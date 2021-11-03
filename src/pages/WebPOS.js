@@ -86,7 +86,7 @@ class WebPOS extends Component {
     }
 
 
-    axios.post('/merchant/v1/branch/webpos', {
+    axios.post('/merchant/v1/branch/webpos/customerInfo', {
       data
 
 
@@ -132,7 +132,8 @@ class WebPOS extends Component {
             />
           </div>
           <div className="HeaderWebPOS">สแกนรหัสจาก QR ลูกค้า</div>
-          <h3> เข้าสู่ระบบโดย {this.props.pinAuth.staff.firstName} #{this.props.pinAuth.staff.staffId}</h3>
+          <h3> ลงชื่อเข้าใช้ {this.props.pinAuth.staff.firstName}</h3>
+          <h5> #{this.props.pinAuth.staff.staffId}</h5>
           <div className="outterInput"><input className="inPutWidth inputFontSize DbBold" id="customerIDD"  onChange={event => {this.setState({query: event.target.value})}}
     onKeyPress={event => {
                 if (event.key === 'Enter') {

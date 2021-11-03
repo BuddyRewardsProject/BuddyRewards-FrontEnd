@@ -8,6 +8,7 @@ import jwt from 'jsonwebtoken'
 import rootReducer from './rootReducer'
 import { setUser } from './actions/authActions'
 import { setStaff } from './actions/pinActions'
+import { setCustomer } from './actions/customerAuthActions'
 import axios from 'axios'
 import App from './App';
 
@@ -41,6 +42,12 @@ const pinToken = localStorage.getItem("pinToken");
 if (pinToken) {
   store.dispatch(setStaff(jwt.decode(pinToken)))
 }
+
+const customerToken = localStorage.getItem("customerToken");
+if (customerToken) {  
+  store.dispatch(setCustomer(jwt.decode(customerToken)))
+}
+
 
 ReactDOM.render(
   <React.StrictMode>

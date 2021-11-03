@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Navbar from "../layouts/Navbar";
+import Navbar from "../layouts/NavbarNew";
 import { Link } from "react-router-dom";
 import liff from "@line/liff";
 import styled from "styled-components";
@@ -8,7 +8,7 @@ import color from "../config/color";
 
 const BgBox = styled.div`
   height: 300px;
-  
+  background-color: #f9f9f9;
   border-radius: 8px;
 `;
 const SgBox = styled.div`
@@ -19,7 +19,7 @@ const SgBox = styled.div`
 `;
 
 
-class Home2 extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -56,79 +56,51 @@ class Home2 extends Component {
     
     return (
       <>
-        <Navbar></Navbar>
-        <div class="container">
-        <div class="row BoxPADhm ">
-    <BgBox>
-      
-      <h1>buddyRewards</h1>
-    </BgBox>
-   
-  </div>
-        <div class="row maG4">
+        <Navbar />
+        
+        <div class="container py-4 paddingBottom15">
           
-    <div class="col-sm BoxSghome">
-      <h1>customer</h1>
-      <Link to="/customer/register">
-                <div className="d-grid gap-2 col-6 mx-auto">
-                  <button
-                    type="button"
-                    className="btn btn-outline rounded-all btnOrg"
-                  >
-                    customerRegister
-                  </button>
-                </div>
-              </Link>
-              <Link to="/customer/home">
-                <div className="d-grid gap-2 col-6 mx-auto">
-                  <button
-                    type="button"
-                    className="btn btn-outline rounded-all btnOrg"
-                  >
-                    customerHome
-                  </button>
-                </div>
-              </Link>
-      <Link to="/customer/mycard">
-                <div className="d-grid gap-2 col-6 mx-auto">
-                  <button
-                    type="button"
-                    className="btn btn-outline rounded-all btnOrg"
-                  >
-                    my card
-                  </button>
-                </div>
-              </Link>
+        <div class="h-100 p-5 boxindexPR ">
+        <h1 class="display-5 fw-bold ">ยินดีต้อนรับ buddyRewards</h1>
+          <p class=" fontSizePin">เป็นระบบที่จะมาแก้ไขปัญหาการสะสมแต้มในรูปแบบต่างๆ ได้ เช่น ในฝั่งของลูกค้า 
+          ลูกค้านั้นไม่จำเป็นต้องพกพาบัตรสะสมแต้มหรือบัตรสมาชิก 
+          หรือแม้แต่การเสียเวลาโดยใช่เหตุที่ต้องหาบัตรสะสมแต้ม และในส่วนของร้านค้า 
+          ระบบนี้จะไปช่วยเพิ่มการรักษาฐานลูกค้าและจะเป็นเครื่องมือที่เป็นประโยชน์ต่อการตัดสินใจทั้งในการมอบสิทธิพิเศษกับลูกค้า
+           หรือแม้แต่การลดต้นทุนในสิ่งที่ไม่จำเป็น</p>
+          
+         
+
+        
     </div>
-    <div class="col-sm BoxSghome">
-    <h1>merchant</h1>
-    <Link to="/merchant/login">
-                <div className="d-grid gap-2 col-6 mx-auto">
-                  <button
-                    type="button"
-                    className="btn btn-outline rounded-all btnOrg"
-                  >
-                    Login
-                  </button>
-                </div>
-              </Link>
-              <Link to="/merchant/register">
-                <div className="d-grid gap-2 col-6 mx-auto">
-                  <button
-                    type="button"
-                    className="btn btn-outline rounded-all btnOrg"
-                  >
-                    register
-                  </button>
-                </div>
-              </Link>
+    <div class="row align-items-md-stretch">
+      <div class="col-md-6 paddingTop15 ">
+        <div class="h-100 p-5 boxindex1 mx-auto ">
+          <h1>สำหรับลูกค้า</h1>
+          <Link to="/customer/register">
+          <button class="btn btnindexPrimary btn-md" type="button">ลงทะเบียน</button>
+          </Link>
+          <Link to="/customer/login">
+          <button class="btn btnindexPrimary btn-md mgL5" type="button">เข้าสู่ระบบ</button>
+          </Link>
+        </div>
+      </div>
+      <div class="col-md-6 paddingTop15 ">
+      <div class="h-100 p-5 boxindex2 ">
+        <h1>สำหรับร้านค้า</h1>
+        <Link to="/merchant/register">
+          <button class="btn btnindexPrimary btn-md" type="button">ลงทะเบียน</button>
+          </Link>
+          <Link to="/merchant/login">
+          <button class="btn btnindexPrimary btn-md mgL5" type="button">เข้าสู่ระบบ</button>
+          </Link>
+        </div>
+      </div>
     </div>
-  </div>
- 
+    
 </div>
       </>
     );
   }
 }
 
-export default Home2;
+export default Home;

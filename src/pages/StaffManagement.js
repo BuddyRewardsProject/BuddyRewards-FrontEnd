@@ -168,13 +168,21 @@ class StaffManagement extends Component {
                     type="numeric"
                     inputMode="tel"
                     focus={true}
-                    style={{ padding: "10px" }}
-                    inputStyle={{ borderColor: "grey" }}
-                    inputFocusStyle={{ borderColor: "green" }}
-                    onComplete={(value, index) => { }}
-                    autoSelect={true}
-                    regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
-                  />
+                    inputStyle={{ 
+                      borderColor: "#FFFF",
+                      background: "#f3f3f3",
+                      borderRadius: "7px",
+                      width: "39px",
+                      height: "60px",
+                    }}
+                      inputFocusStyle={{ borderColor: "#F7931E",background: "#ECF0F1" }}
+                      onComplete={(value, index) => {
+                        this.loginPin();
+                      }}
+                      autoSelect={true}
+                      regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
+                      ref={(p) => (this.pin = p)}
+                    />
                 </div>
               </div>
               <div class="modal-footer">
