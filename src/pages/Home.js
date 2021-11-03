@@ -56,16 +56,20 @@ class Home extends Component {
     
     return (
       <>
-        <Navbar></Navbar>
+        <Navbar />
+        
         <div class="container py-4 paddingBottom15">
           
         <div class="h-100 p-5 boxindexPR ">
-        <h1 class="display-5 fw-bold">ยินดีต้อนรับ buddyRewards</h1>
-          <p>รวมบัตรสะสมแต้มไว้ในที่เดียว</p>
-          <p>พร้อมรับสิทธิ์ประโยชน์จาก ร้านค้า partner ของเรา</p>
+        <h1 class="display-5 fw-bold ">ยินดีต้อนรับ buddyRewards</h1>
+          <p class=" fontSizePin">เป็นระบบที่จะมาแก้ไขปัญหาการสะสมแต้มในรูปแบบต่างๆ ได้ เช่น ในฝั่งของลูกค้า 
+          ลูกค้านั้นไม่จำเป็นต้องพกพาบัตรสะสมแต้มหรือบัตรสมาชิก 
+          หรือแม้แต่การเสียเวลาโดยใช่เหตุที่ต้องหาบัตรสะสมแต้ม และในส่วนของร้านค้า 
+          ระบบนี้จะไปช่วยเพิ่มการรักษาฐานลูกค้าและจะเป็นเครื่องมือที่เป็นประโยชน์ต่อการตัดสินใจทั้งในการมอบสิทธิพิเศษกับลูกค้า
+           หรือแม้แต่การลดต้นทุนในสิ่งที่ไม่จำเป็น</p>
+          
          
 
-          <button class="btn btnindexPrimary btn-md" type="button">เกี่ยวกับเรา</button>
         
     </div>
     <div class="row align-items-md-stretch">
@@ -92,6 +96,7 @@ class Home extends Component {
         </div>
       </div>
     </div>
+    
 </div>
       </>
     );

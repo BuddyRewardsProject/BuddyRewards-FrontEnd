@@ -54,7 +54,7 @@ class StaffView extends Component {
             <div className="row align-items-center">
               <div className="col-lg-1 col-md-2"></div>
               <MarginTop className="col">
-                <BranchNameSize className="text-center">{this.props.auth.user.branchName}</BranchNameSize>
+                <BranchNameSize className="text-center">{this.props.auth.user.userName} {this.props.auth.user.branchName}</BranchNameSize>
               </MarginTop>
               <div className="col-lg-1 col-md-2"></div>
             </div>

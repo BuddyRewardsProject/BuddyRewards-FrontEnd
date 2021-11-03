@@ -19,7 +19,6 @@ const BtnLogOut = styled.button`
   font-size: 22px;
   border-radius: 20px;
   color: white;
-
 `;
 const BtnClear = styled.button`
   color: #838282;
@@ -28,7 +27,6 @@ const BtnClear = styled.button`
   width: 25%;
   border-radius: 99px;
   border-style: none;
-  
 `;
 const BgG = styled.div`
   height: 300px;
@@ -125,7 +123,6 @@ class PinMerchantLogin extends Component {
             <div class="spinner-border" role="status">
               <span class="visually-hidden">Loading...</span>
             </div>
-
           </div>
         ) : (
           <BgG>
@@ -139,22 +136,32 @@ class PinMerchantLogin extends Component {
                         <img src={logo} alt="logo" />
                       </Link>
                     </div>
-                    <h1 className="text-center mt-3 mb-3">Merchant Name</h1>
+                    <h1 className="text-center mt-3 mb-3">
+                      {this.props.auth.user.userName}{" "}
+                      {this.props.auth.user.branchName}
+                    </h1>
                     <h4 className="text-center mt-3 mb-3">
                       กรอก PIN เพื่อเข้าใช้งาน
                     </h4>
-                    <div className="text-center fontSizePin ">
-                      <PinInput 
+                    <div className="text-center fontSizePin  hidepintext ">
+                      <PinInput
                         length={6}
                         initialValue=""
-                        secret={true}
                         onChange={(v) => this.onChange(v)}
-                        type="alphanumeric"
-                        inputmode="tel"
+                        type="numeric"
+                        inputMode="number"
                         focus={true}
-                        style={{ padding: "10px"}}
-                        inputStyle={{ borderColor: "#c2c2c2" }}
-                        inputFocusStyle={{ borderColor: "#c2c2c2" }}
+                        style={{padding: "8px"}}
+                        inputStyle={{ 
+                        borderColor: "#FFFF",
+                       
+                        background: "#f3f3f3",
+                        borderRadius: "7px",
+                        width: "39px",
+                        height: "60px",
+                        WebkitTextSecurity: "disc",
+                      }}
+                        inputFocusStyle={{ borderColor: "#F7931E",background: "#FFFF" }}
                         onComplete={(value, index) => {
                           this.loginPin();
                         }}
@@ -162,9 +169,8 @@ class PinMerchantLogin extends Component {
                         regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
                         ref={(p) => (this.pin = p)}
                       />
-
                     </div>
-                    <div className="text-center">{this.state.pin}</div>
+                    {/* <div className="text-center">{this.state.pin}</div> */}
                     <div className="text-center">
                       <BtnClear
                         className=""
