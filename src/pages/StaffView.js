@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import color from "../config/color";
-import Navbar2 from "../layouts/Navbar2";
+import Navbar2 from "../layouts/NavbarNew";
 
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
@@ -25,7 +25,8 @@ const BtnOrange = styled.button`
 `;
 
 const BgGradient = styled.div`
-  height: 300px;
+border-bottom-right-radius: 19px;
+border-bottom-left-radius: 19px;
   background: ${color.Gradient};
 `;
 const MarginTop = styled.div`
@@ -48,15 +49,13 @@ class StaffView extends Component {
   render() {
     return (
       <div>
-        <Navbar2 />
+       
         <BgGradient>
           <div className="container">
-            <div className="row align-items-center">
-              <div className="col-lg-1 col-md-2"></div>
-              <MarginTop className="col">
-                <BranchNameSize className="text-center">{this.props.auth.user.userName} {this.props.auth.user.branchName}</BranchNameSize>
-              </MarginTop>
-              <div className="col-lg-1 col-md-2"></div>
+            <div className=" ">
+              <div className=""></div>
+              <BranchNameSize className="text-center align-items-center headcoverpadding">{this.props.auth.user.userName} {this.props.auth.user.branchName}</BranchNameSize>
+              <div className=""></div>
             </div>
           </div>
         </BgGradient>
@@ -64,7 +63,7 @@ class StaffView extends Component {
           <div className="row">
             <div className="col-lg-2 col-md-2" />
             <div className="col">
-              <div className="row row-cols-1 row-cols-md-2 g-4 p-4">
+              <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2 g-4 p-4">
               <div className="col">
               <Link to="/merchant/branch/webPOS">
                   <div className="card h-100  card rounded-10  ">

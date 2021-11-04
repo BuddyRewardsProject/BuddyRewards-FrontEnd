@@ -101,7 +101,11 @@ code {
   border: 0px;
 }
 
-
+.headcoverpadding{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  
+}
 
  .boxindexPR{
   border-radius: 9px;

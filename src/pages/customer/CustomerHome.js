@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Navigation from "../../layouts/Navigation";
-import { connect } from 'react-redux'
-import { logoutCustomer } from '../../actions/customerAuthActions'
+import { connect } from "react-redux";
+import { logoutCustomer } from "../../actions/customerAuthActions";
 import liff from "@line/liff";
 import NavTop from "../../layouts/NavTop";
 import { Helmet } from "react-helmet";
 import "../../assets/css/CustomerSide/Customer.css";
-
-
 
 class CustomerHome extends Component {
   constructor(props) {
@@ -16,26 +14,39 @@ class CustomerHome extends Component {
     this.state = {
       merchantId: null,
       merchantName: null,
-      accessToken:null
+      accessToken: null,
     };
   }
 
   componentDidMount() {
-    liff.init({
-      liffId: '1656382933-9DzLvxlE', // Use own liffId
-  })
+    liff
+      .init({
+        liffId: "1656382933-9DzLvxlE", // Use own liffId
+      })
       .then(() => {
-
         if (!liff.isLoggedIn()) {
           liff.login();
         }
         const accessToken = liff.getAccessToken();
         alert(accessToken);
         console.log(accessToken);
-        this.setState({ accessToken: accessToken })
+        this.setState({ accessToken: accessToken });
+
+        axios
+          .post("/merchant/v1/liff", {
+            accessToken: accessToken
+          })
+          .then((response) => {
+           if(response.data === "none"){
+             window.location.href="/customer/register";
+           }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((err) => {
-          console.log(err);
+        console.log(err);
       });
 
     document.getElementById("width").innerHTML =
@@ -62,7 +73,6 @@ class CustomerHome extends Component {
   }
 
   render() {
-    
     return (
       <>
         <NavTop className=""> </NavTop>
@@ -79,18 +89,17 @@ class CustomerHome extends Component {
         </Navbarmimige>*/}
         <Navigation history={this.props.history}></Navigation>
         <div className="margintopforhome">
-        <h1>{liff.getOS()}</h1>
-        <h1>
-          <p id="width"></p>
-          {this.state.accessToken}
+          <h1>{liff.getOS()}</h1>
+          <h1>
+            <p id="width"></p>
+            {this.state.accessToken}
 
-
-          
-          <p id="height"></p>
-        </h1>
-        <h1>{liff.getLanguage()}</h1>
-        <h1>{liff.getOS()}</h1>
-        <h1>{liff.getOS()}</h1></div>
+            <p id="height"></p>
+          </h1>
+          <h1>{liff.getLanguage()}</h1>
+          <h1>{liff.getOS()}</h1>
+          <h1>{liff.getOS()}</h1>
+        </div>
       </>
     );
   }
@@ -98,7 +107,7 @@ class CustomerHome extends Component {
 
 const mapDispatch = { logoutCustomer };
 const mapStateToProps = (state) => {
-  return state
-}
+  return state;
+};
 
-export default connect(mapStateToProps, mapDispatch)(CustomerHome)
+export default connect(mapStateToProps, mapDispatch)(CustomerHome);
