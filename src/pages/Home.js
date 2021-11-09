@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Navbar from "../layouts/NavbarNew";
+import NavbarNew from "../layouts/NavbarNew";
 import { Link } from "react-router-dom";
 import liff from "@line/liff";
 import styled from "styled-components";
 import color from "../config/color";
+
 
 const BgBox = styled.div`
   height: 300px;
@@ -56,7 +57,7 @@ class Home extends Component {
     
     return (
       <>
-        <Navbar />
+        <NavbarNew />
         
         <div class="container py-4 paddingBottom15">
           
@@ -68,7 +69,6 @@ class Home extends Component {
           ระบบนี้จะไปช่วยเพิ่มการรักษาฐานลูกค้าและจะเป็นเครื่องมือที่เป็นประโยชน์ต่อการตัดสินใจทั้งในการมอบสิทธิพิเศษกับลูกค้า
            หรือแม้แต่การลดต้นทุนในสิ่งที่ไม่จำเป็น</p>
           
-         
 
         
     </div>
@@ -77,10 +77,10 @@ class Home extends Component {
         <div class="h-100 p-5 boxindex1 mx-auto ">
           <h1>สำหรับลูกค้า</h1>
           <Link to="/customer/register">
-          <button class="btn btnindexPrimary btn-md" type="button">ลงทะเบียน</button>
+          <button class="btn btnHomePrimary btn-md" type="button">ลงทะเบียน</button>
           </Link>
           <Link to="/customer/login">
-          <button class="btn btnindexPrimary btn-md mgL5" type="button">เข้าสู่ระบบ</button>
+          <button class="btn btnHomePrimary btn-md mgL5" type="button">เข้าสู่ระบบ</button>
           </Link>
         </div>
       </div>
@@ -88,10 +88,10 @@ class Home extends Component {
       <div class="h-100 p-5 boxindex2 ">
         <h1>สำหรับร้านค้า</h1>
         <Link to="/merchant/register">
-          <button class="btn btnindexPrimary btn-md" type="button">ลงทะเบียน</button>
+          <button class="btn btnHomePrimary btn-md" type="button">ลงทะเบียน</button>
           </Link>
           <Link to="/merchant/login">
-          <button class="btn btnindexPrimary btn-md mgL5" type="button">เข้าสู่ระบบ</button>
+          <button class="btn btnHomePrimary btn-md mgL5" type="button">เข้าสู่ระบบ</button>
           </Link>
         </div>
       </div>

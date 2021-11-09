@@ -12,7 +12,7 @@ const key = "updatable";
 
 const success = () => {
   message.success({
-    content: "‏‏‎‏‏‎สำเร็จ",
+    content: "สำเร็จ",
     duration: 3,
     className: "custom-class",
     style: {

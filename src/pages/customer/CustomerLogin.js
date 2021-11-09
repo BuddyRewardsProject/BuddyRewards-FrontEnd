@@ -106,7 +106,7 @@ class CustomerLogin extends Component {
                 required
               ></input>
             </div>
-
+            <div className="paddingTop15"></div>
             <div className="paddingTop15">
               <button type="button" className="  btnQRBack"
                onClick={(e) => this.handleClick(e)}>

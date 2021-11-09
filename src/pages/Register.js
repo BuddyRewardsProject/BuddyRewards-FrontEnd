@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Navbar from "../layouts/NavbarNew";
+import NavbarNew from "../layouts/NavbarNew";
 import color from "../config/color";
 import logo from "../assets/img/logoM.svg";
 
@@ -150,7 +150,7 @@ export default class Register extends Component {
     return (
       <>
       
-        <Navbar></Navbar>
+        <NavbarNew></NavbarNew>
         <BgGreen >
           
           <div className="container">

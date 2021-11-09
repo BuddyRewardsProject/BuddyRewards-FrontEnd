@@ -3,9 +3,10 @@ import axios from "axios";
 import { Helmet } from "react-helmet";
 
 import styled from "styled-components";
-
+import { connect } from "react-redux";
 import logo from "../../assets/img/logoC.svg";
 
+var cid = "ไม่พบข้อมูล"
 
 const Bg = styled.body`
   height: 100vh;
@@ -13,9 +14,11 @@ const Bg = styled.body`
   background: linear-gradient(180deg, #f7931e 0%, #ff7676 100%);
 `;
 
-const Wspace = styled.body`
-  height: 70%;
-
+const Wspace = styled.div`
+  height: 450px;
+  width: 100%;
+  background: #FFFF;
+  position: relative;
   border-radius: 10px 10px 10px 10px;
 `;
 const TEXT = styled.text`
@@ -27,12 +30,28 @@ class CustomerQR extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      merchantId: null,
-      merchantName: null,
+      cids: null,
     };
   }
 
+  look4cid() {
+     
+    if(this.props.customerAuth.customer.customerId !== "ไม่พบข้อมูล"){
+      cid = this.props.customerAuth.customer.customerId;
+    }else if(cid === null){
+      cid = "1234";
+    }
+  }
+
+  
   componentDidMount() {
+    this.look4cid();
+
+   
+
+
+
+
     this.changeMerchantBgColor("#F7931E", "#FF7676");
     var requestOptions = {
       method: 'GET',
@@ -81,7 +100,8 @@ console.log(result)
     function goBack() {
       window.history.back();
     }
-
+    
+    
     return (
       <Bg id="merchantQrColor">
         <btnCF></btnCF>
@@ -104,28 +124,34 @@ console.log(result)
               <div>
                 <img
                   className="paddingTop15"
-                  src="https://cdn.discordapp.com/attachments/490161799501709313/891602669389631499/LzSKgAAAABJRU5ErkJggg.png"
+                  src={'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+cid}
                   alt="buddyrewards"
-                  width="140"
+                  width="150"
                 />
               </div>
               <div className="row ">
-                <TEXT>demo qr 156898</TEXT>
+              <div className="paddingTop15"></div>
+                <TEXT>{cid}</TEXT>
 
                 <TEXT> แสดง QR กับร้านค้าเพื่อสะสมแต้ม </TEXT>
               </div>
 
-              <div>
+              
+            </div>
+          </div>
+          <div className="myQRBackBtn WspaceBoxpadding">
                 <button className="btnQRBack  " onClick={() => goBack()}>
                   ย้อนกลับ
                 </button>
               </div>
-            </div>
-          </div>
         </Wspace>
       </Bg>
     );
   }
 }
 
-export default CustomerQR;
+const mapStateToProps = (state) => {
+  return state;
+};
+
+export default connect(mapStateToProps, null)(CustomerQR);

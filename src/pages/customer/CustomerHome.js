@@ -7,18 +7,39 @@ import liff from "@line/liff";
 import NavTop from "../../layouts/NavTop";
 import { Helmet } from "react-helmet";
 import "../../assets/css/CustomerSide/Customer.css";
+import { notification } from 'antd';
+import styled from "styled-components";
+
+import logo from "../../assets/img/logoC.svg";
+import logoKMUTT from "../../assets/img/kmutt.svg";
+import profile from "../../assets/img/icon/profileD.svg";
+
+const key = 'updatable';
+const HEADER = styled.text`
+font-size: 40px;
+color:#6B6B6B;
+
+`;
+const Cardinfo = styled.div`
+  background: #ffffff;
+  
+  border-radius: 12px;
+  margin-left: 15px;
+  margin-right: 15px;
+`;
 
 class CustomerHome extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      merchantId: null,
-      merchantName: null,
+      customerFirstName: null,
       accessToken: null,
     };
   }
 
   componentDidMount() {
+
+
     liff
       .init({
         liffId: "1656382933-9DzLvxlE", // Use own liffId
@@ -27,11 +48,32 @@ class CustomerHome extends Component {
         if (!liff.isLoggedIn()) {
           liff.login();
         }
+        const openNotification = () => {
+          notification.success({
+            message: this.state.accessToken,
+            duration: 3,
+            
+            className: 'custom-class',
+            style: {
+              marginTop: '10vh',
+              width: 600,
+            },
+          });
+        };
+        
         const accessToken = liff.getAccessToken();
-        alert(accessToken);
+        
         console.log(accessToken);
         this.setState({ accessToken: accessToken });
-
+        if (liff.getOS() === "web"){
+          
+          openNotification();
+          
+        }else if (liff.getOS() === "ios"){
+          
+          openNotification();
+          
+        }
         axios
           .post("/merchant/v1/liff", {
             accessToken: accessToken
@@ -49,10 +91,7 @@ class CustomerHome extends Component {
         console.log(err);
       });
 
-    document.getElementById("width").innerHTML =
-      "Screen width is " + window.screen.width;
-    document.getElementById("height").innerHTML =
-      "Screen Height: " + window.screen.height;
+    
     axios
       .get("/home")
       .then((response) => {
@@ -75,30 +114,111 @@ class CustomerHome extends Component {
   render() {
     return (
       <>
-        <NavTop className=""> </NavTop>
-        <Helmet>
-          <title>หน้าแรก</title>
-        </Helmet>
-        {/*  <Navbarmimige>
-          <Helmet>
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-            ></meta>
-          </Helmet>
-        </Navbarmimige>*/}
+        
         <Navigation history={this.props.history}></Navigation>
-        <div className="margintopforhome">
-          <h1>{liff.getOS()}</h1>
-          <h1>
-            <p id="width"></p>
-            {this.state.accessToken}
+        <Helmet>
+          <title>ข้อมูลส่วนตัว</title>
+        </Helmet>
+        <div className="container">
+          <div className="row ">
+            <div class="container">
+              <div class="row row-cols-2">
+                <div className="leftPD ">
+                <HEADER className="DBB paddingTop15 ">ข้อมูลส่วนตัว</HEADER>
+                </div>
+                <div className="text-end paddingTop15">
+                <img src={profile} alt="logo"  width="60"/>
+                </div>
+              </div>
+            </div>
+            <div className="text-center"></div>
+            
+            
+            
+            <div className="">
+              <div className="text-left fromfontsize20">ชื่อเล่นของคุณ</div>
+              <input
+                type="text"
+                name="nickname"
+                id="nickName"
+                className="form-control  fromfontsize20"
+                placeholder="ชื่อเล่นของคุณ"
+                required
+              ></input>
+            </div>
+            <div className="text-left fromfontsize20">ชื่อจริง</div>
+            <div className="">
+              <input
+                type="text"
+                name="firstname"
+                id="firstName"
+                className="form-control fromfontsize20"
+                placeholder="ชื่อจริง"
+                required
+              ></input>
+            </div>
+            <div className="text-left fromfontsize20">นามสุกล</div>
+            <div className="">
+              <input
+                type="text"
+                name="LastName"
+                id="lastName"
+                className="form-control fromfontsize20"
+                placeholder="นามสุกล"
+                required
+              ></input>
+            </div>
+            
 
-            <p id="height"></p>
-          </h1>
-          <h1>{liff.getLanguage()}</h1>
-          <h1>{liff.getOS()}</h1>
-          <h1>{liff.getOS()}</h1>
+            
+
+            <div className="text-left fromfontsize20">เบอร์โทรศัพท์</div>
+            <div className="">
+              <input
+                type="tel"
+                name="Phone"
+                id="phone"
+                className="form-control fromfontsize20"
+                placeholder="เบอร์โทรศัพท์"
+                required
+              ></input>
+            </div>
+            <div className="text-left fromfontsize20">เพศ</div>
+            <div>
+              <select class="form-select fromfontsize20" id="gender" required>
+                <option selected>โปรดระบุเพศ</option>
+                <option value="Male">ชาย</option>
+                <option value="Female">หญิง</option>
+                <option value="not define">ไม่ระบุ</option>
+              </select>
+            </div>
+            <div className="text-left fromfontsize20">วัน เดือน ปีเกิด</div>
+            <div>
+              <input
+                type="date"
+                id="dob"
+                
+                className="form-control fromfontsize20"
+                min="1000-01-01"
+                max="2019-12-31"
+              ></input>
+            </div>
+
+            <div className="paddingTop15">
+              <button type="button" className="  btnQRBack"
+               onClick={(e) => this.handleClick(e)}>
+               แก้ไขขัอมูล
+              </button>
+              
+            </div>
+            <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+
+          </div>
         </div>
       </>
     );

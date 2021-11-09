@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import color from "../config/color";
-import Navbar2 from "../layouts/NavbarNew";
+import NavTopWebPOS from "../layouts/NavTopMerchant";
 
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
@@ -49,7 +49,7 @@ class StaffView extends Component {
   render() {
     return (
       <div>
-       
+       <NavTopWebPOS/>
         <BgGradient>
           <div className="container">
             <div className=" ">

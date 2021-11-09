@@ -67,7 +67,7 @@ class PinMerchantLogin extends Component {
     this.props.logout();
   }
 
-  componentWillMount() {
+  componentWillMount(){
     var data = {
       branchId: this.props.auth.user.branchId,
     };

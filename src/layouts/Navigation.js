@@ -1,32 +1,25 @@
-import React from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faStar,
-  faWallet,
-} from "@fortawesome/free-solid-svg-icons";
+import { faAddressCard, faWallet } from "@fortawesome/free-solid-svg-icons";
 import colorNavBottom from "../config/colorNavBottom";
 import styled from "styled-components";
-
+import React, { Component } from "react";
 import { useEffect } from "react";
-
+import { Link } from "react-router-dom";
 const BgNavB = styled.div`
   background: ${colorNavBottom.Gradient};
-  
+
   padding: max(env(safe-area-inset-bottom));
   border-radius: 0px 0px 0px 0px;
 `;
-const CurrentPath = window.location.pathname; 
-
-
+const CurrentPath = window.location.pathname;
 
 const BtnOrange = styled.button`
   background-color: ${colorNavBottom.Button};
   border-style: none;
   border-radius: 30px;
- 
+
   font-family: DBHeaventDB, serif;
-  
+
   box-shadow: #f7931e 0px 0px 9px 0px;
   font-size: 26px;
   width: 100%;
@@ -35,103 +28,77 @@ const BtnOrange = styled.button`
   }
 `;
 
+var text1 = "หน้าแรก";
+var iconColorHome = "NavBcolorIconSize";
+var iconColorMyCard = "NavBcolorIconSize";
+var textColorHome = "NavBcolorTextSize";
+var textColorMyCard = "NavBcolorTextSize";
+var isselect = "0";
 
+class Navigation extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentNav: null,
+    };
+  }
 
-var text1 = "หน้าแรก"
-var iconColorHome = "NavBcolorIconSize"
-var iconColorMyCard = "NavBcolorIconSize"
-var textColorHome = "NavBcolorTextSize"
-var textColorMyCard = "NavBcolorTextSize"
-var isselect = "0"
+  componentDidMount() {
+    this.currentNav();
+  }
 
-const Navigation = (props) => {
-  useEffect(() => {
-    console.log(CurrentPath);
-    
-    if(CurrentPath === "/customer/home"){
-      iconColorHome = "NavBcolorIconSizeSelect"
-      iconColorMyCard= "NavBcolorIconSize"
-      textColorHome = "NavBcolorTextSizeSelect"
-      textColorMyCard = "NavBcolorTextSize"
-      isselect = "1"
-      console.log(isselect);
-    }else if(CurrentPath === "/customer/mycard"){
-      iconColorHome = "NavBcolorIconSize"
-      iconColorMyCard= "NavBcolorIconSizeSelect"
-      textColorHome = "NavBcolorTextSize"
-      textColorMyCard = "NavBcolorTextSizeSelect"
-      isselect = "2"
-      console.log(isselect);
-    }
-    if(isselect === "1"){
+  currentNav() {
+    var currentPath = window.location.pathname;
+    console.log(currentPath);
+    this.setState({ currentNav: currentPath });
+  }
 
-      console.log("haha");
-    }else if(isselect === "2"){
-      console.log("hehe");
-    }
-  }, [])
-
-  
-  const redirect = (CurrentPath) => {
-    props.history.push(CurrentPath);
-    console.log(CurrentPath);
-    if(CurrentPath === "/customer/home"){
-      iconColorHome = "NavBcolorIconSizeSelect"
-      iconColorMyCard= "NavBcolorIconSize"
-      textColorHome = "NavBcolorTextSizeSelect"
-      textColorMyCard = "NavBcolorTextSize"
-      
-    }else if(CurrentPath === "/customer/mycard"){
-      iconColorHome = "NavBcolorIconSize"
-      iconColorMyCard= "NavBcolorIconSizeSelect"
-      textColorHome = "NavBcolorTextSize"
-      textColorMyCard = "NavBcolorTextSizeSelect"
-    }
-  };
-
-
-
-  return (
-    <BgNavB className="fixed-bottom ipx ">
-      <div className="row d-flex flex-column row justify-content-center align-items-center ">
-        <div class="container mggt">
-          <div class="row ">
-            <div
-              class="col text-center   "
-              onClick={() => redirect("/customer/home")}
-              
-            >
-              <div class= {iconColorHome} >
-                <FontAwesomeIcon icon={faStar} />
+  render() {
+    return (
+      <BgNavB className="fixed-bottom ipx ">
+        <div className="row d-flex flex-column row justify-content-center align-items-center ">
+          <div class="container mggt">
+            <div class="row ">
+            <div class="col text-center  ">
+            <Link className="body" to="/customer/mycard">
+                <div class={`${this.state.currentNav === '/customer/mycard' ? 'NavBcolorIconSizeSelect' :'NavBcolorIconSize' }`}>
+                  <FontAwesomeIcon icon={faWallet} />
+                </div>
+                <div class={`col text-center mggt${this.state.currentNav === '/customer/mycard' ? ' NavBcolorTextSizeSelect' :' NavBcolorTextSize' }`}>
+                  บัตรของคุณ
+                </div>
+                </Link>
               </div>
-              <div class={textColorHome +" col text-center mggt"}>{text1}</div>
               
-            </div>
-            <div class="col-5 text-center  justify-content-center align-items-center">
+              <div class="col-5 text-center  justify-content-center align-items-center">
+              <Link className="body" to="/customer/myQR">
+                <div class="col text-center  ">
+                  <BtnOrange className="btn btn-primary justify-content-center align-items-center QRtextNavB">
+                    สะสมแต้ม
+                  </BtnOrange>
+                </div>
+                </Link>
+              </div>
+              
               <div class="col text-center  ">
-                <BtnOrange
-                  className="btn btn-primary justify-content-center align-items-center QRtextNavB"
-                  onClick={() => redirect("/customer/myQR")}
-                >
-                  สะสมแต้ม
-                </BtnOrange>
+              
+                <Link className="body" to="/customer/home">
+            <div class={`${this.state.currentNav === '/customer/home' ? 'NavBcolorIconSizeSelect' :'NavBcolorIconSize' }`}>
+                  <FontAwesomeIcon icon={faAddressCard} />
+                </div>
+                <div class={`col text-center mggt${this.state.currentNav === '/customer/home' ? ' NavBcolorTextSizeSelect' :' NavBcolorTextSize' }`}>
+                  ข้อมูลส่วนตัว
+                </div>
+                </Link>
               </div>
-            </div>
-            <div
-              class="col text-center  "
-              onClick={() => redirect("/customer/mycard")}
-            >
-              <div class={iconColorMyCard}>
-                <FontAwesomeIcon icon={faWallet} />
-              </div>
-              <div class={ textColorMyCard +" col text-center mggt "}>บัตรของคุณ</div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="container "></div>
-    </BgNavB>
-  );
-};
+        <div className="container "></div>
+      </BgNavB>
+    );
+  }
+}
+
 export default Navigation;

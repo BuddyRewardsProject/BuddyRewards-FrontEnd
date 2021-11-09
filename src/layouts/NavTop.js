@@ -7,23 +7,26 @@ import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 const BgNav = styled.div`
-  height: 120px;
+  height: 200px;
   background: ${color.Gradient};
   border-radius: 0px 0px 10px 10px;
 `;
 
 const NavbarTop = () => {
   return (
-    <BgNav className="fixed-top ">
+    <BgNav className="">
       <div class="container">
         <div class="row row-cols-2">
           <div className="leftPD ">
-            <img src={logo} alt="buddyrewards" width="150" />
+            <img src={logo} alt="buddyrewards" width="140" />
           </div> 
-          <Link to="/customer/register" className="text-end  NavTopColorAndIconSize" >
+          <Link to="/customer/login" className="text-end  NavTopColorAndIconSize" >
          
             <FontAwesomeIcon icon={faUserCircle} />
+            
+            
           </Link>
+         
         </div>
       </div>
 

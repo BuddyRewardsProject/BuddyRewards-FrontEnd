@@ -233,9 +233,9 @@ class CustomerRegister extends Component {
             <div>
               <select class="form-select" id="gender" required>
                 <option selected>โปรดระบุเพศ</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="not define">not define</option>
+                <option value="Male">ชาย</option>
+                <option value="Female">หญิง</option>
+                <option value="not define">ไม่ระบุ</option>
               </select>
             </div>
             <div className="text-left fromfontsize20">วัน เดือน ปีเกิด</div>

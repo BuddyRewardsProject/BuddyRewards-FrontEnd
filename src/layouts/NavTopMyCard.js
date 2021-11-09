@@ -3,11 +3,11 @@ import React from "react";
 import styled from "styled-components";
 import color from "../config/colorNavTop";
 import "../assets/css/CustomerSide/NavTop.css";
-import { faSearchLocation } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import logo from "../assets/img/logoC.svg";
 const BgNav = styled.div`
-  height: 60px;
+height: 70px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   background: ${color.white};
   border-radius: 0px 0px 10px 10px;
@@ -19,10 +19,10 @@ const NavbarTopMyCard = () => {
       <div class="container">
         <div class="row  ">
           <div className="leftPDmyCard col">
-          <div className="bottom-nav-label">บัตรของคุณ</div>
+          <img src={logo} alt="buddyrewards" width="140" />
           </div>
           <div className="text-end col-4 MyCardNavTopColorAndIconSize">
-            <FontAwesomeIcon icon={faSearchLocation} />
+            <FontAwesomeIcon icon={faSearch} />
             
           </div>
         </div>
