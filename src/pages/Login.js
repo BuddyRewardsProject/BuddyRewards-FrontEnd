@@ -17,17 +17,17 @@ import { bindActionCreators } from 'redux'
 const SECRET_KEY = '2aaf1e7d17a8d4706225480585767166cabd'
 
 
-const BtnOrange = styled.div`
+// const BtnOrange = styled.div`
 
-color: rgb(255, 255, 255);
-border: 0px;
-background: linear-gradient(180deg, #F7931E 0%, #FF7676 100%);
-font-size: 20px;
-  border-radius: 99px;
-  &:hover {
-    background-color: ${color.ButtonOrange};
-  }
-`;
+// color: rgb(255, 255, 255);
+// border: 0px;
+// background: linear-gradient(180deg, #F7931E 0%, #FF7676 100%);
+// font-size: 20px;
+//   border-radius: 99px;
+//   &:hover {
+//     background-color: ${color.ButtonOrange};
+//   }
+// `;
 const BgGreen = styled.div`
   height: 300px;
   background: ${color.Gradient};

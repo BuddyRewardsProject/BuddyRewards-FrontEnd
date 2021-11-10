@@ -3,7 +3,7 @@ import { faAddressCard, faWallet } from "@fortawesome/free-solid-svg-icons";
 import colorNavBottom from "../config/colorNavBottom";
 import styled from "styled-components";
 import React, { Component } from "react";
-import { useEffect } from "react";
+
 import { Link } from "react-router-dom";
 const BgNavB = styled.div`
   background: ${colorNavBottom.Gradient};
@@ -11,7 +11,7 @@ const BgNavB = styled.div`
   padding: max(env(safe-area-inset-bottom));
   border-radius: 0px 0px 0px 0px;
 `;
-const CurrentPath = window.location.pathname;
+//const CurrentPath = window.location.pathname;
 
 const BtnOrange = styled.button`
   background-color: ${colorNavBottom.Button};
@@ -28,12 +28,6 @@ const BtnOrange = styled.button`
   }
 `;
 
-var text1 = "หน้าแรก";
-var iconColorHome = "NavBcolorIconSize";
-var iconColorMyCard = "NavBcolorIconSize";
-var textColorHome = "NavBcolorTextSize";
-var textColorMyCard = "NavBcolorTextSize";
-var isselect = "0";
 
 class Navigation extends Component {
   constructor(props) {

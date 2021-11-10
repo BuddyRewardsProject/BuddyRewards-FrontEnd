@@ -4,7 +4,7 @@ import Navigation from "../../layouts/Navigation";
 import { connect } from "react-redux";
 //import { logoutCustomer } from "../../actions/customerAuthActions";
 import liff from "@line/liff";
-import NavTop from "../../layouts/NavTop";
+// import NavTop from "../../layouts/NavTop";
 import { Helmet } from "react-helmet";
 import "../../assets/css/CustomerSide/Customer.css";
 import { notification } from "antd";
@@ -14,23 +14,23 @@ import jwt from 'jsonwebtoken'
 import { setCustomer } from "../../actions/customerAuthActions";
 import { bindActionCreators } from 'redux'
 
-import logo from "../../assets/img/logoC.svg";
-import logoKMUTT from "../../assets/img/kmutt.svg";
-import profile from "../../assets/img/icon/profileD.svg";
-import { Redirect } from "react-router";
+// import logo from "../../assets/img/logoC.svg";
+// import logoKMUTT from "../../assets/img/kmutt.svg";
+// import profile from "../../assets/img/icon/profileD.svg";
+// import { Redirect } from "react-router";
 
-const key = "updatable";
+
 const HEADER = styled.text`
   font-size: 40px;
   color: #6b6b6b;
 `;
-const Cardinfo = styled.div`
-  background: #ffffff;
+// const Cardinfo = styled.div`
+//   background: #ffffff;
 
-  border-radius: 12px;
-  margin-left: 15px;
-  margin-right: 15px;
-`;
+//   border-radius: 12px;
+//   margin-left: 15px;
+//   margin-right: 15px;
+// `;
 
 class CustomerHome extends Component {
   constructor(props) {

@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
 
 import barcodeScan from "../assets/img/icon/barcodeScan.png";
-import { $CombinedState } from "redux";
+// import { $CombinedState } from "redux";
 import $ from "jquery"
 
 
