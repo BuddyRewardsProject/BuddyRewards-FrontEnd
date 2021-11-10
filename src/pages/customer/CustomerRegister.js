@@ -48,6 +48,19 @@ class CustomerRegister extends Component {
     };
   }
 
+  componentDidMount(){
+    liff
+    .init({
+      liffId: "1656382933-9DzLvxlE",
+    })
+    .then(() => {
+      if (!liff.isLoggedIn()) {
+        liff.login();
+        console.log("fffffffffffffffff")
+      }
+    }
+    )
+  }
   handleClick(e) {
     e.preventDefault();
     var customerFirstName = $("#firstName").val();
@@ -60,6 +73,8 @@ class CustomerRegister extends Component {
     var customerGender = $("#gender").val();
     var customerDOB = $("#dob").val();
 
+
+    
     liff
       .init({
         liffId: "1656382933-9DzLvxlE",
@@ -67,6 +82,7 @@ class CustomerRegister extends Component {
       .then(() => {
         if (!liff.isLoggedIn()) {
           liff.login();
+          console.log("fffffffffffffffff")
         }
 
         const accessToken = liff.getAccessToken();
@@ -84,6 +100,7 @@ class CustomerRegister extends Component {
           customerDOB: customerDOB,
           customerToken: accessToken,
         };
+        
         axios
           .post("/customer/v1/register", {
             data,
@@ -102,6 +119,8 @@ class CustomerRegister extends Component {
       });
   }
 
+
+  
   onRepeatPasswordInput(e) {
     var password = $("#password").val();
     if (!password || password.length === 0 || password === null) return false;
@@ -163,7 +182,15 @@ class CustomerRegister extends Component {
             </div>
             <div className="text-center"></div>
             <HEADER className=" paddingTop15 ">สมัครสามาชิก</HEADER>
-
+            <div className="paddingTop15">
+              <button
+                type="button"
+                className="  btnEditProfile"
+                onClick={() =>  liff.login()}
+              >
+                login LINE
+              </button>
+            </div>
             <div className="">
               <div className="text-left fromfontsize20">ชื่อเล่นของคุณ</div>
               <input

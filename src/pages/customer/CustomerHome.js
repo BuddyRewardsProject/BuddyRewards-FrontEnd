@@ -75,11 +75,7 @@ class CustomerHome extends Component {
 
         console.log(accessToken);
         this.setState({ accessToken: accessToken });
-        if (liff.getOS() === "web") {
-          openNotification();
-        } else if (liff.getOS() === "ios") {
-          openNotification();
-        }
+        
         axios
           .post("/customer/v1/liff", {
             accessToken: accessToken,

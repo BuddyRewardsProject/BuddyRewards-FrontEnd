@@ -8,8 +8,15 @@ import MerchantLOGO from "../../assets/img/icon/profileD.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faParking, faStar } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+
 import liff from "@line/liff";
+import jwt from 'jsonwebtoken'
+import { setCustomer } from "../../actions/customerAuthActions";
+import { bindActionCreators } from 'redux'
+
+
 import { notification } from 'antd';
+
 
 class CustomerCard extends Component {
   constructor(props) {
@@ -30,10 +37,10 @@ class CustomerCard extends Component {
         }
         const openNotification = () => {
           notification.success({
-            message: "แสดงบัตรทั้งหมด",
-            duration: 1,
-            
-            className: 'messageclass',
+            message: "บันทึกข้อมูลเรียบร้อย",
+            duration: 4,
+
+            className: "messageclass",
             // style: {
             //   marginTop: '1px',
             //   width: 600,
@@ -41,28 +48,30 @@ class CustomerCard extends Component {
             // },
           });
         };
-        
+
         const accessToken = liff.getAccessToken();
-        
+
         console.log(accessToken);
         this.setState({ accessToken: accessToken });
-        if (liff.getOS() === "web"){
-          
+        if (liff.getOS() === "web") {
           openNotification();
-          
-        }else if (liff.getOS() === "ios"){
-          
+        } else if (liff.getOS() === "ios") {
           openNotification();
-          
         }
         axios
           .post("/customer/v1/liff", {
-            accessToken: accessToken
+            accessToken: accessToken,
           })
           .then((response) => {
-           if(response.data === "none"){
-             window.location.href="/customer/register";
-           }
+            console.log(response.data);
+            if (response.data.status === "error") {
+              window.location.href = response.data.redirect;
+              return;
+            }else{
+              this.props.setCustomer(jwt.decode(response.data.customerToken)) 
+              localStorage.setItem("customerToken", response.data.customerToken);
+              
+            }
           })
           .catch((error) => {
             console.log(error);
@@ -71,7 +80,26 @@ class CustomerCard extends Component {
       .catch((err) => {
         console.log(err);
       });
+
+    axios
+      .get("/home")
+      .then((response) => {
+        // handle success
+        this.setState({
+          merchantId: response.data.results.merchantId,
+          merchantName: response.data.results.merchantName,
+        });
+        console.log(response.data[0]);
+      })
+      .catch((error) => {
+        // handle error
+        console.log(error);
+      })
+      .then(() => {
+        // always executed
+      });
   }
+
   render() {
     return (
       <>
