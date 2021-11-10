@@ -3,7 +3,7 @@ import axios from "axios";
 import logoKMUTT from "../../assets/img/kmutt.svg";
 import logo from "../../assets/img/logoC.svg";
 import $ from "jquery";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+
 import styled from "styled-components";
 import message from 'antd/lib/message/index';
 import sha512 from "js-sha512"

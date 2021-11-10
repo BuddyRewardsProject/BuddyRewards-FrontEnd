@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+//import axios from "axios";
 import logoKMUTT from "../../assets/img/kmutt.svg";
 import logo from "../../assets/img/logoC.svg";
 import Cover from "../../assets/img/CoverPreRegister.png";
@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 import message from "antd/lib/message/index";
 
-const key = "updatable";
+//const key = "updatable";
 
 const success = () => {
   message.success({

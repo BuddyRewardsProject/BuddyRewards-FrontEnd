@@ -4,15 +4,15 @@ import { Helmet } from "react-helmet";
 import NavTopMyCard from "../../layouts/NavTopMyCard";
 import "../../assets/css/CustomerSide/Customer.css";
 import Navigation from "../../layouts/Navigation";
-import MerchantLOGO from "../../assets/img/icon/profileD.svg";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faParking, faStar } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 import liff from "@line/liff";
 import jwt from 'jsonwebtoken'
-import { setCustomer } from "../../actions/customerAuthActions";
-import { bindActionCreators } from 'redux'
+// import { setCustomer } from "../../actions/customerAuthActions";
+// import { bindActionCreators } from 'redux'
 
 
 import { notification } from 'antd';

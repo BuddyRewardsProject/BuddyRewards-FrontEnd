@@ -29,9 +29,9 @@ border-bottom-right-radius: 19px;
 border-bottom-left-radius: 19px;
   background: ${color.Gradient};
 `;
-const MarginTop = styled.div`
-  margin-top: 8%;
-`;
+// const MarginTop = styled.div`
+//   margin-top: 8%;
+// `;
 const BranchNameSize = styled.h2`
   font-size: 48px;
   font-style: bold;
