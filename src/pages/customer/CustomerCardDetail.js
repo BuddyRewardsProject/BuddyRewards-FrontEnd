@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 import merchantLOGO from "../../assets/img/icon/merchantPreLoad.svg";
 const BgBanner = styled.div`
-  height: 339px;
+  height: 300px;
   background: ${color.Gradient};
   border-radius: 0px 0px 25px 25px;
 `;
@@ -58,16 +58,44 @@ class CustomerCardDetail extends Component {
           <img
               src={merchantLOGO}
               class=" margintop30"
-              alt="barcodeScan"
-              width="120px"
+              alt="merchantLOGO"
+              width="100px"
             />
-            <div className="cardDetialHeaderText">marchant name</div>
-            <div className="cardBGforDetial cardNamemiddleforDetial">คุณมี 5 แต้ม</div>
+            <div className="cardDetialHeaderText">ต้นตำรับ ชาพะยอม</div>
+            <div className=" cardBGforDetial cardNamemiddleforDetial">คุณมี 5 แต้ม</div>
           </Card>
-
-          <div className="HistoryBtn middleforHistoryBtn">ประวัติการสะสม</div>
+          
+          <div className="text-center ">
+                <button className="btnhistorymiddle">รายละเอียด</button>   
+                </div>
 
         </BgBanner>
+
+        <div className="container">
+          <h1 className="margintop30">สิทธิประโยชน์ของคุณ</h1>
+        <div className="cardBG ">
+              <div
+                class="list-group-item d-flex align-items-center shadow-none border-0 cardBG d-flex gap-3 py-3"
+                aria-current="true"
+              >
+                <img
+                  src="https://d1sag4ddilekf6.azureedge.net/compressed/items/THITE2020042209433453728/photo/menueditor_item_9c09d144c04a488181da5fcfbe9e9d71_1608029094219114863.jpg"
+                  alt="twbs"
+                  width="70"
+                  height="70"
+                  class="rounded-circle flex-shrink-0"
+                ></img>
+                <div class=" w-100 justify-content-between d-flex align-items-center">
+                  <div class="d-flex align-items-center">
+                    <div class="fontSizeMycardTitle">รับเครื่องดื่มฟรี 1 แก้ว</div>
+                    
+                  </div>
+                  <div class="labelRedeemPoint justify-content-between d-flex align-items-center  d-flex ">
+                  10 แต้ม
+                  </div>
+                </div>
+              </div>
+            </div></div>
       </>
     );
   }

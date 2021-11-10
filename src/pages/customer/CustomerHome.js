@@ -2,27 +2,31 @@ import React, { Component } from "react";
 import axios from "axios";
 import Navigation from "../../layouts/Navigation";
 import { connect } from "react-redux";
-import { logoutCustomer } from "../../actions/customerAuthActions";
+//import { logoutCustomer } from "../../actions/customerAuthActions";
 import liff from "@line/liff";
 import NavTop from "../../layouts/NavTop";
 import { Helmet } from "react-helmet";
 import "../../assets/css/CustomerSide/Customer.css";
-import { notification } from 'antd';
+import { notification } from "antd";
 import styled from "styled-components";
+
+import jwt from 'jsonwebtoken'
+import { setCustomer } from "../../actions/customerAuthActions";
+import { bindActionCreators } from 'redux'
 
 import logo from "../../assets/img/logoC.svg";
 import logoKMUTT from "../../assets/img/kmutt.svg";
 import profile from "../../assets/img/icon/profileD.svg";
+import { Redirect } from "react-router";
 
-const key = 'updatable';
+const key = "updatable";
 const HEADER = styled.text`
-font-size: 40px;
-color:#6B6B6B;
-
+  font-size: 40px;
+  color: #6b6b6b;
 `;
 const Cardinfo = styled.div`
   background: #ffffff;
-  
+
   border-radius: 12px;
   margin-left: 15px;
   margin-right: 15px;
@@ -36,10 +40,15 @@ class CustomerHome extends Component {
       accessToken: null,
     };
   }
-
+  handleClick(e) {
+    e.preventDefault();
+    this.props.logoutCustomer();
+  }
   componentDidMount() {
-
-
+    if(this.props.customerAuth.isAuthenticated === true){
+      return
+      
+    }
     liff
       .init({
         liffId: "1656382933-9DzLvxlE", // Use own liffId
@@ -50,38 +59,41 @@ class CustomerHome extends Component {
         }
         const openNotification = () => {
           notification.success({
-            message: this.state.accessToken,
-            duration: 3,
-            
-            className: 'custom-class',
-            style: {
-              marginTop: '10vh',
-              width: 600,
-            },
+            message: "บันทึกข้อมูลเรียบร้อย",
+            duration: 4,
+
+            className: "messageclass",
+            // style: {
+            //   marginTop: '1px',
+            //   width: 600,
+            //   color: "Green",
+            // },
           });
         };
-        
+
         const accessToken = liff.getAccessToken();
-        
+
         console.log(accessToken);
         this.setState({ accessToken: accessToken });
-        if (liff.getOS() === "web"){
-          
+        if (liff.getOS() === "web") {
           openNotification();
-          
-        }else if (liff.getOS() === "ios"){
-          
+        } else if (liff.getOS() === "ios") {
           openNotification();
-          
         }
         axios
-          .post("/merchant/v1/liff", {
-            accessToken: accessToken
+          .post("/customer/v1/liff", {
+            accessToken: accessToken,
           })
           .then((response) => {
-           if(response.data === "none"){
-             window.location.href="/customer/register";
-           }
+            console.log(response.data);
+            if (response.data.status === "error") {
+              window.location.href = response.data.redirect;
+              return;
+            }else{
+              this.props.setCustomer(jwt.decode(response.data.customerToken)) 
+              localStorage.setItem("customerToken", response.data.customerToken);
+              
+            }
           })
           .catch((error) => {
             console.log(error);
@@ -91,7 +103,6 @@ class CustomerHome extends Component {
         console.log(err);
       });
 
-    
     axios
       .get("/home")
       .then((response) => {
@@ -114,7 +125,6 @@ class CustomerHome extends Component {
   render() {
     return (
       <>
-        
         <Navigation history={this.props.history}></Navigation>
         <Helmet>
           <title>ข้อมูลส่วนตัว</title>
@@ -124,17 +134,16 @@ class CustomerHome extends Component {
             <div class="container">
               <div class="row row-cols-2">
                 <div className="leftPD ">
-                <HEADER className="DBB paddingTop15 ">ข้อมูลส่วนตัว</HEADER>
+                  <HEADER className="DBB paddingTop15 ">ข้อมูลส่วนตัว</HEADER>
+                  
                 </div>
-                <div className="text-end paddingTop15">
-                <img src={profile} alt="logo"  width="60"/>
+                <div className="text-end  paddingTop15">
+                  <img src={this.props.customerAuth.customer.customerPic}  className="rounded-circle" alt="logo" width="60" />
                 </div>
               </div>
             </div>
             <div className="text-center"></div>
-            
-            
-            
+
             <div className="">
               <div className="text-left fromfontsize20">ชื่อเล่นของคุณ</div>
               <input
@@ -153,7 +162,7 @@ class CustomerHome extends Component {
                 name="firstname"
                 id="firstName"
                 className="form-control fromfontsize20"
-                placeholder="ชื่อจริง"
+                placeholder={this.props.customerAuth.customer.customerFirstName}
                 required
               ></input>
             </div>
@@ -168,9 +177,6 @@ class CustomerHome extends Component {
                 required
               ></input>
             </div>
-            
-
-            
 
             <div className="text-left fromfontsize20">เบอร์โทรศัพท์</div>
             <div className="">
@@ -197,7 +203,6 @@ class CustomerHome extends Component {
               <input
                 type="date"
                 id="dob"
-                
                 className="form-control fromfontsize20"
                 min="1000-01-01"
                 max="2019-12-31"
@@ -205,19 +210,21 @@ class CustomerHome extends Component {
             </div>
 
             <div className="paddingTop15">
-              <button type="button" className="  btnQRBack"
-               onClick={(e) => this.handleClick(e)}>
-               แก้ไขขัอมูล
+              <button
+                type="button"
+                className="  btnEditProfile"
+                onClick={() =>  liff.logout()}
+              >
+                logout LINE
               </button>
-              
             </div>
-            <div className="paddingTop15"></div>
-            <div className="paddingTop15"></div>
-            <div className="paddingTop15"></div>
-            <div className="paddingTop15"></div>
-            <div className="paddingTop15"></div>
-            <div className="paddingTop15"></div>
 
+            <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
           </div>
         </div>
       </>
@@ -225,9 +232,10 @@ class CustomerHome extends Component {
   }
 }
 
-const mapDispatch = { logoutCustomer };
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ setCustomer }, dispatch)
+}
 const mapStateToProps = (state) => {
-  return state;
-};
-
-export default connect(mapStateToProps, mapDispatch)(CustomerHome);
+  return state
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerHome);

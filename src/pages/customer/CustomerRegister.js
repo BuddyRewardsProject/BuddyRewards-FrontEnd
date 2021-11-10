@@ -4,11 +4,11 @@ import logoKMUTT from "../../assets/img/kmutt.svg";
 import logo from "../../assets/img/logoC.svg";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import $ from "jquery"
-import message from 'antd/lib/message/index';
+import $ from "jquery";
+import message from "antd/lib/message/index";
 import color from "../../config/color";
-
-const key = 'updatable';
+import liff from "@line/liff";
+const key = "updatable";
 
 // const success = () => {
 //   message.success({
@@ -18,23 +18,22 @@ const key = 'updatable';
 //     style: {
 //       color: '#FB8549',
 //       icon:'info',
-//       fontSize: '15px',    
+//       fontSize: '15px',
 //     },
 //   });
 // };
 const ButtonSubmit = styled.button`
   color: white;
   background-color: ${color.Button};
-  font-size: '15px';
+  font-size: "15px";
   &:hover {
     background-color: ${color.ButtonOrange};
   }
-`
+`;
 
 const HEADER = styled.text`
-font-size: 35px;
-color:#6B6B6B;
-
+  font-size: 35px;
+  color: #6b6b6b;
 `;
 
 class CustomerRegister extends Component {
@@ -44,73 +43,90 @@ class CustomerRegister extends Component {
       repeatPassword: null,
       formValidation: {
         repeatPassword: true,
-        buttonState: ''
-      }
+        buttonState: "",
+      },
     };
   }
 
   handleClick(e) {
     e.preventDefault();
-    var customerFirstName = $('#firstName').val()
-    var customerLastName = $('#lastName').val()
-    var customerNickName = $('#nickName').val()
-    var customerEmail = $('#email').val()
-    var customerPassword = $('#password').val()
-    var customerRepeatPassword = $('#repeatPassword').val()
-    var customerPhone = $('#phone').val()
-    var customerGender = $('#gender').val()
-    var customerDOB = $('#dob').val()
+    var customerFirstName = $("#firstName").val();
+    var customerLastName = $("#lastName").val();
+    var customerNickName = $("#nickName").val();
+    var customerEmail = $("#email").val();
+    var customerPassword = $("#password").val();
+    var customerRepeatPassword = $("#repeatPassword").val();
+    var customerPhone = $("#phone").val();
+    var customerGender = $("#gender").val();
+    var customerDOB = $("#dob").val();
 
-    var data = {
-      customerFirstName: customerFirstName,
-      customerLastName: customerLastName,
-      customerNickName: customerNickName,
-      customerEmail: customerEmail,
-      customerPassword: customerPassword,
-      customerRepeatPassword: customerRepeatPassword,
-      customerPhone: customerPhone,
-      customerGender: customerGender,
-      customerDOB: customerDOB
-    }
-    axios.post('/customer/v1/register', {
-      data
-    })
-      .then((response) => {
-        if (response.data.status === "success") {
-          message.success({ content: 'สำเร็จแล้ว!', key, duration: 2 });
-          window.location.href = '/customer/login';
-        } else {
-          message.error({ content: 'เกิดข้อผิดพลาด!', key, duration: 2 });
-        }
+    liff
+      .init({
+        liffId: "1656382933-9DzLvxlE",
       })
-      .catch((error) => {
-        console.log(error);
+      .then(() => {
+        if (!liff.isLoggedIn()) {
+          liff.login();
+        }
+
+        const accessToken = liff.getAccessToken();
+        console.log(accessToken);
+
+        var data = {
+          customerFirstName: customerFirstName,
+          customerLastName: customerLastName,
+          customerNickName: customerNickName,
+          customerEmail: customerEmail,
+          customerPassword: customerPassword,
+          customerRepeatPassword: customerRepeatPassword,
+          customerPhone: customerPhone,
+          customerGender: customerGender,
+          customerDOB: customerDOB,
+          customerToken: accessToken,
+        };
+        axios
+          .post("/customer/v1/register", {
+            data,
+          })
+          .then((response) => {
+            if (response.data.status === "success") {
+              message.success({ content: "สำเร็จแล้ว!", key, duration: 2 });
+              window.location.href = "/customer/home";
+            } else {
+              message.error({ content: "เกิดข้อผิดพลาด!", key, duration: 2 });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       });
   }
 
   onRepeatPasswordInput(e) {
-    var password = $('#password').val()
+    var password = $("#password").val();
     if (!password || password.length === 0 || password === null) return false;
     if (password === e.target.value) {
-      this.setState(prevState => ({
-        formValidation: {                   // object that we want to update
-          ...prevState.formValidation,    // keep all other key-value pairs
+      this.setState((prevState) => ({
+        formValidation: {
+          // object that we want to update
+          ...prevState.formValidation, // keep all other key-value pairs
           repeatPassword: true,
-          buttonState: 'active'       // update the value of specific key
-        }
-      }))
-      $('#repeatPassword').removeClass('is-invalid')
-      $('#repeatPassword').addClass('is-valid')
+          buttonState: "active", // update the value of specific key
+        },
+      }));
+      $("#repeatPassword").removeClass("is-invalid");
+      $("#repeatPassword").addClass("is-valid");
     } else {
-      this.setState(prevState => ({
-        formValidation: {                   // object that we want to update
-          ...prevState.formValidation,    // keep all other key-value pairs
+      this.setState((prevState) => ({
+        formValidation: {
+          // object that we want to update
+          ...prevState.formValidation, // keep all other key-value pairs
           repeatPassword: false,
-          buttonState: ''       // update the value of specific key
-        }
-      }))
-      $('#repeatPassword').addClass('is-invalid')
-      $('#repeatPassword').removeClass('is-valid')
+          buttonState: "", // update the value of specific key
+        },
+      }));
+      $("#repeatPassword").addClass("is-invalid");
+      $("#repeatPassword").removeClass("is-valid");
     }
   }
   /*
@@ -249,11 +265,14 @@ class CustomerRegister extends Component {
               ></input>
             </div>
             <div className="paddingTop15">
-              <ButtonSubmit type="button" className="btnQRBack"
-                onClick={(e) => this.handleClick(e)} disabled={!this.state.formValidation.buttonState}>
+              <ButtonSubmit
+                type="button"
+                className="btnQRBack"
+                onClick={(e) => this.handleClick(e)}
+                disabled={!this.state.formValidation.buttonState}
+              >
                 ยืนยัน
               </ButtonSubmit>
-
             </div>
             <div className="paddingTop15"></div>
             <div className="paddingTop15"></div>
@@ -261,7 +280,6 @@ class CustomerRegister extends Component {
             <div className="paddingTop15"></div>
             <div className="paddingTop15"></div>
             <div className="paddingTop15"></div>
-
           </div>
         </div>
       </>

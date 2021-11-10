@@ -106,7 +106,7 @@ console.log(result)
       <Bg id="merchantQrColor">
         <btnCF></btnCF>
         <Helmet>
-          <title>my QR</title>
+          <title>QR สะสมแต้ม</title>
         </Helmet>
 
         <Wspace>

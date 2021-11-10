@@ -7,7 +7,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/img/logoC.svg";
 const BgNav = styled.div`
-height: 70px;
+height: 65px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   background: ${color.white};
   border-radius: 0px 0px 10px 10px;
