@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import color from "../config/color";
-import Navbar2 from "../layouts/Navbar2";
+import NavTopWebPOS from "../layouts/NavTopMerchant";
 import logo from "../assets/img/merchantLOGO.svg";
 import plus from "../assets/img/plusSM.svg";
 import axios from "axios"
@@ -12,7 +12,8 @@ import message from 'antd/lib/message/index';
 const key = 'updatable';
 
 const BgGradient = styled.div`
-  height: 200px;
+border-bottom-right-radius: 19px;
+border-bottom-left-radius: 19px;
   background: ${color.Gradient};
 `;
 const MarginTop = styled.div`
@@ -237,15 +238,13 @@ class BranchManagement extends Component {
           </div>
         </div>
 
-        <Navbar2 />
+        <NavTopWebPOS />
         <BgGradient>
           <div className="container">
-            <div className="row align-items-center">
-            <div className="col-lg-1 col-md-2"></div>
-            <MarginTop className="col">
-                <BranchNameSize className="text-center">branch Management</BranchNameSize>
-              </MarginTop>
-              <div className="col-lg-1 col-md-2"></div>
+            <div className=" ">
+              <div className=""></div>
+              <BranchNameSize className="text-center align-items-center headcoverpadding">Branch management</BranchNameSize>
+              <div className=""></div>
             </div>
           </div>
         </BgGradient>

@@ -14,7 +14,9 @@ import App from './App';
 
 import './assets/css/main.css';
 
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
+
+
 
 axios.defaults.baseURL = "https://api.buddyrewards.me/";
 const store = createStore(

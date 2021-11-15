@@ -130,7 +130,7 @@ class StaffView extends Component {
               </div>
             </div>
             <div className="col-lg-2 col-md-2" />
-            <BtnOrange type="button" className="btn btn-outline rounded-all" onClick={(e) => this.handleClick(e)}>ออกจากระบบพนักงาน</BtnOrange>
+            <BtnOrange type="button" className="btn btn-outline rounded-all" onClick={(e) => this.handleClick(e)}>ออกจากระบบ</BtnOrange>
           </div>         
         </div>
       </div>

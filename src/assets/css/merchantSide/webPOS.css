@@ -27,6 +27,11 @@
  
   padding-bottom: 15px;
 }
+
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
 .fexk{
   flex: 1;
   display: flex;

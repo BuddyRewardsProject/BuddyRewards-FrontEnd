@@ -9,16 +9,19 @@ import { Helmet } from "react-helmet";
 import "../../assets/css/CustomerSide/Customer.css";
 import { notification } from "antd";
 import styled from "styled-components";
-
-import jwt from 'jsonwebtoken'
+import message from "antd/lib/message/index";
+import jwt from "jsonwebtoken";
 import { setCustomer } from "../../actions/customerAuthActions";
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from "redux";
+import { Spin,Skeleton } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
+
+const antIcon = <LoadingOutlined style={{ fontSize: 60 }} spin />;
 // import logo from "../../assets/img/logoC.svg";
 // import logoKMUTT from "../../assets/img/kmutt.svg";
 // import profile from "../../assets/img/icon/profileD.svg";
 // import { Redirect } from "react-router";
-
 
 const HEADER = styled.text`
   font-size: 40px;
@@ -38,6 +41,7 @@ class CustomerHome extends Component {
     this.state = {
       customerFirstName: null,
       accessToken: null,
+      pictureUrl: null,
     };
   }
   handleClick(e) {
@@ -45,9 +49,18 @@ class CustomerHome extends Component {
     this.props.logoutCustomer();
   }
   componentDidMount() {
-    if(this.props.customerAuth.isAuthenticated === true){
-      return
-      
+    liff.getProfile()
+        .then(profile => {
+          const pictureUrl = profile.pictureUrl
+          console.log(pictureUrl);
+          this.setState({ pictureUrl: pictureUrl });
+        })
+        .catch((err) => {
+          console.log('error', err);
+        });
+        
+    if (this.props.customerAuth.isAuthenticated === true) {
+      return;
     }
     liff
       .init({
@@ -56,7 +69,9 @@ class CustomerHome extends Component {
       .then(() => {
         if (!liff.isLoggedIn()) {
           liff.login();
+         
         }
+        
         const openNotification = () => {
           notification.success({
             message: "บันทึกข้อมูลเรียบร้อย",
@@ -75,7 +90,11 @@ class CustomerHome extends Component {
 
         console.log(accessToken);
         this.setState({ accessToken: accessToken });
-        
+       
+        const saveNotification = () => {
+          message.open({ content: "บันทึกข้อมูลเรียบร้อย", duration: 8 });
+        };
+
         axios
           .post("/customer/v1/liff", {
             accessToken: accessToken,
@@ -85,10 +104,13 @@ class CustomerHome extends Component {
             if (response.data.status === "error") {
               window.location.href = response.data.redirect;
               return;
-            }else{
-              this.props.setCustomer(jwt.decode(response.data.customerToken)) 
-              localStorage.setItem("customerToken", response.data.customerToken);
-              
+            } else {
+              this.props.setCustomer(jwt.decode(response.data.customerToken));
+              localStorage.setItem(
+                "customerToken",
+                response.data.customerToken
+              );
+              message.open({ content: "hello", duration: 5 });
             }
           })
           .catch((error) => {
@@ -131,10 +153,24 @@ class CustomerHome extends Component {
               <div class="row row-cols-2">
                 <div className="leftPD ">
                   <HEADER className="DBB paddingTop15 ">ข้อมูลส่วนตัว</HEADER>
-                  
                 </div>
                 <div className="text-end  paddingTop15">
-                  <img src={this.props.customerAuth.customer.customerPic}  className="rounded-circle" alt="logo" width="60" />
+                {this.state.loaded ? null : (
+                  <div>
+                   {/* <img  width="60" src="https://i.stack.imgur.com/MEBIB.gif"/> */}
+                   
+                    <Spin  indicator={antIcon} />
+                  </div>
+                )}
+                <img
+                  
+                  style={this.state.loaded ? {} : { display: "none" }}
+                  src={this.state.pictureUrl}
+                  className="rounded-circle"
+                    alt="logo"
+                    width="60"
+                  onLoad={() => this.setState({ loaded: true })}
+                />
                 </div>
               </div>
             </div>
@@ -142,12 +178,13 @@ class CustomerHome extends Component {
 
             <div className="">
               <div className="text-left fromfontsize20">ชื่อเล่นของคุณ</div>
+              
               <input
                 type="text"
                 name="nickname"
                 id="nickName"
                 className="form-control  fromfontsize20"
-                placeholder="ชื่อเล่นของคุณ"
+                placeholder={this.props.customerAuth.customer.customerNickName}
                 required
               ></input>
             </div>
@@ -169,7 +206,7 @@ class CustomerHome extends Component {
                 name="LastName"
                 id="lastName"
                 className="form-control fromfontsize20"
-                placeholder="นามสุกล"
+                placeholder={this.props.customerAuth.customer.customerLastName}
                 required
               ></input>
             </div>
@@ -181,7 +218,7 @@ class CustomerHome extends Component {
                 name="Phone"
                 id="phone"
                 className="form-control fromfontsize20"
-                placeholder="เบอร์โทรศัพท์"
+                placeholder={this.props.customerAuth.customer.customerPhone}
                 required
               ></input>
             </div>
@@ -209,12 +246,17 @@ class CustomerHome extends Component {
               <button
                 type="button"
                 className="  btnEditProfile"
-                onClick={() =>  liff.logout()}
+                onClick={() =>
+                  message.open({
+                    content: "บันทึกข้อมูลเรียบร้อย ✅",
+                    duration: 3,
+                  })
+                }
               >
-                logout LINE
+                บันทึกข้อมูล
               </button>
             </div>
-
+            
             <div className="paddingTop15"></div>
             <div className="paddingTop15"></div>
             <div className="paddingTop15"></div>
@@ -229,9 +271,9 @@ class CustomerHome extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ setCustomer }, dispatch)
+  return bindActionCreators({ setCustomer }, dispatch);
 }
 const mapStateToProps = (state) => {
-  return state
-}
+  return state;
+};
 export default connect(mapStateToProps, mapDispatchToProps)(CustomerHome);

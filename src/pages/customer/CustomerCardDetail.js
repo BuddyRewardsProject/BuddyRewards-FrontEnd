@@ -48,7 +48,7 @@ class CustomerCardDetail extends Component {
     return (
       <>
         <Helmet>
-          <title>Detail</title>
+          <title>หน้าบัตร</title>
         </Helmet>
         
         <Navigation history={this.props.history}></Navigation>

@@ -4,11 +4,11 @@ import { Helmet } from "react-helmet";
 import NavTopMyCard from "../../layouts/NavTopMyCard";
 import "../../assets/css/CustomerSide/Customer.css";
 import Navigation from "../../layouts/Navigation";
-
+import Mlogo from "../../assets/img/icon/merchantPreLoad.svg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faParking, faStar } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-
+import message from "antd/lib/message/index";
 import liff from "@line/liff";
 import jwt from 'jsonwebtoken'
 // import { setCustomer } from "../../actions/customerAuthActions";
@@ -35,34 +35,34 @@ class CustomerCard extends Component {
         if (!liff.isLoggedIn()) {
           liff.login();
         }
-        const openNotification = () => {
-          notification.success({
-            message: "บันทึกข้อมูลเรียบร้อย",
-            duration: 4,
-
-            className: "messageclass",
-            // style: {
-            //   marginTop: '1px',
-            //   width: 600,
-            //   color: "Green",
-            // },
-          });
-        };
+        
 
         const accessToken = liff.getAccessToken();
+        liff.getProfile()
+.then(profile => {
+  const pictureUrl = profile.pictureUrl
+  
+  console.log(pictureUrl);
+  this.setState({ pictureUrl: pictureUrl });
+})
+.catch((err) => {
+  console.log('error', err);
+});
+
 
         console.log(accessToken);
         this.setState({ accessToken: accessToken });
-        if (liff.getOS() === "web") {
-          openNotification();
+        if (liff.getOS() === "web 🖥️") {
+          message.open({ content: "web", duration: 8 });
         } else if (liff.getOS() === "ios") {
-          openNotification();
+          message.open({ content: "สวัสดี 📱", duration: 2 });
         }
         axios
           .post("/customer/v1/liff", {
             accessToken: accessToken,
           })
           .then((response) => {
+            
             console.log(response.data);
             if (response.data.status === "error") {
               window.location.href = response.data.redirect;
@@ -119,76 +119,35 @@ class CustomerCard extends Component {
                 login LINE
               </button>
             </div>
+            <Link  to="/customer/mycard/detail">
           <div className="cardBG ">
               <div
                 class="list-group-item d-flex align-items-center shadow-none border-0 cardBG d-flex gap-3 py-3"
                 aria-current="true"
               >
                 <img
-                  src="https://img.wongnai.com/p/1920x0/2017/11/14/4be595bbfca149c189fbacbe7d93f020.jpg"
+                  src={Mlogo}
                   alt="twbs"
                   width="60"
                   height="60"
                   class="rounded-circle flex-shrink-0"
                 ></img>
-                <div class=" w-100 justify-content-between d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <div class="fontSizeMycardTitle">รสนิยม</div>
+                <div className=" w-100 justify-content-between d-flex align-items-center">
+                  <div className="d-flex align-items-center">
+                    <div className="fontSizeMycardTitle">รสนิยม</div>
                   </div>
-                  <div class="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1 ">
+                  <div className="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1 ">
                   10<FontAwesomeIcon className=" IconmyCard " icon={faParking} />
                   </div>
                   
                 </div>
               </div>
             </div>
+            </Link>
 
+            
 
-            <div className="cardBG ">
-              <div
-                class="list-group-item d-flex align-items-center shadow-none border-0 cardBG d-flex gap-3 py-3"
-                aria-current="true"
-              >
-                <img
-                  src="https://d1sag4ddilekf6.azureedge.net/compressed/items/THITE2020042209433453728/photo/menueditor_item_9c09d144c04a488181da5fcfbe9e9d71_1608029094219114863.jpg"
-                  alt="twbs"
-                  width="60"
-                  height="60"
-                  class="rounded-circle flex-shrink-0"
-                ></img>
-                <div class=" w-100 justify-content-between d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <div class="fontSizeMycardTitle">ต้นตำรับ ชาพะยอม</div>
-                  </div>
-                  <div class="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1 ">
-                  5/10<FontAwesomeIcon className=" IconmyCard " icon={faStar} />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="cardBG ">
-              <div
-                class="list-group-item d-flex align-items-center shadow-none border-0 cardBG d-flex gap-3 py-3"
-                aria-current="true"
-              >
-                <img
-                  src="https://d1sag4ddilekf6.azureedge.net/compressed/items/THITE2020042209433453728/photo/menueditor_item_9c09d144c04a488181da5fcfbe9e9d71_1608029094219114863.jpg"
-                  alt="twbs"
-                  width="60"
-                  height="60"
-                  class="rounded-circle flex-shrink-0"
-                ></img>
-                <div class=" w-100 justify-content-between d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <div class="fontSizeMycardTitle">ต้นตำรับ ชาพะยอม</div>
-                  </div>
-                  <div class="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1 ">
-                  5/10<FontAwesomeIcon className=" IconmyCard " icon={faStar} />
-                  </div>
-                </div>
-              </div>
-            </div>
+            
             <Link  to="/customer/mycard/detail">
             <div className="cardBG ">
               <div
@@ -196,17 +155,17 @@ class CustomerCard extends Component {
                 aria-current="true"
               >
                 <img
-                  src="https://d1sag4ddilekf6.azureedge.net/compressed/items/THITE2020042209433453728/photo/menueditor_item_9c09d144c04a488181da5fcfbe9e9d71_1608029094219114863.jpg"
+                  src={Mlogo}
                   alt="twbs"
                   width="60"
                   height="60"
                   class="rounded-circle flex-shrink-0"
                 ></img>
-                <div class=" w-100 justify-content-between d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <div class="fontSizeMycardTitle">ร้านตัวอย่าง</div>
+                <div className=" w-100 justify-content-between d-flex align-items-center">
+                  <div className="d-flex align-items-center">
+                    <div className="fontSizeMycardTitle">ร้านตัวอย่าง</div>
                   </div>
-                  <div class="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1 ">
+                  <div className="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1 ">
                   5/10<FontAwesomeIcon className=" IconmyCard " icon={faStar} />
                   </div>
                 </div>
@@ -216,99 +175,39 @@ class CustomerCard extends Component {
 
 
 
-
-            <div className="cardBG ">
-              <div
-                class="list-group-item d-flex align-items-center shadow-none border-0 cardBG d-flex gap-3 py-3"
-                aria-current="true"
+            <div className="paddingTop15"></div>
+            
+            <button
+                type="button"
+                className="  btnEditProfile"
+                onClick={() =>  liff.closeWindow()}
               >
-                <img
-                  src="https://d1sag4ddilekf6.azureedge.net/compressed/items/THITE2020042209433453728/photo/menueditor_item_9c09d144c04a488181da5fcfbe9e9d71_1608029094219114863.jpg"
-                  alt="twbs"
-                  width="60"
-                  height="60"
-                  class="rounded-circle flex-shrink-0"
-                ></img>
-                <div class=" w-100 justify-content-between d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <div class="fontSizeMycardTitle">ต้นตำรับ ชาพะยอม</div>
-                  </div>
-                  <div class="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1 ">
-                  5/10<FontAwesomeIcon className=" IconmyCard " icon={faStar} />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="cardBG ">
-              <div
-                class="list-group-item d-flex align-items-center shadow-none border-0 cardBG d-flex gap-3 py-3"
-                aria-current="true"
+                กลับไปยังไลน์
+              </button>
+
+              <div className="paddingTop15"></div>
+            
+            <button
+                type="button"
+                className="  btnEditProfile"
+                onClick={() => liff.shareTargetPicker(
+                  [
+                    {
+                      type: "text",
+                      text: "Hello, World!",
+                    },
+                  ],
+                  {
+                    isMultiple: true,
+                  }
+                )}
               >
-                <img
-                  src="https://d1sag4ddilekf6.azureedge.net/compressed/items/THITE2020042209433453728/photo/menueditor_item_9c09d144c04a488181da5fcfbe9e9d71_1608029094219114863.jpg"
-                  alt="twbs"
-                  width="60"
-                  height="60"
-                  class="rounded-circle flex-shrink-0"
-                ></img>
-                <div class=" w-100 justify-content-between d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <div class="fontSizeMycardTitle">ต้นตำรับ ชาพะยอม</div>
-                  </div>
-                  <div class="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1 ">
-                  5/10<FontAwesomeIcon className=" IconmyCard " icon={faStar} />
-                  </div>
-                </div>
-              </div>
-            </div>
+             
+              </button>
 
+              
 
-            <div className="cardBG ">
-              <div
-                class="list-group-item d-flex align-items-center shadow-none border-0 cardBG d-flex gap-3 py-3"
-                aria-current="true"
-              >
-                <img
-                  src="https://d1sag4ddilekf6.azureedge.net/compressed/items/THITE2020042209433453728/photo/menueditor_item_9c09d144c04a488181da5fcfbe9e9d71_1608029094219114863.jpg"
-                  alt="twbs"
-                  width="60"
-                  height="60"
-                  class="rounded-circle flex-shrink-0"
-                ></img>
-                <div class=" w-100 justify-content-between d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <div class="fontSizeMycardTitle">ต้นตำรับ ชาพะยอม</div>
-                  </div>
-                  <div class="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1 ">
-                  5/10<FontAwesomeIcon className=" IconmyCard " icon={faStar} />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <div className="cardBG ">
-              <div
-                class="list-group-item d-flex align-items-center shadow-none border-0 cardBG d-flex gap-3 py-3"
-                aria-current="true"
-              >
-                <img
-                  src="https://d1sag4ddilekf6.azureedge.net/compressed/items/THITE2020042209433453728/photo/menueditor_item_9c09d144c04a488181da5fcfbe9e9d71_1608029094219114863.jpg"
-                  alt="twbs"
-                  width="60"
-                  height="60"
-                  class="rounded-circle flex-shrink-0"
-                ></img>
-                <div class=" w-100 justify-content-between d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <div class="fontSizeMycardTitle">ต้นตำรับ ชาพะยอม</div>
-                  </div>
-                  <div class="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1 ">
-                  35/10<FontAwesomeIcon className=" IconmyCard " icon={faStar} />
-                  </div>
-                </div>
-              </div>
-            </div>
+            
             <div className="paddingTop15"></div>
             <div className="paddingTop15"></div>
             <div className="paddingTop15"></div>

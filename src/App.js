@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 
 import PinMerchantLogin from "./pages/PinMerchantLogin";
 import StaffView from "./pages/StaffView";
+import Settings from "./pages/Settings";
 import WebPOS from "./pages/WebPOS";
 import WebPOS2 from "./pages/WebPOS2";
 import WebPOS3 from "./pages/WebPOS3";
@@ -69,10 +70,17 @@ class App extends Component {
               path="/merchant/branch/staff-Management"
               component={StaffManagement}
             />
+            
             <Route
               exact
               path="/merchant/branch/branch-Management"
               component={BranchManagement}
+            />
+
+            <Route
+              exact
+              path="/merchant/branch/settings"
+              component={Settings}
             />
 
             <Route exact path="/customer/home" component={CustomerHome} />
@@ -89,8 +97,12 @@ class App extends Component {
             />
             <Route exact path="/customer/login" component={CustomerLogin} />
             <Route exact path="/customer/mycard" component={CustomerCard} />
-      
-            <Route exact path="/customer/mycard/detail" component={CustomerCardDetail} />
+
+            <Route
+              exact
+              path="/customer/mycard/detail"
+              component={CustomerCardDetail}
+            />
             <Route exact path="/merchant/branch/webPOS" component={WebPOS} />
             <Route exact path="/merchant/branch/webPOS2" component={WebPOS2} />
             <Route exact path="/merchant/branch/webPOS3" component={WebPOS3} />

@@ -5,9 +5,11 @@ import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import logo from "../../assets/img/logoC.svg";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+var cid = "ไม่พบข้อมูล";
 
-var cid = "ไม่พบข้อมูล"
-
+const antIcon = <LoadingOutlined style={{ fontSize: 80 }} spin />;
 const Bg = styled.body`
   height: 100vh;
   padding: 15px;
@@ -17,7 +19,7 @@ const Bg = styled.body`
 const Wspace = styled.div`
   height: 450px;
   width: 100%;
-  background: #FFFF;
+  background: #ffff;
   position: relative;
   border-radius: 10px 10px 10px 10px;
 `;
@@ -29,41 +31,35 @@ const TEXT = styled.text`
 class CustomerQR extends Component {
   constructor(props) {
     super(props);
+    this.state = { loaded: false };
     this.state = {
       cids: null,
     };
   }
 
   look4cid() {
-     
-    if(this.props.customerAuth.customer.customerId !== "ไม่พบข้อมูล"){
+    if (this.props.customerAuth.customer.customerId !== "ไม่พบข้อมูล") {
       cid = this.props.customerAuth.customer.customerId;
-    }else if(cid === null){
+    } else if (cid === null) {
       cid = "1234";
     }
   }
 
-  
   componentDidMount() {
     this.look4cid();
 
-   
-
-
-
-
     this.changeMerchantBgColor("#F7931E", "#FF7676");
     var requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
+      method: "GET",
+      redirect: "follow",
     };
-    
+
     fetch("https://palett.es/API/v1/palette", requestOptions)
-      .then(response => response.json())
-      .then(result =>{
-console.log(result)
-      } )
-      .catch(error => console.log('error', error));
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => console.log("error", error));
 
     axios
 
@@ -100,8 +96,7 @@ console.log(result)
     function goBack() {
       window.history.back();
     }
-    
-    
+
     return (
       <Bg id="merchantQrColor">
         <btnCF></btnCF>
@@ -122,28 +117,53 @@ console.log(result)
               </div>
 
               <div>
-                <img
+                {/* <img
                   className="paddingTop15"
                   src={'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+cid}
                   alt="buddyrewards"
+                  width="150" onLoad={() => this.setState({loaded: true})}
+                />
+                 */}
+                {this.state.loaded ? null : (
+                  <div>
+                    {" "}
+                    <div className="paddingTop15"></div>
+                    <div className="paddingTop15"></div>
+                    <div className="paddingTop15"></div>
+                    
+                    <Spin className="paddingTop15" indicator={antIcon} />
+                  </div>
+                )}
+                <img
+                  className="paddingTop15"
+                  style={this.state.loaded ? {} : { display: "none" }}
+                  src={
+                    "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
+                    cid
+                  }
                   width="150"
+                  onLoad={() => this.setState({ loaded: true })}
                 />
               </div>
+            
               <div className="row ">
-              <div className="paddingTop15"></div>
+                <div className="paddingTop15"></div>
                 <TEXT>{cid}</TEXT>
 
-                <TEXT> แสดง QR กับร้านค้าเพื่อสะสมแต้ม </TEXT>
+                {/* <TEXT> แสดง QR กับร้านค้าเพื่อสะสมแต้ม </TEXT> */}
               </div>
-
-              
             </div>
+            <div></div>
           </div>
+          
+               
           <div className="myQRBackBtn WspaceBoxpadding">
-                <button className="btnQRBack  " onClick={() => goBack()}>
-                  ย้อนกลับ
-                </button>
-              </div>
+            
+          <div className="text-center"> แสดง QR กับร้านค้าเพื่อสะสมแต้ม </div>
+            <button className="btnQRBack  " onClick={() => goBack()}>
+              ย้อนกลับ
+            </button>
+          </div>
         </Wspace>
       </Bg>
     );

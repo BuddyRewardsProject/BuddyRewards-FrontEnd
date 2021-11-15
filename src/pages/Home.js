@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import NavbarNew from "../layouts/NavbarNew";
 import { Link } from "react-router-dom";
-
+import logo from "../assets/img/logoC.svg";
 // import styled from "styled-components";
 // import color from "../config/color";
 
@@ -96,7 +96,14 @@ class Home extends Component {
         </div>
       </div>
     </div>
-    
+    <marquee>
+      
+     <img src={logo}></img>
+     <img src={logo}></img>
+     <img src={logo}></img>
+
+
+    </marquee>
 </div>
       </>
     );

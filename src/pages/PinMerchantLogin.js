@@ -106,8 +106,9 @@ class PinMerchantLogin extends Component {
           this.props.setStaff(jwt.decode(response.data.pinToken));
           localStorage.setItem("pinToken", response.data.pinToken);
           window.location.href = "/merchant/branch";
+          
         } else {
-          message.error({ content: "เกิดข้อผิดพลาด!", duration: 2 });
+          message.open({ content: "รหัสผ่านไม่ถูกต้อง", duration: 5 });
         }
       })
       .catch((error) => {

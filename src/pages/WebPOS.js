@@ -142,7 +142,7 @@ class WebPOS extends Component {
                 }
               }}
               ></input></div>
-          <div className="paddingBtm"><BtnClear >สแกนโดยใช้กล้อง</BtnClear></div>
+          <div className="paddingBtm"><BtnClear onClick={() => window.alert("ใช้ได้เร็วๆนี้ค๊าบบ")} >สแกนโดยใช้กล้อง</BtnClear></div>
           <div className="paddingBtm"><BtnOK onClick={(b) => this.sendCustomerID(b)} >ตกลง</BtnOK></div>
           
           <h2>{this.state.customer && this.state.customer.customerNickName}</h2>
