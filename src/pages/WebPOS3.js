@@ -6,15 +6,16 @@ import "../assets/css/merchantSide/webPOS.css";
 
 import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
-
-
-
 import profile from "../assets/img/icon/profileD.svg";
 import {
-  faArrowAltCircleRight,faStar,
+  faArrowAltCircleRight, faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios"
+import message from 'antd/lib/message/index';
+import $ from "jquery"
 
+const key = 'updatable';
 
 const BtnOrange = styled.button`
   background-color: ${color.Button};
@@ -62,7 +63,6 @@ const Card = styled.div`
   padding-top: 15px;
 `;
 
-
 const Cardinfo = styled.div`
   background: #ffffff;
   
@@ -70,7 +70,60 @@ const Cardinfo = styled.div`
   margin-left: 15px;
   margin-right: 15px;
 `;
+
 class WebPOS3 extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      totalPoint: null
+    }
+  }
+
+  componentDidMount() {
+    var data = {
+      customerId: this.props.location.state.customer.customerId,
+      merchantId: this.props.auth.user.merchantId
+    }
+    axios.post('/merchant/v1/totalPoint', {
+      data
+    })
+      .then((response) => {
+        if (response.data.status === "success") {
+          this.setState({
+            totalPoint: response.data.customerPoint + this.props.location.state.point
+          })
+          message.success({ content: 'สำเร็จแล้ว!', key, duration: 2 });
+
+        } else {
+          message.error({ content: 'เกิดข้อผิดพลาด!', key, duration: 2 });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  addPoint() {
+    var data = {
+      point: this.props.location.state.point,
+      branchId: this.props.auth.user.branchId,
+      customerId: this.props.location.state.customer.customerId
+    }
+    axios.post('/merchant/v1/addPoint', {
+      data
+    })
+      .then((response) => {
+        if (response.data.status === "success") {
+          message.success({ content: 'สำเร็จแล้ว!', key, duration: 2 });
+        } else {
+          message.error({ content: 'เกิดข้อผิดพลาด!', key, duration: 2 });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   handleClick(e) {
     e.preventDefault();
     this.props.logoutPin();
@@ -86,30 +139,29 @@ class WebPOS3 extends Component {
 
         <Card className="text-center">
 
-           <Cardinfo>
-           <img
+          <Cardinfo>
+            <img
               src={profile}
               class="img-fluid paddingBarCodeIcon"
               alt="barcodeScan"
               width="99px"
             />
-            <div className="cardInfoWebPOS1">คุณ </div>
-            <div className="cardInfoWebPOS2">9/9/2021 แต้มที่มีอยู่ #0</div>
-           
+            <div className="cardInfoWebPOS1">คุณ {this.props.location.state.customer.customerNickName} #{this.props.location.state.customer.customerId}</div>
+            <div className="cardInfoWebPOS2">วันเกิด {this.props.location.state.customer.customerDOB} </div>
+            <div className="cardInfoWebPOS3">เบอร์ติดต่อ {this.props.location.state.customer.customerPhone}</div>
           </Cardinfo>
-         
+
           <div className="HeaderWebPOS">ตรวจสอบข้อมูล</div>
           <div class="row row-cols-3">
-    <div class="col textPointWebPOS">10<FontAwesomeIcon className="WebPosStarIconSize" icon={faStar} />  </div>
-    <div class="col WebPosIconSize">  <FontAwesomeIcon icon={faArrowAltCircleRight} />
-    <FontAwesomeIcon icon={['fas', 'home']} /></div>
-    <div class="col textPointWebPOS">20<FontAwesomeIcon className="WebPosStarIconSize" icon={faStar} /></div>
-   
-  </div>
-         
+            <div class="col textPointWebPOS">{this.props.location.state.point} <FontAwesomeIcon className="WebPosStarIconSize" icon={faStar} />  </div>
+            <div class="col WebPosIconSize">  <FontAwesomeIcon icon={faArrowAltCircleRight} />
+              <FontAwesomeIcon icon={['fas', 'home']} /></div>
+            <div class="col textPointWebPOS">{this.state.totalPoint} <FontAwesomeIcon className="WebPosStarIconSize" icon={faStar} /></div>
+          </div>
+
           <div className="paddingBtm"><BtnClear >ย้อนกลับ</BtnClear></div>
-          <div className="paddingBtm"><BtnOK >ยืนยันเพิ่มแต้ม</BtnOK></div>
-          
+          <div className="paddingBtm"><BtnOK onClick={() => this.addPoint()}>ยืนยันเพิ่มแต้ม</BtnOK></div>
+
         </Card>
         <div className="text-center">
           <BtnOrange

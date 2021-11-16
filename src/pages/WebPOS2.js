@@ -3,12 +3,14 @@ import styled from "styled-components";
 import color from "../config/color";
 import NavTopWebPOS from "../layouts/NavTopWebPOS";
 import "../assets/css/merchantSide/webPOS.css";
-
 import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
-
 import profile from "../assets/img/icon/profileD.svg";
+import axios from "axios"
+import message from 'antd/lib/message/index';
+import $ from "jquery"
 
+const key = 'updatable';
 
 const BtnOrange = styled.button`
   background-color: ${color.Button};
@@ -68,11 +70,46 @@ const Cardinfo = styled.div`
 
 
 class WebPOS2 extends Component {
-  
+  constructor(props) {
+    super(props);
+
+  }
+
   handleClick(e) {
     e.preventDefault();
     this.props.logoutPin();
     window.location.href = "/merchant/login/pin";
+  }
+
+  calculate(e) {
+    e.preventDefault(e);
+    var price = $('#price').val()
+
+    var data = {
+      merchantId: this.props.auth.user.merchantId,
+      price: price
+    }
+    axios.post('/merchant/v1/calculate', {
+      data
+    })
+      .then((response) => {
+        if (response.data.status === "success") {
+          this.props.history.push({
+            pathname: '/merchant/branch/WebPOS3',
+            state: { 
+              customer: this.props.location.state.customer,
+              point: response.data.resultPoint
+            }
+          })
+          message.success({ content: 'สำเร็จแล้ว!', key, duration: 2 });
+          
+        } else {
+          message.error({ content: 'เกิดข้อผิดพลาด!', key, duration: 2 });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   
   
@@ -84,8 +121,8 @@ class WebPOS2 extends Component {
       window.history.back();
     }
     function goNext() {
-      window.location.href = "/merchant/branch/WebPOS3";
-  
+      
+      //window.location.href = "/merchant/branch/WebPOS3";
     }
 
 
@@ -110,9 +147,9 @@ class WebPOS2 extends Component {
          
           <div className="HeaderWebPOS">ระบุบยอดชำระ</div>
           
-          <div className="outterInputPrice"><input className="inPutWidth2 inputFontSize DbBold"></input></div>
+          <div className="outterInputPrice"><input className="inPutWidth2 inputFontSize DbBold" id="price"></input></div>
           <div className="paddingBtm"><BtnClear onClick={() => goBack()}>ย้อนกลับ</BtnClear></div>
-          <div className="paddingBtm"><BtnOK onClick={() => goNext()} >ถัดไป</BtnOK></div>
+          <div className="paddingBtm"><BtnOK onClick={(e) => this.calculate(e)} >ถัดไป</BtnOK></div>
           
         </Card>
         <div className="text-center">

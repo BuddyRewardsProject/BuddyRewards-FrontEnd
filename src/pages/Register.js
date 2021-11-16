@@ -65,6 +65,7 @@ export default class Register extends Component {
     var merchantName = $('#merchantName').val()
     var branchName = $('#branchName').val()
     var rewardType = $('#rewardType').val()
+    var divider = $('#divider').val()
     var categoryName = $('#categoryName').val()
     var branchPhone = $('#branchPhone').val()
     var provinceName = $('#provinceName').val()
@@ -81,6 +82,7 @@ export default class Register extends Component {
       merchantName: merchantName,
       branchName: branchName,
       rewardType: rewardType,
+      divider: divider,
       categoryName: categoryName,
       branchPhone: branchPhone,
       provinceName: provinceName,
@@ -220,6 +222,10 @@ export default class Register extends Component {
                     </select>
                   <label for="floatingInputInvalid">Reward Type</label>
                   </div>
+                  <div className="col form-group mt-2">
+                    <input type="number" inputMode="numeric" name="formula" id="divider" className="form-control" placeholder="Point Rate" min="0" required></input>
+                    <div class="form-text">ทุก x บาท จะได้ 1 แต้ม</div>
+                  </div>
                   <div className="col form-floating mt-2">
                     <select class="form-select" id="categoryName" required>
                       <option selected>Choose...</option>
@@ -230,7 +236,7 @@ export default class Register extends Component {
                     <label for="floatingInputInvalid">Merchant Category</label>
                   </div>
                   <div className="col form-group mt-2">
-                    <input type="text" name="branchPhone" id="branchPhone" className="form-control" placeholder="Merchant Phone" required></input>
+                    <input type="text" inputMode="tel" name="branchPhone" id="branchPhone" className="form-control" placeholder="Merchant Phone" required></input>
                   </div>
                   <div className="col form-floating mt-2">
                     <select class="form-select" id="provinceName" onChange={(e) => this.onProvinceSelection(e)} required>
