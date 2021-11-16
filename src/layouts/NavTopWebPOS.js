@@ -10,13 +10,14 @@ const BgNav = styled.div`
 box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.25);
 border-radius: 12px;
 margin: 15px;
+z-index: 2;
 `;
 
 
 const NavTopWebPOS = () => {
   
   return (
-    <BgNav className=" navbar fixed-top "><div className=" AllPD ">
+    <BgNav className=" navbar fixed-top"><div className=" AllPD ">
             <img src={logo} class="img-fluid "  alt="" width="300"  />
            
           </div> 

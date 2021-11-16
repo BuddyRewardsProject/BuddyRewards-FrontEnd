@@ -63,15 +63,12 @@ class WebPOS extends Component {
     super(props);
     this.state = {
       customer:{}
-
     }
   }
   handleClick(e) {
     e.preventDefault();
     this.props.logoutPin();
     window.location.href = "/merchant/login/pin";
-
-    
   }
 
   sendCustomerID(b){ 
@@ -79,25 +76,17 @@ class WebPOS extends Component {
     b.preventDefault();
     var customerId = $('#customerIDD').val()
    
-   
     var data = {
       customerId: customerId,
-
     }
-
-
     axios.post('/merchant/v1/branch/webpos/customerInfo', {
       data
-
-
     })
       .then((response) => {
         console.log("ข้อมูลอยู่ข้างล่างจ้าา");
         console.log(response.data.customerInfo);
         this.setState({ 
           customer: response.data.customerInfo
-          
-
         })
 
         this.props.history.push({
