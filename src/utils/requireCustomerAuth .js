@@ -16,7 +16,7 @@ export default function requireCustomerAuth (ComposedComponent) {
     }
 
     render() {
-      return <ComposedComponent {...this.props} />;
+      return <ComposedComponent {...this.props} /> ;
     }
   }
 

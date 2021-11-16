@@ -110,7 +110,7 @@ class CustomerQR extends Component {
               <div>
                 <img
                   src={logo}
-                  className="paddingTop15"
+                  className="paddingTop15 fade-in-image"
                   alt="buddyrewards"
                   width="140"
                 />
@@ -135,7 +135,7 @@ class CustomerQR extends Component {
                   </div>
                 )}
                 <img
-                  className="paddingTop15"
+                  className="paddingTop15 fade-in-image"
                   style={this.state.loaded ? {} : { display: "none" }}
                   src={
                     "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
@@ -148,7 +148,7 @@ class CustomerQR extends Component {
             
               <div className="row ">
                 <div className="paddingTop15"></div>
-                <TEXT>{cid}</TEXT>
+                <TEXT >{cid}</TEXT>
 
                 {/* <TEXT> แสดง QR กับร้านค้าเพื่อสะสมแต้ม </TEXT> */}
               </div>

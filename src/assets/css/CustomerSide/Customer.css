@@ -161,3 +161,31 @@
   width: 110px;
   
  }
+ .blink{
+  width: 60px;
+  height: 60px;
+  border:0;
+  border-color: rgba(240, 255, 255, 0);
+  
+  background-color: rgb(228, 228, 228);
+  animation-name: example;
+  animation-duration: 1s;
+  animation-direction: alternate-reverse;
+  animation-iteration-count: infinite;
+ }
+ @keyframes example {
+  0%   {background-color:rgb(255, 222, 196);}
+
+  100%  {background-color:rgb(255, 146, 96);}
+}
+.fade-in-image {
+  animation: fadeIn 1s;
+  -webkit-animation: fadeIn 1s;
+  -moz-animation: fadeIn 1s;
+  -o-animation: fadeIn 1s;
+  -ms-animation: fadeIn 1s;
+}
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}

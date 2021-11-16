@@ -14,7 +14,7 @@ import jwt from "jsonwebtoken";
 import { setCustomer } from "../../actions/customerAuthActions";
 import { bindActionCreators } from "redux";
 import { Spin,Skeleton } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
+import { LoadingOutlined,StopFilled } from "@ant-design/icons";
 
 
 const antIcon = <LoadingOutlined style={{ fontSize: 60 }} spin />;
@@ -154,10 +154,10 @@ class CustomerHome extends Component {
                 <div className="leftPD ">
                   <HEADER className="DBB paddingTop15 ">ข้อมูลส่วนตัว</HEADER>
                 </div>
-                <div className="text-end  paddingTop15">
+                <div className="text-end fade-in-image paddingTop15">
                 {this.state.loaded ? null : (
-                  <div>
-                   {/* <img  width="60" src="https://i.stack.imgur.com/MEBIB.gif"/> */}
+                  <div >
+                   
                    
                     <Spin  indicator={antIcon} />
                   </div>
@@ -166,7 +166,7 @@ class CustomerHome extends Component {
                   
                   style={this.state.loaded ? {} : { display: "none" }}
                   src={this.state.pictureUrl}
-                  className="rounded-circle"
+                  className="rounded-circle fade-in-image"
                     alt="logo"
                     width="60"
                   onLoad={() => this.setState({ loaded: true })}

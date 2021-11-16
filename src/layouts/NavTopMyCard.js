@@ -19,7 +19,7 @@ const NavbarTopMyCard = () => {
     <BgNav className="fixed-top ">
       <div class="container">
         <div class="row  ">
-          <div className="leftPDmyCard col">
+          <div className="leftPDmyCard  col">
           <img src={logo} alt="buddyrewards" width="140" />
           </div>
           <div className="text-end col-4 MyCardNavTopColorAndIconSize">
