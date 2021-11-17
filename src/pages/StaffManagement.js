@@ -178,7 +178,7 @@ class StaffManagement extends Component {
                     }}
                       inputFocusStyle={{ borderColor: "#F7931E",background: "#ECF0F1" }}
                       onComplete={(value, index) => {
-                        this.loginPin();
+                        //this.loginPin();
                       }}
                       autoSelect={true}
                       regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}

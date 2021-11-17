@@ -107,14 +107,16 @@ class WebPOS3 extends Component {
     var data = {
       point: this.props.location.state.point,
       branchId: this.props.auth.user.branchId,
-      customerId: this.props.location.state.customer.customerId
+      customerId: this.props.location.state.customer.customerId,
+      staffId: this.props.pinAuth.staff.staffId,
+      merchantId: this.props.auth.user.merchantId
     }
     axios.post('/merchant/v1/addPoint', {
       data
     })
       .then((response) => {
         if (response.data.status === "success") {
-          message.success({ content: 'สำเร็จแล้ว!', key, duration: 2 });
+          message.success({ content: 'สะสมสำเร็จแล้ว!', key, duration: 2 });
         } else {
           message.error({ content: 'เกิดข้อผิดพลาด!', key, duration: 2 });
         }
