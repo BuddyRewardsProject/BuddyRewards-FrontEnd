@@ -6,12 +6,12 @@ import "../assets/css/merchantSide/webPOS.css";
 import axios from "axios"
 import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
-
+import message from 'antd/lib/message/index';
 import barcodeScan from "../assets/img/icon/barcodeScan.png";
 // import { $CombinedState } from "redux";
 import $ from "jquery"
 
-
+const key = 'updatable';
 
 const BtnOrange = styled.button`
   background-color: ${color.Button};
@@ -58,6 +58,8 @@ const Card = styled.div`
 `;
 
 
+
+
 class WebPOS extends Component {
   constructor(props) {
     super(props);
@@ -67,13 +69,23 @@ class WebPOS extends Component {
   }
   handleClick(e) {
     e.preventDefault();
+  
     this.props.logoutPin();
+    
     window.location.href = "/merchant/login/pin";
   }
 
+  // handleReset(r) {
+  //   r.preventDefault();
+  //   setReset("");
+  
+  // }
+
+  
   sendCustomerID(b){ 
     //console.log(b,"fffffff")
     b.preventDefault();
+    
     var customerId = $('#customerIDD').val()
    
     var data = {
@@ -88,11 +100,22 @@ class WebPOS extends Component {
         this.setState({ 
           customer: response.data.customerInfo
         })
+        if (response.data.customerInfo != undefined){
+          this.props.history.push({
+            pathname: '/merchant/branch/webPOS2',
+            state: { customer: response.data.customerInfo }
+          })
 
-        this.props.history.push({
-          pathname: '/merchant/branch/webPOS2',
-          state: { customer: response.data.customerInfo }
-        })
+}else{
+  console.log("not found naja")
+  message.open({ content: 'ไม่พบข้อมูล โปรดลองใหม่อีกครั้ง', key, duration: 3 });
+  setTimeout(function(){
+    window.location.href = "/merchant/branch/webPOS";
+   
+},1000);
+  
+}
+      
       })
       .catch((error) => {
         console.log("ไม่พบข้อมูลจ้าาาา");
@@ -123,14 +146,20 @@ class WebPOS extends Component {
           <div className="HeaderWebPOS">สแกนรหัสจาก QR ลูกค้า</div>
           <h3> ลงชื่อเข้าใช้ {this.props.pinAuth.staff.firstName}</h3>
           <h5> #{this.props.pinAuth.staff.staffId}</h5>
-          <div className="outterInput"><input className="inPutWidth inputFontSize DbBold" id="customerIDD"  onChange={event => {this.setState({query: event.target.value})}}
+          <div className="outterInput"><form id="myForm"><input className="inPutWidth inputFontSize DbBold" id="customerIDD"  onChange={event => {this.setState({query: event.target.value})}}
     onKeyPress={event => {
                 if (event.key === 'Enter') {
                  console.log("enter แล้ววว")
                  this.sendCustomerID(event)
                 }
               }}
-              ></input></div>
+              ></input>
+              </form>
+              </div>
+              
+
+              
+              
           <div className="paddingBtm"><BtnClear onClick={() => window.alert("ใช้ได้เร็วๆนี้ค๊าบบ")} >สแกนโดยใช้กล้อง</BtnClear></div>
           <div className="paddingBtm"><BtnOK onClick={(b) => this.sendCustomerID(b)} >ตกลง</BtnOK></div>
           

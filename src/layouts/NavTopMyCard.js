@@ -9,9 +9,10 @@ import logo from "../assets/img/logoC.svg";
 const BgNav = styled.div`
 height: 65px;
   z-index: 2;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  background: ${color.white};
-  border-radius: 0px 0px 10px 10px;
+  // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  height: 80px;
+  background: ${color.Gradient};
+  
 `;
 
 const NavbarTopMyCard = () => {
@@ -20,10 +21,10 @@ const NavbarTopMyCard = () => {
       <div class="container">
         <div class="row  ">
           <div className="leftPDmyCard  col">
-          <img src={logo} alt="buddyrewards" width="140" />
+          <img src={logo} alt="buddyrewards" width="150" />
           </div>
           <div className="text-end col-4 MyCardNavTopColorAndIconSize">
-            <FontAwesomeIcon icon={faSearch} />
+            {/* <FontAwesomeIcon icon={faSearch} /> */}
             
           </div>
         </div>

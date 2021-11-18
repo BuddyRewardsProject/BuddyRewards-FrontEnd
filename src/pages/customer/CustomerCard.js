@@ -110,15 +110,7 @@ class CustomerCard extends Component {
         <Navigation history={this.props.history}></Navigation>
         <div className="container ">
           <div className="margintopforcard">
-          <div className="paddingTop15">
-              <button
-                type="button"
-                className="  btnEditProfile"
-                onClick={() =>  liff.login()}
-              >
-                login LINE
-              </button>
-            </div>
+          
             <Link  to="/customer/mycard/detail">
           <div className="cardBG ">
               <div

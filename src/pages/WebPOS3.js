@@ -133,6 +133,9 @@ class WebPOS3 extends Component {
   }
 
   render() {
+    function goBack() {
+      window.history.back();
+    }
     document.body.style.backgroundColor = "#F5F6FA";
     return (
       <div>
@@ -161,7 +164,7 @@ class WebPOS3 extends Component {
             <div class="col textPointWebPOS">{this.state.totalPoint} <FontAwesomeIcon className="WebPosStarIconSize" icon={faStar} /></div>
           </div>
 
-          <div className="paddingBtm"><BtnClear >ย้อนกลับ</BtnClear></div>
+          <div className="paddingBtm"><BtnClear onClick={() => goBack()} >ย้อนกลับ</BtnClear></div>
           <div className="paddingBtm"><BtnOK onClick={() => this.addPoint()}>ยืนยันเพิ่มแต้ม</BtnOK></div>
 
         </Card>
