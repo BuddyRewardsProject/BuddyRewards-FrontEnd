@@ -18,7 +18,7 @@ const NavTopWebPOS = () => {
   
   return (
     <BgNav className=" navbar fixed-top"><div className=" AllPD ">
-            <img src={logo} class="img-fluid "  alt="" width="300"  />
+            <img src={logo} class="img-fluid "  alt="" width="300" onClick={() => window.location.href = "/merchant/branch/webPOS"} />
            
           </div> 
       <div class="body">

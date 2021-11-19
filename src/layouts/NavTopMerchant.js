@@ -4,9 +4,13 @@ import styled from "styled-components";
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../assets/css/merchantSide/NavTopMerchant.css";
+import { Link } from "react-router-dom";
+import { logoutPin } from "../actions/pinActions";
 import {
-  faStar
+  faSlidersH
 } from "@fortawesome/free-solid-svg-icons";
+
+
 
 const BgNav = styled.div`
   height: 70px;
@@ -16,17 +20,22 @@ border-radius: 12px;
 margin: 15px;
 `;
 
-
 const NavTopMerchant = () => {
   
+ 
+  
   return (
-    <BgNav className=" navbar fixed-top "><div className=" AllPD ">
-            <img src={logo} class=" "  alt="" width="200"  />
+
+    
+    <BgNav className=" navbar  fixed-top "><div className=" AllPD ">
+            <img src={logo} class=" "  alt="" width="250" onClick={() => window.location.href = "/merchant/branch/"} />
            
           </div> 
-      <div class="body">
-        <div class="row row-cols-2 AllPD justify-content-end">
-        <button class="btn btnNavtop btn-md NavBcolorIconSize " type="button"><FontAwesomeIcon class="NavBcolorIconSize" icon={faStar} /></button>
+      <div className="body">
+        <div className="row row-cols-2 AllPD justify-content-end">
+        
+        <button className="btn btnNavtop btn-md NavTopMerchantColor " type="button" onClick={() => window.location.href = "/merchant/branch/settings"} ><FontAwesomeIcon class="NavTopMerchantColor" icon={faSlidersH} /></button>
+       
         </div>
       </div>
 

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import styled from "styled-components";
 import color from "../config/color";
 import logo from "../assets/img/logoM.svg";
@@ -12,6 +13,10 @@ import { setUser } from "../actions/authActions";
 import jwt from 'jsonwebtoken'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Input, Tooltip } from 'antd';
+import { InfoCircleOutlined, ShopOutlined, LockOutlined   } from '@ant-design/icons';
+
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 
 const SECRET_KEY = '2aaf1e7d17a8d4706225480585767166cabd'
@@ -33,6 +38,8 @@ const BgGreen = styled.div`
   background: ${color.Gradient};
   border-radius: 0px 0px 35px 35px;
 `;
+
+
 const MarginTop = styled.div`
   margin-top: 15%;
   @media (min-width: 320px) and (max-width: 768px) {
@@ -102,29 +109,36 @@ class Login extends Component {
                 </div>
                 <div className="text-left fontSize25 mt-3 DbBold">เข้าสู่ระบบร้านค้า</div>
                 <div className="col form-group ">
-                  <label>Username</label>
+                  
                   <div>
-                    <input
-                      type="text"
-                      name="Username"
-                      id="userName"
-                      className="form-control"
-                      placeholder="Username"
-                      required
-                    ></input>
+                   
+                    <Input 
+      placeholder="กรอกบัญชีร้านค้า"
+      id="userName"
+      className=""
+      style={{ borderRadius: '5px' }}
+      prefix={<ShopOutlined  style={{ color: 'rgba(0,0,0,.45)' }} className="site-form-item-icon" />}
+      suffix={
+        <Tooltip title="ไม่มีบัญชีใช่มั้ย สมัครเลยด้านล่าง">
+          <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
+        </Tooltip>
+      }
+    />
                   </div>
                 </div>
                 <div className="col form-group mt-2">
-                  <label>Password</label>
+                  
                   <div>
-                    <input
+                    <Input.Password
                       type="password"
                       name="Password"
                       id="password"
-                      className="form-control"
-                      placeholder="Password"
+                      className=""
+                      style={{ borderRadius: '5px' }}
+                      placeholder="รหัสผ่าน"
                       required
-                    ></input>
+                      prefix={<LockOutlined  style={{ color: 'rgba(0,0,0,.45)' }} className="site-form-item-icon" />}
+                      iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}></Input.Password>
                   </div>
                 </div>
                 <div className="col text-center form-group mt-2  ">

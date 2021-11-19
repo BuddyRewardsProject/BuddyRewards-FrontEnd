@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Navigation from "../../layouts/Navigation";
 import { connect } from "react-redux";
-//import { logoutCustomer } from "../../actions/customerAuthActions";
+import { logoutCustomer } from "../../actions/customerAuthActions";
 import liff from "@line/liff";
 // import NavTop from "../../layouts/NavTop";
 import { Helmet } from "react-helmet";
@@ -252,6 +252,16 @@ class CustomerHome extends Component {
                     duration: 3,
                   })
                 }
+              >
+                บันทึกข้อมูล
+              </button>
+            </div>
+
+            <div className="paddingTop15">
+              <button
+                type="button"
+                className="  btnEditProfile"
+                onClick={(e) => this.handleClick(e) }
               >
                 บันทึกข้อมูล
               </button>

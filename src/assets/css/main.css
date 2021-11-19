@@ -106,6 +106,28 @@ code {
   width: 150px;
   
  }
+.menuCard{
+  color: rgb(53, 53, 53);
+  padding: 12px;
+  width: auto;
+  height: auto;
+  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.061));;
+border-radius: 9px;
+background:  rgb(255, 255, 255);
+border: 1px solid rgba(0, 0, 0, 0);
+transition:ease-in-out 0.4s;
+}
+.menuCard:hover {
+  
+  color: rgb(255, 137, 26);
+  padding: 12px;
+  width: auto;
+  height: auto;
+  filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.13));;
+
+background:  rgb(255, 255, 255);
+border: 1px solid rgba(0, 0, 0, 0.082);
+}
 
  .btnindexPrimary:hover {
   color: rgb(255, 255, 255);
@@ -210,6 +232,10 @@ code {
 
 .fontSize25 {
   font-size: 25px;
+  color:#2c2c2c;
+}
+.fontSize20 {
+  font-size: 20px;
   color:#2c2c2c;
 }
 .rounded-7 {
