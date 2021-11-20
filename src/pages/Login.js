@@ -114,6 +114,7 @@ class Login extends Component {
                    
                     <Input 
       placeholder="กรอกบัญชีร้านค้า"
+      autocapitalize="off"
       id="userName"
       className=""
       style={{ borderRadius: '5px' }}
@@ -133,6 +134,7 @@ class Login extends Component {
                       type="password"
                       name="Password"
                       id="password"
+                      
                       className=""
                       style={{ borderRadius: '5px' }}
                       placeholder="รหัสผ่าน"

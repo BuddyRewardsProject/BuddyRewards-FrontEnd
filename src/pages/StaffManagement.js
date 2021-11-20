@@ -203,13 +203,24 @@ class StaffManagement extends Component {
             </div>
           </div>
         </BgGradient>
+        <div className=" container">
+          <div className="row row-cols-2">
+            <div className="cols-2">
+            <h2>ลงชื่อเข้าใช้โดย {this.props.pinAuth.staff.firstName} </h2>
+              
+            </div>
+            <div className="cols-2 text-end">
+              <h2> {this.props.pinAuth.staff.staffId} </h2>
+            </div>
+          </div>
+        </div>
         <div className="container">
           <div className="row">
             
             <div className="col-lg-1 col-md-2" />
             
             <div className="col">
-            <h2 className="text-end">ผู้ใช้งาน NoiD {this.props.pinAuth.staff.staffId} name {this.props.pinAuth.staff.firstName}</h2>
+            
             
               <div className="row row-cols-1 row-cols-md-3 row-cols-lg-3  g-3 p-3  text-center">
               <div className="col">

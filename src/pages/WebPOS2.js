@@ -142,8 +142,8 @@ class WebPOS2 extends Component {
 
     return (
       <div>
-        <NavTopWebPOS></NavTopWebPOS>
-        <MarginTop></MarginTop>
+      <NavTopWebPOS></NavTopWebPOS>
+        {/* <MarginTop></MarginTop> */}
 
         <Card className="text-center">
 
@@ -161,7 +161,9 @@ class WebPOS2 extends Component {
          
           <div className="HeaderWebPOS">ระบุบยอดชำระ</div>
           
-          <div className="outterInputPrice"><input className="inPutWidth2 inputFontSize DbBold" id="price"></input></div>
+          <div className="outterInputPrice">
+            <input type="numeric"
+                        inputMode="number"  pattern="[0-9]*" type="text"  className="inPutWidth2 inputFontSize DbBold" id="price"></input></div>
           <div className="paddingBtm"><BtnClear onClick={() => goBack()}>ย้อนกลับ</BtnClear></div>
           <div className="paddingBtm"><BtnOK onClick={(e) => this.calculate(e)} >ถัดไป</BtnOK></div>
          

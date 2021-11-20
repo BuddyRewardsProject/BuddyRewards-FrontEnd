@@ -10,7 +10,7 @@ import CustomerCard from "./pages/customer/CustomerCard";
 import CustomerCardDetail from "./pages/customer/CustomerCardDetail";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-
+import Prize from "./pages/Prize";
 import PinMerchantLogin from "./pages/PinMerchantLogin";
 import StaffView from "./pages/StaffView";
 import Settings from "./pages/Settings";
@@ -19,7 +19,7 @@ import WebPOS2 from "./pages/WebPOS2";
 import WebPOS3 from "./pages/WebPOS3";
 import WebPosRedeem from "./pages/WebPosRedeem";
 import WebPosDone from "./pages/WebPosDone";
-
+import Dashboard from "./pages/Dashboard";
 
 import requireAuth from "./utils/requireAuth";
 import { createBrowserHistory } from "history";
@@ -73,7 +73,7 @@ class App extends Component {
               path="/merchant/branch/staff-Management"
               component={StaffManagement}
             />
-            
+
             <Route
               exact
               path="/merchant/branch/branch-Management"
@@ -84,6 +84,18 @@ class App extends Component {
               exact
               path="/merchant/branch/settings"
               component={Settings}
+            />
+
+            <Route
+              exact
+              path="/merchant/branch/settings/prize"
+              component={Prize}
+            />
+
+            <Route
+              exact
+              path="/merchant/branch/dashboard"
+              component={Dashboard}
             />
 
             <Route exact path="/customer/home" component={CustomerHome} />
@@ -99,7 +111,7 @@ class App extends Component {
               component={CustomerRegister}
             />
             <Route exact path="/customer/login" component={CustomerLogin} />
-            <Route exact path="/customer/mycard" component={CustomerCard} />
+            <Route exact path="/customer/" component={CustomerCard} />
 
             <Route
               exact
@@ -108,8 +120,16 @@ class App extends Component {
             />
             <Route exact path="/merchant/branch/webPOS" component={WebPOS} />
             <Route exact path="/merchant/branch/webPOS2" component={WebPOS2} />
-            <Route exact path="/merchant/branch/webPOS/redeem" component={WebPosRedeem} />
-            <Route exact path="/merchant/branch/webPOS/done" component={WebPosDone} />
+            <Route
+              exact
+              path="/merchant/branch/webPOS/redeem"
+              component={WebPosRedeem}
+            />
+            <Route
+              exact
+              path="/merchant/branch/webPOS/done"
+              component={WebPosDone}
+            />
             <Route exact path="/merchant/branch/webPOS3" component={WebPOS3} />
           </Switch>
         </Router>

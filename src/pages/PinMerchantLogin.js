@@ -65,6 +65,7 @@ class PinMerchantLogin extends Component {
   handleClick(e) {
     e.preventDefault();
     this.props.logout();
+    window.location.href = "/merchant/login/";
   }
 
   componentWillMount(){
@@ -97,6 +98,7 @@ class PinMerchantLogin extends Component {
   loginPin() {
     var data = {
       pincode: this.state.pin,
+
     };
 
     axios
@@ -158,7 +160,7 @@ class PinMerchantLogin extends Component {
                        
                         background: "#f3f3f3",
                         borderRadius: "7px",
-                        width: "39px",
+                        width: "37px",
                         height: "60px",
                         WebkitTextSecurity: "disc",
                       }}

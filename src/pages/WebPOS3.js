@@ -57,7 +57,7 @@ const MarginTop = styled.div`
 
 const Card = styled.div`
   background: #f7f7f7;
-  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.10);
   border-radius: 12px;
   margin: 15px;
   padding-top: 15px;
@@ -140,7 +140,7 @@ class WebPOS3 extends Component {
     return (
       <div>
         <NavTopWebPOS></NavTopWebPOS>
-        <MarginTop></MarginTop>
+        {/* <MarginTop></MarginTop> */}
 
         <Card className="text-center">
 

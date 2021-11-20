@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
 import message from 'antd/lib/message/index';
 import barcodeScan from "../assets/img/icon/barcodeScan.png";
+import { ScanOutlined,MobileOutlined  } from "@ant-design/icons";
 // import { $CombinedState } from "redux";
 import $ from "jquery"
 
@@ -52,7 +53,7 @@ const MarginTop = styled.div`
 `
 const Card = styled.div`
   background: #f7f7f7;
-  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.09);
   border-radius: 12px;
   margin: 15px;
 `;
@@ -132,16 +133,27 @@ class WebPOS extends Component {
     return (
       <div>
         <NavTopWebPOS></NavTopWebPOS>
-        <MarginTop></MarginTop>
+        {/* <MarginTop></MarginTop> */}
 
         <Card className="text-center">
           <div>
-            <img
+          <div className="paddingTop15"/>
+          <div className="paddingTop15"/>
+          <div className="paddingTop15"/>
+          <div className="paddingTop15"/>
+          <div className="paddingTop15"/>
+          <ScanOutlined style={{ fontSize: '140px', color: '#F7931E' }} />
+          <MobileOutlined style={{ fontSize: '140px', color: '#F7931E' }}  />
+          <div className="paddingTop15"/>
+          <div className="paddingTop15"/>
+          <div className="paddingTop15"/>
+          <div className="paddingTop15"/>
+            {/* <img
               src={barcodeScan}
               class="img-fluid paddingBarCodeIcon"
               alt="barcodeScan"
               width="450px"
-            />
+            /> */}
           </div>
           <div className="HeaderWebPOS">สแกนรหัสจาก QR ลูกค้า</div>
           <h3> ลงชื่อเข้าใช้ {this.props.pinAuth.staff.firstName}</h3>

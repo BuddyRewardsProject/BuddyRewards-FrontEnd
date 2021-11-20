@@ -17,7 +17,7 @@ import { Spin,Skeleton } from "antd";
 import { LoadingOutlined,StopFilled } from "@ant-design/icons";
 
 
-const antIcon = <LoadingOutlined style={{ fontSize: 60 }} spin />;
+const antIcon = <LoadingOutlined style={{ fontSize: '60px', color: '#ff7676' }} spin />;
 // import logo from "../../assets/img/logoC.svg";
 // import logoKMUTT from "../../assets/img/kmutt.svg";
 // import profile from "../../assets/img/icon/profileD.svg";
@@ -76,7 +76,9 @@ class CustomerHome extends Component {
           notification.success({
             message: "บันทึกข้อมูลเรียบร้อย",
             duration: 4,
-
+            style: {
+              marginTop: '200vh',
+            },
             className: "messageclass",
             // style: {
             //   marginTop: '1px',
@@ -249,6 +251,10 @@ class CustomerHome extends Component {
                 onClick={() =>
                   message.open({
                     content: "บันทึกข้อมูลเรียบร้อย ✅",
+                    style: {
+                      marginTop: '20vh',
+                      fontSize: '25px',
+                    },
                     duration: 3,
                   })
                 }

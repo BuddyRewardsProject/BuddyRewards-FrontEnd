@@ -9,7 +9,7 @@ import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 var cid = "ไม่พบข้อมูล";
 
-const antIcon = <LoadingOutlined style={{ fontSize: 80 }} spin />;
+const antIcon = <LoadingOutlined style={{ fontSize: '80px', color: '#ff7676' }} spin />;
 const Bg = styled.body`
   height: 100vh;
   padding: 15px;
@@ -94,12 +94,14 @@ class CustomerQR extends Component {
 
   render() {
     function goBack() {
-      window.history.back();
+      // window.history.back();
+     // window.location.href = "/customer"
     }
 
     return (
       <Bg id="merchantQrColor">
         <btnCF></btnCF>
+        
         <Helmet>
           <title>QR สะสมแต้ม</title>
         </Helmet>
@@ -160,6 +162,7 @@ class CustomerQR extends Component {
           <div className="myQRBackBtn WspaceBoxpadding">
             
           <div className="text-center"> แสดง QR กับร้านค้าเพื่อสะสมแต้ม </div>
+          
             <button className="btnQRBack  " onClick={() => goBack()}>
               ย้อนกลับ
             </button>

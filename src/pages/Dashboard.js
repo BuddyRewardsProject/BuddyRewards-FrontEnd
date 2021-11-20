@@ -7,34 +7,24 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
 import { Layout, Menu, Breadcrumb,PageHeader } from 'antd';
-import branch from "../assets/img/icon/store.svg";
-import dash from "../assets/img/icon/Bdash.svg";
-import prize from "../assets/img/icon/prize.svg";
-import staff from "../assets/img/icon/staff.svg";
-import rewardcard from "../assets/img/icon/rewardcard.svg";
+import PointHistory from "../assets/img/icon/history.svg";
+import dash from "../assets/img/icon/dashboard.svg";
+import addon from "../assets/img/icon/addon.svg";
+import settings from "../assets/img/icon/settings.svg";
 
 
+import {
+  
+  ShopOutlined,
+  HomeOutlined,
+  TrophyOutlined,
 
+  UserSwitchOutlined,
+  ShoppingOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 import { ConfigProvider,Skeleton } from 'antd';
 
-
-
-const BtnDash = styled.button`
-background: ${color.Gradient};
-height: 50px;
-  border-radius: 99px;
-  font-size: 25px;
-  border: 0px solid #f68e1a;
-  color: #ffff;
-  width: 250px;
-  margin: 15px;
-  transition:ease-in-out 0.4s;
-  &:hover {
-    color: #ffff;
-    width: 300px;
-    
-  }
-`;
 ConfigProvider.config({
   theme: {
     primaryColor: '#25b864',
@@ -43,7 +33,23 @@ ConfigProvider.config({
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
+const BtnBackMain = styled.button`
+background: ${color.Gradient};
 
+  border-radius: 99px;
+  font-size: 25px;
+  border: 0px solid #f68e1a;
+  color: #ffff;
+  width: 250px;
+  height: 50px;
+  margin: 15px;
+  transition:ease-in-out 0.4s;
+  &:hover {
+    color: #ffff;
+    width: 300px;
+    
+  }
+`;
 
  
 
@@ -77,7 +83,7 @@ const BranchNameSize = styled.h2`
   color: white;
 `;
 
-class StaffView extends Component {
+class Dashboard extends Component {
   state = {
     collapsed: false,
   };
@@ -109,70 +115,105 @@ class StaffView extends Component {
             <div className=" ">
               <div className=""></div>
               <BranchNameSize className="text-center align-items-center headcoverpadding">
-                ตั้งค่าบัญชี
+              MerchantName {this.props.auth.user.branchName}
               </BranchNameSize>
               <div className=""></div>
             </div>
           </div>
         </BgGradient>
         <div className=" container">
-        <h2>ตั้งค่าบัญชี</h2>
+        <h2>Quick Look</h2>
         </div>
+        <div className="container fade-in-image align-items-center  text-center">
+        
+          <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 g-3">
+            <div class="cols-2 ">
+              
+                <div className="menuCard">
+                  <h3 className="card-title mt-2 mb-2 text-start">แต้มที่แจกวันนี้</h3>
+                  <h1 className="card-title mt-2 mb-2 text-end">100 แต้ม</h1>
+                </div>
+              
+            </div>
+
+            <div class="cols-2 ">
+            
+              <div className="menuCard">
+               <h3 className="card-title mt-2 mb-2 text-start">ยอดขายจากแต้มวันนี้</h3>
+                <h1 className="card-title mt-2 mb-2 text-end">100 บาท</h1>
+              </div>
+             
+            </div>
+
+            
+
+           
+          </div>
+        </div>
+
+        <div className=" container">
+          <div className="paddingTop15"></div>
+        <h2>Menu Dashboard</h2>
+        </div>
+
+        
         <div className="container fade-in-image align-items-center  text-center">
         
           <div class="row row-cols-2 row-cols-xs-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-4 g-3">
             <div class="cols-2 ">
-              <Link to="/merchant/branch/webPOS">
+              <Link to="/merchant/branch/PointHistory">
                 <div className="menuCard">
-                  <img src={rewardcard} alt="Dashboard" />
-                  <h2 className="card-title mt-2 mb-2 text-center">Reward Card</h2>
-                  <p class="card-text text-center">บัตรสะสมแต้ม</p>
+                  <img src={PointHistory} width="90px" alt="PointHistory" />
+                  <h2 className="card-title mt-2 mb-2 text-center">Point History</h2>
+                  <p class="card-text text-center">ประวัติการแจกแต้ม</p>
                 </div>
               </Link>
             </div>
 
             <div class="cols-2 ">
-            <Link to="/merchant/branch/settings/prize">
+            <Link to="/merchant/branch/mymember">
               <div className="menuCard">
-                <img src={prize} className="fade-in-image " alt="Dashboard" />
-                <h2 className="card-title mt-2 mb-2 text-center">Prize</h2>
-                <p class="card-text text-center">รางวัล</p>
+                <img src={dash} className="fade-in-image " width="90px" alt="Dashboard" />
+                <h2 className="card-title mt-2 mb-2 text-center">My Member</h2>
+                <p class="card-text text-center">ลูกค้า</p>
               </div>
               </Link>
             </div>
 
             <div class="cols-2">
-            <Link to="/merchant/branch/branch-Management">
+            <Link to="/merchant/branch/dashboard">
             
               <div className="menuCard">
                 <img
-                  src={branch}
+                  src={addon}
                   className="fade-in-image "
                   alt="staff Management"
+                  width="90px"
                 />
-                <h2 className="card-title mt-2 mb-2 text-center">branch</h2>
-                <p class="card-text text-center">จัดการสาขา</p>
+                <h2 className="card-title mt-2 mb-2 text-center">Add On</h2>
+                <p class="card-text text-center">ส่วนเสริม</p>
               </div>
               </Link>
             </div>
 
             <div class="cols-2">
-            <Link to="/merchant/branch/staff-Management">
+            <Link to="/merchant/branch/settings">
               <div className="menuCard">
                 <img
-                  src={staff}
+                  src={settings}
                   className="fade-in-image "
                   alt="staff Management"
+                  width="90px"
                 />
-                <h2 className="card-title mt-2 mb-2 text-center">staff</h2>
-                <p class="card-text text-center">จัดการพนักงาน</p>
+                <h2 className="card-title mt-2 mb-2 text-center">Settings</h2>
+                <p class="card-text text-center">ตั้งค่า</p>
               </div>
               </Link>
             </div>
           </div>
-          <Link to="/merchant/branch/Dashboard">
-            <div className="paddingTop15"></div>
-          <BtnDash>กลับไปยัง Dashboard</BtnDash>
+          <div className="paddingTop15"></div>
+          <Link to="/merchant/branch/">
+          <BtnBackMain>กลับไปยังหน้าหลัก</BtnBackMain>
           </Link>
         </div>
       </div>
@@ -185,4 +226,4 @@ const mapStateToProps = (state) => {
   return state;
 };
 
-export default connect(mapStateToProps, mapDispatch)(StaffView);
+export default connect(mapStateToProps, mapDispatch)(Dashboard);
