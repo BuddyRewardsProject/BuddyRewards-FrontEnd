@@ -68,7 +68,11 @@ class PinMerchantLogin extends Component {
     window.location.href = "/merchant/login/";
   }
 
-  componentWillMount(){
+  backToLogin(){
+    window.location.reload();
+  }
+
+  componentWillMount() {
     var data = {
       branchId: this.props.auth.user.branchId,
     };
@@ -108,7 +112,7 @@ class PinMerchantLogin extends Component {
           this.props.setStaff(jwt.decode(response.data.pinToken));
           localStorage.setItem("pinToken", response.data.pinToken);
           window.location.href = "/merchant/branch";
-          
+
         } else {
           message.open({ content: "รหัสผ่านไม่ถูกต้อง", duration: 5 });
         }
@@ -122,11 +126,20 @@ class PinMerchantLogin extends Component {
     return (
       <>
         {this.state.pinState === null ? (
-          <div class="d-flex justify-content-center">
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
+          <div>
+            <div class="d-flex justify-content-center">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+            <div>
+              <h1>Token Expire</h1>
+            </div>
+            <div>
+              <a href="/merchant/login"><button type="button" class="btn btn-primary" onClick={()=> this.backToLogin()}>Back to Login</button></a>
             </div>
           </div>
+
         ) : (
           <BgG>
             <div className="container">
