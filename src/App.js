@@ -20,6 +20,8 @@ import WebPOS3 from "./pages/WebPOS3";
 import WebPosRedeem from "./pages/WebPosRedeem";
 import WebPosDone from "./pages/WebPosDone";
 import Dashboard from "./pages/Dashboard";
+import pointHistory from "./pages/PointHistory";
+import MyMember from "./pages/MyMember";
 
 import requireAuth from "./utils/requireAuth";
 import { createBrowserHistory } from "history";
@@ -28,6 +30,7 @@ import StaffManagement from "./pages/StaffManagement";
 import BranchManagement from "./pages/BranchManagement";
 
 import React, { Component } from "react";
+import RewardCard from "./pages/RewardCard";
 
 const browserHistory = createBrowserHistory();
 
@@ -94,8 +97,26 @@ class App extends Component {
 
             <Route
               exact
+              path="/merchant/branch/settings/rewardcard"
+              component={RewardCard}
+            />
+
+            <Route
+              exact
               path="/merchant/branch/dashboard"
               component={Dashboard}
+            />
+
+            <Route
+              exact
+              path="/merchant/branch/dashboard/pointHistory"
+              component={pointHistory}
+            />
+
+            <Route
+              exact
+              path="/merchant/branch/dashboard/mymember"
+              component={MyMember}
             />
 
             <Route exact path="/customer/home" component={CustomerHome} />

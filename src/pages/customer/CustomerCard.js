@@ -126,10 +126,10 @@ class CustomerCard extends Component {
                 ></img>
                 <div className=" w-100 justify-content-between d-flex align-items-center">
                   <div className="d-flex align-items-center">
-                    <div className="fontSizeMycardTitle">รสนิยม</div>
+                    <div className="fontSizeMycardTitle">buddyCafe</div>
                   </div>
                   <div className="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1 ">
-                  10<FontAwesomeIcon className=" IconmyCard " icon={faParking} />
+                  5<FontAwesomeIcon className=" IconmyCard " icon={faStar} />
                   </div>
                   
                 </div>
@@ -155,21 +155,44 @@ class CustomerCard extends Component {
                 ></img>
                 <div className=" w-100 justify-content-between d-flex align-items-center">
                   <div className="d-flex align-items-center">
-                    <div className="fontSizeMycardTitle">ร้านตัวอย่าง</div>
+                    <div className="fontSizeMycardTitle">kenny hub</div>
                   </div>
                   <div className="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1 ">
-                  5/10<FontAwesomeIcon className=" IconmyCard " icon={faStar} />
+                  1<FontAwesomeIcon className=" IconmyCard " icon={faStar} />
                   </div>
                 </div>
               </div>
             </div>
             </Link>
 
-
+            <Link  to="/customer/mycard/detail">
+            <div className="cardBG ">
+              <div
+                class="list-group-item d-flex align-items-center shadow-none border-0 cardBG d-flex gap-3 py-3"
+                aria-current="true"
+              >
+                <img
+                  src={Mlogo}
+                  alt="twbs"
+                  width="60"
+                  height="60"
+                  class="rounded-circle flex-shrink-0"
+                ></img>
+                <div className=" w-100 justify-content-between d-flex align-items-center">
+                  <div className="d-flex align-items-center">
+                    <div className="fontSizeMycardTitle">corgi tea</div>
+                  </div>
+                  <div className="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1 ">
+                  1<FontAwesomeIcon className=" IconmyCard " icon={faStar} />
+                  </div>
+                </div>
+              </div>
+            </div>
+            </Link>
 
             <div className="paddingTop15"></div>
             
-            <button
+            {/* <button
                 type="button"
                 className="  btnEditProfile"
                 onClick={() =>  liff.closeWindow()}
@@ -195,7 +218,7 @@ class CustomerCard extends Component {
                 )}
               >
              
-              </button>
+              </button> */}
 
               
 

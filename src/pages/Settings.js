@@ -122,11 +122,11 @@ class StaffView extends Component {
         
           <div class="row row-cols-2 row-cols-xs-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-4 g-3">
             <div class="cols-2 ">
-              <Link to="/merchant/branch/webPOS">
+              <Link to="/merchant/branch/settings/rewardcard">
                 <div className="menuCard">
                   <img src={rewardcard} alt="Dashboard" />
                   <h2 className="card-title mt-2 mb-2 text-center">Reward Card</h2>
-                  <p class="card-text text-center">บัตรสะสมแต้ม</p>
+                  <p className="card-text text-center fromfontsize20">บัตรสะสมแต้ม</p>
                 </div>
               </Link>
             </div>
@@ -136,7 +136,7 @@ class StaffView extends Component {
               <div className="menuCard">
                 <img src={prize} className="fade-in-image " alt="Dashboard" />
                 <h2 className="card-title mt-2 mb-2 text-center">Prize</h2>
-                <p class="card-text text-center">รางวัล</p>
+                <p className="card-text text-center fromfontsize20">รางวัล</p>
               </div>
               </Link>
             </div>
@@ -151,7 +151,7 @@ class StaffView extends Component {
                   alt="staff Management"
                 />
                 <h2 className="card-title mt-2 mb-2 text-center">branch</h2>
-                <p class="card-text text-center">จัดการสาขา</p>
+                <p className="card-text text-center fromfontsize20">จัดการสาขา</p>
               </div>
               </Link>
             </div>
@@ -165,7 +165,7 @@ class StaffView extends Component {
                   alt="staff Management"
                 />
                 <h2 className="card-title mt-2 mb-2 text-center">staff</h2>
-                <p class="card-text text-center">จัดการพนักงาน</p>
+                <p className="card-text text-center fromfontsize20">จัดการพนักงาน</p>
               </div>
               </Link>
             </div>

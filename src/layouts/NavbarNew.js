@@ -38,7 +38,7 @@ render(){
       </a>
       <nav className="nav nav-masthead justify-content-center float-md-end DbBold d-inline-flex mt-2 mt-md-0 ms-md-auto">
           <a className={`nav-link${this.state.currentNav === '/' ? ' active' :'' }`} aria-current="page" href="/">หน้าหลัก</a>
-          <a className={`nav-link${this.state.currentNav === '/customer/mycard' ? ' active' :'' }`}  href="/customer/mycard">ลูกค้า</a>
+          <a className={`nav-link${this.state.currentNav === '/customer/' ? ' active' :'' }`}  href="/customer/">ลูกค้า</a>
           <a className={`nav-link${this.state.currentNav === '/merchant/register' ? ' active' :'' }`}  href="/merchant/register">สมัครบัญชีร้านค้า</a>
         </nav>
    

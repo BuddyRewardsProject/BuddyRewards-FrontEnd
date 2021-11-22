@@ -116,8 +116,9 @@ class Login extends Component {
       placeholder="กรอกบัญชีร้านค้า"
       autocapitalize="off"
       id="userName"
-      className=""
-      style={{ borderRadius: '5px' }}
+      className="fontSize25"
+      size="large"
+      style={{ borderRadius: '5px',fontSize:'20px' }}
       prefix={<ShopOutlined  style={{ color: 'rgba(0,0,0,.45)' }} className="site-form-item-icon" />}
       suffix={
         <Tooltip title="ไม่มีบัญชีใช่มั้ย สมัครเลยด้านล่าง">
@@ -127,16 +128,16 @@ class Login extends Component {
     />
                   </div>
                 </div>
-                <div className="col form-group mt-2">
+                <div className="col form-group mt-2 ">
                   
                   <div>
                     <Input.Password
                       type="password"
                       name="Password"
                       id="password"
-                      
+                      size="large"
                       className=""
-                      style={{ borderRadius: '5px' }}
+                      style={{ borderRadius: '5px',fontSize:'20px' }}
                       placeholder="รหัสผ่าน"
                       required
                       prefix={<LockOutlined  style={{ color: 'rgba(0,0,0,.45)' }} className="site-form-item-icon" />}

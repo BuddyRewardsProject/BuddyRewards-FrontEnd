@@ -94,7 +94,7 @@ class CustomerQR extends Component {
 
   render() {
     function goBack() {
-      // window.history.back();
+     window.history.back();
      // window.location.href = "/customer"
     }
 

@@ -66,7 +66,7 @@ class StaffView extends Component {
             <div className=" ">
               <div className=""></div>
               <BranchNameSize className="text-center align-items-center headcoverpadding">
-                {this.props.auth.user.userName}{" "}
+                {this.props.auth.user.merchantName}{" "}
                 {this.props.auth.user.branchName}
               </BranchNameSize>
               <div className=""></div>
@@ -94,7 +94,7 @@ class StaffView extends Component {
                   <h2 className="card-title mt-2 mb-2 text-center">
                   webPOS
                   </h2>
-                  <p class="card-text text-center">เว็บโพส</p>
+                  <p className="card-text text-center fromfontsize20">เว็บโพส</p>
                 </div>
               </Link>
             </div>
@@ -107,7 +107,7 @@ class StaffView extends Component {
                   <h2 className="card-title mt-2 mb-2 text-center">
                     Dashboard
                   </h2>
-                  <p class="card-text text-center">แดชบอร์ด</p>
+                  <p className="card-text text-center fromfontsize20">แดชบอร์ด</p>
                 </div>
               </Link>
             </div>
@@ -123,7 +123,7 @@ class StaffView extends Component {
                     alt="staff Management"
                   />
                   <h2 className="card-title mt-2 mb-2 text-center">Branch</h2>
-                  <p class="card-text text-center">จัดการสาขา</p>
+                  <p className="card-text text-center fromfontsize20">จัดการสาขา</p>
                 </div>
               </Link>
             </div>
@@ -139,7 +139,7 @@ class StaffView extends Component {
                     alt="staff Management"
                   />
                   <h2 className="card-title mt-2 mb-2 text-center">Staff</h2>
-                  <p class="card-text text-center">จัดการพนักงาน</p>
+                  <p className="card-text text-center fromfontsize20">จัดการพนักงาน</p>
                 </div>
               </Link>
             </div>

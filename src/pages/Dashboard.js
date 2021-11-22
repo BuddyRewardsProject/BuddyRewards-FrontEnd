@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
 import { Layout, Menu, Breadcrumb,PageHeader } from 'antd';
 import PointHistory from "../assets/img/icon/history.svg";
-import dash from "../assets/img/icon/dashboard.svg";
+import dash from "../assets/img/icon/customer.svg";
 import addon from "../assets/img/icon/addon.svg";
 import settings from "../assets/img/icon/settings.svg";
 
@@ -115,7 +115,7 @@ class Dashboard extends Component {
             <div className=" ">
               <div className=""></div>
               <BranchNameSize className="text-center align-items-center headcoverpadding">
-              MerchantName {this.props.auth.user.branchName}
+              {this.props.auth.user.merchantName} {this.props.auth.user.branchName} 
               </BranchNameSize>
               <div className=""></div>
             </div>
@@ -161,21 +161,21 @@ class Dashboard extends Component {
         
           <div class="row row-cols-2 row-cols-xs-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-4 g-3">
             <div class="cols-2 ">
-              <Link to="/merchant/branch/PointHistory">
+              <Link to="/merchant/branch/dashboard/pointHistory">
                 <div className="menuCard">
                   <img src={PointHistory} width="90px" alt="PointHistory" />
                   <h2 className="card-title mt-2 mb-2 text-center">Point History</h2>
-                  <p class="card-text text-center">ประวัติการแจกแต้ม</p>
+                  <p className="card-text text-center fromfontsize20">ประวัติการแจกแต้ม</p>
                 </div>
               </Link>
             </div>
 
             <div class="cols-2 ">
-            <Link to="/merchant/branch/mymember">
+            <Link to="/merchant/branch/dashboard/mymember">
               <div className="menuCard">
                 <img src={dash} className="fade-in-image " width="90px" alt="Dashboard" />
                 <h2 className="card-title mt-2 mb-2 text-center">My Member</h2>
-                <p class="card-text text-center">ลูกค้า</p>
+                <p className="card-text text-center fromfontsize20">ลูกค้า</p>
               </div>
               </Link>
             </div>
@@ -191,7 +191,7 @@ class Dashboard extends Component {
                   width="90px"
                 />
                 <h2 className="card-title mt-2 mb-2 text-center">Add On</h2>
-                <p class="card-text text-center">ส่วนเสริม</p>
+                <p className="card-text text-center fromfontsize20">ส่วนเสริม</p>
               </div>
               </Link>
             </div>
@@ -206,7 +206,7 @@ class Dashboard extends Component {
                   width="90px"
                 />
                 <h2 className="card-title mt-2 mb-2 text-center">Settings</h2>
-                <p class="card-text text-center">ตั้งค่า</p>
+                <p className="card-text text-center fromfontsize20">ตั้งค่า</p>
               </div>
               </Link>
             </div>

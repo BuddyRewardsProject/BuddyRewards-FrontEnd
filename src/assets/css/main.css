@@ -107,7 +107,9 @@ code {
   
  }
 .menuCard{
+  
   color: rgb(53, 53, 53);
+  background:  rgb(255, 255, 255);
   padding: 12px;
   width: auto;
   height: auto;
@@ -202,11 +204,12 @@ border: 1px solid rgba(0, 0, 0, 0.082);
   
   
 }
+
+
+
 .fromfontsize20 {
   font-size: 22px;
- 
-  
-  
+
 }
 .NavBcolorIconSize {
   font-size: 24px;
@@ -232,6 +235,10 @@ border: 1px solid rgba(0, 0, 0, 0.082);
 
 .fontSize25 {
   font-size: 25px;
+  color:#2c2c2c;
+}
+.fontSize35 {
+  font-size: 35px;
   color:#2c2c2c;
 }
 .fontSize20 {

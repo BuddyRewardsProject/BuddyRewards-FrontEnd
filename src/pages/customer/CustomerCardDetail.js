@@ -6,6 +6,8 @@ import "../../assets/css/CustomerSide/Customer.css";
 import Navigation from "../../layouts/Navigation";
 import styled from "styled-components";
 
+import prize from "../../assets/img/icon/prize.svg";
+
 import merchantLOGO from "../../assets/img/icon/merchantPreLoad.svg";
 const BgBanner = styled.div`
   height: 300px;
@@ -61,7 +63,7 @@ class CustomerCardDetail extends Component {
               alt="merchantLOGO"
               width="100px"
             />
-            <div className="cardDetialHeaderText">ต้นตำรับ ชาพะยอม</div>
+            <div className="cardDetialHeaderText">buddy cafe</div>
             <div className=" cardBGforDetial cardNamemiddleforDetial">คุณมี 5 แต้ม</div>
           </Card>
           
@@ -79,7 +81,7 @@ class CustomerCardDetail extends Component {
                 aria-current="true"
               >
                 <img
-                  src="https://d1sag4ddilekf6.azureedge.net/compressed/items/THITE2020042209433453728/photo/menueditor_item_9c09d144c04a488181da5fcfbe9e9d71_1608029094219114863.jpg"
+                  src={prize}
                   alt="twbs"
                   width="70"
                   height="70"

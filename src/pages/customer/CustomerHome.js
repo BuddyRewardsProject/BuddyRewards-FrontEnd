@@ -263,7 +263,7 @@ class CustomerHome extends Component {
               </button>
             </div>
 
-            <div className="paddingTop15">
+            {/* <div className="paddingTop15">
               <button
                 type="button"
                 className="  btnEditProfile"
@@ -271,7 +271,7 @@ class CustomerHome extends Component {
               >
                 บันทึกข้อมูล
               </button>
-            </div>
+            </div> */}
             
             <div className="paddingTop15"></div>
             <div className="paddingTop15"></div>

@@ -140,7 +140,7 @@ class PinMerchantLogin extends Component {
                       </Link>
                     </div>
                     <h1 className="text-center mt-3 mb-3">
-                      {this.props.auth.user.userName}{" "}
+                    {this.props.auth.user.merchantName}{" "}
                       {this.props.auth.user.branchName}
                     </h1>
                     <h4 className="text-center mt-3 mb-3">
