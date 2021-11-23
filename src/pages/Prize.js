@@ -6,14 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
-import { Layout, Menu, Breadcrumb,PageHeader } from 'antd';
+import { Layout, Menu, Breadcrumb, PageHeader } from 'antd';
 import branch from "../assets/img/icon/branch.svg";
 import dash from "../assets/img/icon/Bdash.svg";
 import pos from "../assets/img/icon/pos.svg";
 import staff from "../assets/img/icon/staff.svg";
 import { Helmet } from "react-helmet";
 import {
-  
+
   ShopOutlined,
   HomeOutlined,
   TrophyOutlined,
@@ -22,6 +22,11 @@ import {
   ShoppingOutlined,
   UserOutlined,
 } from '@ant-design/icons';
+import axios from "axios"
+import message from 'antd/lib/message/index';
+import $ from "jquery"
+
+const key = 'updatable';
 
 
 
@@ -33,7 +38,7 @@ const BGCard = styled.div`
   
 `;
 
- 
+
 
 const BtnOrange = styled.button`
   background-color: ${color.Button};
@@ -100,6 +105,14 @@ const BranchNameSize = styled.h2`
 `;
 
 class Prize extends Component {
+  constructor(props) {
+    super(props);
+    this.modal_announcement = null;
+    this.modal = null;
+    this.state = {
+      prizeList: []
+    }
+  }
   state = {
     collapsed: false,
   };
@@ -109,15 +122,70 @@ class Prize extends Component {
     this.setState({ collapsed });
   };
 
-
-
-
-
+  openModel(e) {
+    e.preventDefault();
+    this.modal_announcement = document.getElementById("add");
+    this.modal = new window.bootstrap.Modal(this.modal_announcement);
+    this.modal.show();
+  }
 
   handleClick(e) {
     e.preventDefault();
-    this.props.logoutPin();
-    window.location.href = "/merchant/login/pin";
+    this.modal.hide();
+    var prizeName = $('#prizeName').val()
+    var prizeDetail = $('#prizeDetail').val()
+    var prizePointCost = $('#prizePointCost').val()
+
+    var data = {
+      prizeName: prizeName,
+      prizeDetail: prizeDetail,
+      prizePointCost: prizePointCost,
+      branchId: this.props.auth.user.branchId
+    }
+
+    axios.post('/merchant/v1/createPrize', {
+      data
+    })
+      .then((response) => {
+        if (response.data.status === "success") {
+          message.success({ content: 'สำเร็จแล้ว!', key, duration: 2 });
+          window.location.reload();
+        } else {
+          message.error({ content: 'เกิดข้อผิดพลาด!', key, duration: 2 });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  componentDidMount(){
+    axios.post('/merchant/v1/prizeInit', { branchId: this.props.auth.user.branchId })
+      .then((response) => {
+        console.log(response.data)
+        this.setState({
+          prizeList: response.data.prizeList
+        })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  removePrize(prizeId){ 
+    axios.post('/merchant/v1/removePrize', {
+      prizeId: prizeId
+    })
+      .then((response) => {
+        if (response.data.status === "success") {
+          message.success({ content: 'สำเร็จแล้ว!', key, duration: 2 });
+          window.location.reload();
+        } else {
+          message.error({ content: 'เกิดข้อผิดพลาด!', key, duration: 2 });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {
@@ -125,74 +193,105 @@ class Prize extends Component {
     document.body.style.backgroundColor = "#F5F6FA";
     return (
       <div>
+        <div class="modal fade" id="add" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addStaffLabel">
+                  Add Prize
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <contains>
+                  <h3 className="text-center mt-3 mb-3">กรอกสิทธิพิเศษ</h3></contains>
+                <div className="row g-3">
+                  <div className="col-12 form-group mt-2">
+                    <input type="text" name="prizeName" id="prizeName" className="form-control" placeholder="Prize Name" required></input>
+                  </div>
+                  <div className="col-12 form-group mt-2">
+                    <input type="text" name="prizeDetail" id="prizeDetail" className="form-control" placeholder="Prize Detail" required></input>
+                  </div>
+                </div>
+                <div className="col form-group mt-2">
+                  <input
+                    type="numeric"
+                    inputMode="number"
+                    id="prizePointCost"
+                    className="form-control"
+                    placeholder="Prize PointCost"
+                    required
+                  ></input>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                <button type="button" class="btn btn-primary" onClick={(e) => this.handleClick(e)}>บันทึกข้อมูล</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <NavTopWebPOS />
         <Helmet>
           <title>จัดการรางวัล</title>
-            </Helmet>
+        </Helmet>
         <BgGradient>
           <div className="container">
             <div className=" ">
               <div className=""></div>
               <BranchNameSize className="text-center align-items-center headcoverpadding">
-              จัดการรางวัล
+                จัดการรางวัล
               </BranchNameSize>
               <div className=""></div>
             </div>
           </div>
         </BgGradient>
         <div className=" container">
-        
-       
+
+
         </div>
         <div className="container fade-in-image align-items-center  ">
-        <BGCard>
-          <div>
-          <Link to="/merchant/branch/settings">
-            <button type="button" class="btn-close" aria-label="Close"></button>
-            </Link>
+          <BGCard>
+            <div>
+              <Link to="/merchant/branch/settings">
+                <button type="button" class="btn-close" aria-label="Close"></button>
+              </Link>
             </div>
-          
-
-          <div className="container fade-in-image align-items-center  text-center">
-        
-        <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1 g-3">
-          <div class="cols-1 ">
-          <BtnAdd href="#" className="   btn  ">
-                      สร้างรางวัล
-                    </BtnAdd>
 
 
-            <Link to="/merchant/branch/webPOS">
-              <div className="menuCard">
-              
-                <div className="text-start">
-                  <h3 className="">prize Name</h3>
-                  <h5 className=" ">ใช้ 10 แต้มแลก </h5>
-                  <h6 className=" ">detail </h6>
-                </div>
-                <div className=" text-start">
-                  <div className="  text-start ">
-                    <BtnEdit href="#" className="   btn  ">
-                      แก้ไข
-                    </BtnEdit>
-                    <BtnEdit href="#" className="   btn  ">
-                      ลบ
-                    </BtnEdit>
+            <div className="container fade-in-image align-items-center  text-center">
+
+              <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1 g-3">
+                <div class="cols-1 ">
+                  <BtnAdd href="#" className="btn" onClick={(e) => this.openModel(e)}>
+                    สร้างรางวัล
+                  </BtnAdd>
+                  <div>
+                    {this.state.prizeList != null && this.state.prizeList.map((p) =>
+                    <div className="menuCard">
+                      <div className="text-start">
+                        <h3 className="" key={p.prize_name}>ชื่อสิทธิพิเศษ: {p.prize_name}</h3>
+                        <h5 className=" " key={p.prize_detail}>รายละเอียด: {p.prize_detail}</h5>
+                        <h5 className=" " key={p.prize_pointcost}>แต้มที่ใช้: {p.prize_pointcost} แต้ม</h5>
+                      </div>
+                      <div className=" text-start">
+                        <div className="  text-start ">
+                          <BtnEdit href="#" className="btn">
+                            แก้ไข
+                          </BtnEdit>
+                          <BtnEdit href="#" className="btn" onClick={() => this.removePrize(p.prize_id)}>
+                            ลบ
+                          </BtnEdit>
+                        </div>
+                      </div>
+                    </div>
+                    )}
                   </div>
                 </div>
-             
+                <div className="paddingTop15"></div>
               </div>
-            </Link>
-          </div>
-
-          <div className="paddingTop15"></div>
-          
-
-          
-        </div>
-      </div>
-
-        </BGCard>
+            </div>
+          </BGCard>
         </div>
       </div>
     );

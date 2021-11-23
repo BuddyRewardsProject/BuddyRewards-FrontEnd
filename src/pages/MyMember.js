@@ -5,11 +5,13 @@ import NavTopWebPOS from "../layouts/NavTopMerchant";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
-
 import { DatePicker } from "antd";
-
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios"
+import message from 'antd/lib/message/index';
+import $ from "jquery"
+import moment from "moment";
 
 const { RangePicker } = DatePicker;
 
@@ -61,6 +63,12 @@ const BranchNameSize = styled.h2`
 `;
 
 class MyMember extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      customerList: []
+    }
+  }
   state = {
     collapsed: false,
   };
@@ -76,6 +84,34 @@ class MyMember extends Component {
     window.location.href = "/merchant/login/pin";
   }
 
+  componentDidMount() {
+    var data = {
+      merchantId: this.props.auth.user.merchantId
+    }
+    axios.post('/merchant/v1/totalPoint2', {
+      data
+    })
+      .then((response) => {
+        this.setState({
+          customerPoint: response.data.customerPoint
+        })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axios.post('/merchant/v1/myMember', { branchId: this.props.auth.user.branchId })
+      .then((response) => {
+        console.log(response.data)
+        this.setState({
+          customerList: response.data.customerList
+        })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <div>
@@ -85,14 +121,14 @@ class MyMember extends Component {
             <div className=" ">
               <div className=""></div>
               <BranchNameSize className="text-center align-items-center headcoverpadding">
-              My Member
+                My Member
               </BranchNameSize>
               <div className=""></div>
             </div>
           </div>
         </BgGradient>
-        
-        
+
+
 
         <div className=" container">
           <div className="paddingTop15"></div>
@@ -112,7 +148,7 @@ class MyMember extends Component {
                   </div>
 
                   <div class="cols-2 text-end">
-                  
+
                   </div>
                 </div>
 
@@ -129,97 +165,17 @@ class MyMember extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td scope="row">กรธวัช</td>
-                      <td>สอดส่อง</td>
-                      <td>เกล้า</td>
-                      <td>0812345678</td>
-                      <td>ชาย</td>
-                      <td>11/11/2542</td>
-                      <td>5</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">ศุภฤกษ์</td>
-                      <td>เริงมงคล</td>
-                      <td>กอล์ฟ</td>
-                      <td>0812345678</td>
-                      <td>ชาย</td>
-                      <td>15/01/2542</td>
-                      <td>8</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">กิตติวัฒน์</td>
-                      <td>ลีนะธีรเวทย์</td>
-                      <td>ภูมิ</td>
-                      <td>0812345678</td>
-                      <td>ชาย</td>
-                      <td>26/01/2542</td>
-                      <td>8</td>
-                    </tr>
-
-                    <tr>
-                      <td scope="row">ธีรดนย์</td>
-                      <td>จรูญชนม์</td>
-                      <td>ไนล์</td>
-                      <td>0812345678</td>
-                      <td>ชาย</td>
-                      <td>31/01/2542</td>
-                      <td>6</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">ธุวานนท์</td>
-                      <td>ธัญญะวนิช</td>
-                      <td>ท็อป</td>
-                      <td>0812345678</td>
-                      <td>ชาย</td>
-                      <td>23/01/2542</td>
-                      <td>7</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">เตชิตธนโชติ</td>
-                      <td>อามาตมนตรี </td>
-                      <td>เอกกี้</td>
-                      <td>0812345678</td>
-                      <td>ชาย</td>
-                      <td>15/01/2542</td>
-                      <td>6</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">นภันต์</td>
-                      <td>กองกาย</td>
-                      <td>ปรีน</td>
-                      <td>0812345678</td>
-                      <td>ชาย</td>
-                      <td>14/01/2542</td>
-                      <td>5</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">กฤติเดช</td>
-                      <td>ชัยประเสริฐ</td>
-                      <td>ซัน</td>
-                      <td>0812345678</td>
-                      <td>ชาย</td>
-                      <td>19/01/2542</td>
-                      <td>4</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">กฤติเดช</td>
-                      <td>ชัยประเสริฐ</td>
-                      <td>ซัน</td>
-                      <td>0812345678</td>
-                      <td>ชาย</td>
-                      <td>17/01/2542</td>
-                      <td>7</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">วรรณรัช</td>
-                      <td>อมรรังสีกุล</td>
-                      <td>มาย</td>
-                      <td>0812345678</td>
-                      <td>ชาย</td>
-                      <td>12/01/2542</td>
-                      <td>1</td>
-                    </tr>
+                    {this.state.customerList != null && this.state.customerList.map((c) =>
+                      <tr>
+                        <td scope="row" key={c.first_name}>{c.first_name}</td>
+                        <td key={c.last_name}>{c.last_name}</td>
+                        <td key={c.nick_name}>{c.nick_name}</td>
+                        <td key={c.phone}>{c.phone}</td>
+                        <td key={c.gender}>{c.gender}</td>
+                        <td key={c.date_of_birth}>{moment(c.date_of_birth).format('DD/MM/YYYY')}</td>
+                        {/* <td key={c.customer_id}>{this.state.customerPoint}</td> */}
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>

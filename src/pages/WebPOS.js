@@ -168,13 +168,7 @@ class WebPOS extends Component {
               ></input>
               </form>
               </div>
-              
-
-              
-              
-         
-          <div className="paddingBtm"><BtnOK onClick={(b) => this.sendCustomerID(b)} >ตกลง</BtnOK></div>
-          
+          <div className="paddingBtm"><BtnOK onClick={(b) => this.sendCustomerID(b)} >ตกลง</BtnOK></div>   
           <h2>{this.state.customer && this.state.customer.customerNickName}</h2>
           <h2>{this.state.customer && this.state.customer.customerFirstName}</h2>
         </Card>
