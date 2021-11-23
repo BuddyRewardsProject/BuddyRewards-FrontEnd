@@ -5,9 +5,9 @@ import NavTopWebPOS from "../layouts/NavTopMerchant";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
-
+import axios from "axios"
 import { DatePicker } from "antd";
-
+import moment from "moment";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -61,10 +61,12 @@ const BranchNameSize = styled.h2`
 `;
 
 class pointHistory extends Component {
-  state = {
-    collapsed: false,
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      pointList: []
+    }
+  }
   onCollapse = (collapsed) => {
     console.log(collapsed);
     this.setState({ collapsed });
@@ -75,8 +77,28 @@ class pointHistory extends Component {
     this.props.logoutPin();
     window.location.href = "/merchant/login/pin";
   }
+componentDidMount(){
+  var data = {
+    merchantId: this.props.auth.user.merchantId
+  }
+  axios.post('/merchant/v1/pointHistory', { branchId: this.props.auth.user.branchId })
+  .then((response) => {
+    console.log(response.data)
+
+    this.setState({
+      pointList: response.data.pointList
+    })
+    
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+}
+
+
 
   render() {
+    console.log(this.state.pointList)
     return (
       <div>
         <NavTopWebPOS />
@@ -163,7 +185,7 @@ class pointHistory extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    {/* <tr>
                       <td scope="row">22/11/2564</td>
                       <td>กรธวัช</td>
                       <td>เกล้า</td>
@@ -220,8 +242,18 @@ class pointHistory extends Component {
                       <td>reward</td>
                       <td>นุ่น</td>
                     </tr>
-
-
+ */}
+ {this.state.pointList != null && this.state.pointList.map((c) =>
+                      <tr>
+                        <td scope="row" key={c.time_stamp}>{moment(c.time_stamp).format('l เมื่อเวลา LTS ')}</td>
+                        <td key={c.first_name}>{c.first_name}</td>
+                        <td key={c.nick_name}>{c.nick_name}</td>
+                        <td key={c.point}>{c.point}</td>
+                        <td key={c.point_status}>{c.point_status}</td>
+                        <td key={c.staffFirstname}>{c.staffFirstname}</td>
+                        {/* <td key={c.customer_id}>{this.state.customerPoint}</td> */}
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>
