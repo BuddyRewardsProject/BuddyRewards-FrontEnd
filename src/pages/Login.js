@@ -69,13 +69,25 @@ class Login extends Component {
       hashPassword: password
     })
       .then((response) => {
-        if (response.data.status === "error") return message.error(response.data.errorMessage);
+        if (response.data.status === "error") 
+        return message.error({
+          content: response.data.errorMessage,
+          style: {
+            fontSize: '25px',
+          },
+          duration: 3,
+        })
+        , setTimeout(function(){
+          window.location.href = "/merchant/login";
+         
+      },300);
         this.props.setUser(jwt.decode(response.data.accessToken)) 
         localStorage.setItem("branchToken", response.data.accessToken);
         window.location.href = '/merchant/login/pin';
       })
       .catch((error) => {
         console.log(error);
+        console.log("hereeeeee")
       });
   }
 

@@ -11,7 +11,8 @@ import message from "antd/lib/message/index";
 import $ from "jquery";
 import { Result, Button } from 'antd';
 import { Link } from "react-router-dom";
-
+import { Spin,Skeleton } from "antd";
+import { LoadingOutlined,StopFilled } from "@ant-design/icons";
 const key = "updatable";
 
 const BtnOrange = styled.button`
@@ -74,11 +75,16 @@ const Cardinfo = styled.div`
 
   border-radius: 8px;
 `;
-
+const antIcon = <LoadingOutlined style={{ fontSize: '60px', color: '#ff7676' }} spin />;
 class WebPosDone extends Component {
+
   constructor(props) {
     super(props);
+    this.state = {
+      totalPoint: null,
+    };
   }
+// defalut
 
   handleClick(e) {
     e.preventDefault();
@@ -86,30 +92,25 @@ class WebPosDone extends Component {
     window.location.href = "/merchant/login/pin";
   }
 
-  calculate(e) {
-    e.preventDefault(e);
-    var price = $("#price").val();
-
+  componentDidMount() {
     var data = {
-      merchantId: this.props.auth.user.merchantId,
-      price: price,
-    };
-    axios
-      .post("/merchant/v1/calculate", {
-        data,
-      })
+      customerId: this.props.location.state.customer.customerId,
+      merchantId: this.props.auth.user.merchantId
+    }
+    axios.post('/merchant/v1/totalPoint', {
+      data
+    })
       .then((response) => {
         if (response.data.status === "success") {
-          this.props.history.push({
-            pathname: "/merchant/branch/WebPOS3",
-            state: {
-              customer: this.props.location.state.customer,
-              point: response.data.resultPoint,
-            },
-          });
-          message.success({ content: "สำเร็จแล้ว!", key, duration: 2 });
+          this.setState({
+            totalPoint: response.data.customerPoint
+            
+          })
+console.log(this.state.totalPoint)
+          message.success({ content: 'คำนวณแล้วจ้ะ', key, duration: 2 });
+
         } else {
-          message.error({ content: "เกิดข้อผิดพลาด!", key, duration: 2 });
+          message.error({ content: 'เกิดข้อผิดพลาด!', key, duration: 2 });
         }
       })
       .catch((error) => {
@@ -130,7 +131,7 @@ class WebPosDone extends Component {
     return (
       <div>
         <NavTopWebPOS></NavTopWebPOS>
-        <MarginTop></MarginTop>
+      
 
         <Card>
           <Cardinfo className="text-center">
@@ -138,8 +139,8 @@ class WebPosDone extends Component {
           <Result status="success"/>
             <h1>สำเร็จ! </h1>
             
-            <div className="cardInfoWebPOS1">คุณ ภูมิ มี แต้มคงเหลืออยู่ที่ 20 แต้ม</div>
             
+            {this.state.totalPoint === null ? <Spin  indicator={antIcon} /> : <div className="cardInfoWebPOS1">คุณ ภูมิ มี แต้มคงเหลืออยู่ที่ {this.state.totalPoint} แต้ม</div> }
             
           </Cardinfo>
 

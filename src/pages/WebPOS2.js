@@ -168,7 +168,7 @@ class WebPOS2 extends Component {
           <div className="paddingBtm"><BtnOK onClick={(e) => this.calculate(e)} >ถัดไป</BtnOK></div>
          
          
-          <div className="HeaderWebPOS text-start">รางวัลที่คุณ {this.props.location.state.customer.customerNickName} แลกได้</div>
+          <div className="HeaderWebPOS text-start">รางวัลที่คุณ {this.props.location.state.customer.customerNickName} {this.props.location.state.point}แลกได้</div>
           <div className="paddingBtm text-center">
             
           

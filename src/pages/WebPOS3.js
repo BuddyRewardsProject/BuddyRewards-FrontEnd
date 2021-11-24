@@ -92,7 +92,7 @@ class WebPOS3 extends Component {
           this.setState({
             totalPoint: response.data.customerPoint + this.props.location.state.point
           })
-          message.success({ content: 'สำเร็จแล้ว!', key, duration: 2 });
+          message.success({ content: 'คำนวณแล้วจ้ะ', key, duration: 2 });
 
         } else {
           message.error({ content: 'เกิดข้อผิดพลาด!', key, duration: 2 });
@@ -116,7 +116,18 @@ class WebPOS3 extends Component {
     })
       .then((response) => {
         if (response.data.status === "success") {
-          message.success({ content: 'สะสมสำเร็จแล้ว!', key, duration: 2 });
+          message.success({ content: 'สะสมสำเร็จแล้ว!นะจ้ะ', key, duration: 2 });
+          this.props.history.push({
+            pathname: '/merchant/branch/webPOS/done',
+            state: { 
+              customer: this.props.location.state.customer,
+              point: response.data.resultPoint
+            }
+          })
+           setTimeout(function(){
+            window.location.href = "/merchant/branch/webPOS/done";
+           
+        },300);
         } else {
           message.error({ content: 'เกิดข้อผิดพลาด!', key, duration: 2 });
         }

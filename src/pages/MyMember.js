@@ -85,22 +85,8 @@ class MyMember extends Component {
   }
 
   componentDidMount() {
-    var data = {
-      merchantId: this.props.auth.user.merchantId
-    }
-    axios.post('/merchant/v1/totalPoint2', {
-      data
-    })
-      .then((response) => {
-        this.setState({
-          customerPoint: response.data.customerPoint
-        })
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    axios.post('/merchant/v1/myMember', { branchId: this.props.auth.user.branchId })
+  
+    axios.post('/merchant/v1/myMember',{token: localStorage.getItem("branchToken")})
       .then((response) => {
         console.log(response.data)
         this.setState({
@@ -110,6 +96,16 @@ class MyMember extends Component {
       .catch((error) => {
         console.log(error);
       });
+  }
+  renderGender(gender) {
+    switch (gender) {
+      case "Female":
+        return "หญิง";
+      case 	"Male":
+        return "ชาย";
+      case "not de":
+        return "ไม่ระบุ";
+    }
   }
 
   render() {
@@ -165,16 +161,22 @@ class MyMember extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {this.state.customerList != null && this.state.customerList.map((c) =>
-                      <tr>
-                        <td scope="row" key={c.first_name}>{c.first_name}</td>
-                        <td key={c.last_name}>{c.last_name}</td>
-                        <td key={c.nick_name}>{c.nick_name}</td>
-                        <td key={c.phone}>{c.phone}</td>
-                        <td key={c.gender}>{c.gender}</td>
-                        <td key={c.date_of_birth}>{moment(c.date_of_birth).format('DD/MM/YYYY')}</td>
+                    {this.state.customerList != null && this.state.customerList.map((c,index) =>
+                    <>
+                       {c.totalPoint > 0 &&
+                      <tr key={index}>
+                        <td scope="row" >{c.first_name}</td>
+                        <td >{c.last_name}</td>
+                        <td >{c.nick_name}</td>
+                        <td >{c.phone}</td>
+                        <td >{this.renderGender(c.gender)}</td>
+                        <td >{moment(c.date_of_birth).format('DD/MM/YYYY')}</td>
+                        <td >{c.totalPoint}</td>
+                        
                         {/* <td key={c.customer_id}>{this.state.customerPoint}</td> */}
                       </tr>
+                      }
+                      </>
                     )}
                   </tbody>
                 </table>

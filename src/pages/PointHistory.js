@@ -245,7 +245,7 @@ componentDidMount(){
  */}
  {this.state.pointList != null && this.state.pointList.map((c) =>
                       <tr>
-                        <td scope="row" key={c.time_stamp}>{moment(c.time_stamp).format('l เมื่อเวลา LTS ')}</td>
+                        <td scope="row" key={c.time_stamp}>{moment(c.time_stamp).format('DD/MM/YYYY เมื่อเวลา LTS ')}</td>
                         <td key={c.first_name}>{c.first_name}</td>
                         <td key={c.nick_name}>{c.nick_name}</td>
                         <td key={c.point}>{c.point}</td>
