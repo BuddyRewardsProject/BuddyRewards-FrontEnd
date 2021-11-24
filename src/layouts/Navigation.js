@@ -54,11 +54,11 @@ class Navigation extends Component {
           <div class="container mggt">
             <div class="row ">
             <div class="col text-center  ">
-            <Link className="body" to="/customer/">
-                <div class={`${this.state.currentNav === '/customer/' ? 'NavBcolorIconSizeSelect' :'NavBcolorIconSize' }`}>
+            <Link className="body" to="/customer">
+                <div class={`${this.state.currentNav === '/customer' ? 'NavBcolorIconSizeSelect' :'NavBcolorIconSize' }`}>
                   <FontAwesomeIcon icon={faWallet} />
                 </div>
-                <div class={`col text-center mggt${this.state.currentNav === '/customer/' ? ' NavBcolorTextSizeSelect' :' NavBcolorTextSize' }`}>
+                <div class={`col text-center mggt${this.state.currentNav === '/customer' ? ' NavBcolorTextSizeSelect' :' NavBcolorTextSize' }`}>
                   บัตรของคุณ
                 </div>
                 </Link>

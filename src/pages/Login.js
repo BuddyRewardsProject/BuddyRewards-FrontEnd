@@ -75,7 +75,7 @@ class Login extends Component {
           style: {
             fontSize: '25px',
           },
-          duration: 3,
+          duration: 20000,
         })
         , setTimeout(function(){
           window.location.href = "/merchant/login";
@@ -128,9 +128,10 @@ class Login extends Component {
       placeholder="กรอกบัญชีร้านค้า"
       autocapitalize="off"
       id="userName"
-      className="fontSize25"
+      className="ant-input-lg"
+      
       size="large"
-      style={{ borderRadius: '5px',fontSize:'20px' }}
+      style={{ borderRadius: '5px',fontSize:"20px" }}
       prefix={<ShopOutlined  style={{ color: 'rgba(0,0,0,.45)' }} className="site-form-item-icon" />}
       suffix={
         <Tooltip title="ไม่มีบัญชีใช่มั้ย สมัครเลยด้านล่าง">
@@ -148,7 +149,7 @@ class Login extends Component {
                       name="Password"
                       id="password"
                       size="large"
-                      className=""
+                      className="ant-input-lg"
                       style={{ borderRadius: '5px',fontSize:'20px' }}
                       placeholder="รหัสผ่าน"
                       required

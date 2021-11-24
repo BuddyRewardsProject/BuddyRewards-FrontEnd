@@ -249,14 +249,9 @@ class CustomerHome extends Component {
                 type="button"
                 className="  btnEditProfile"
                 onClick={() =>
-                  message.open({
-                    content: "บันทึกข้อมูลเรียบร้อย ✅",
-                    style: {
-                      marginTop: '20vh',
-                      fontSize: '25px',
-                    },
-                    duration: 3,
-                  })
+                  message.success({ content: "บันทึกข้อมูลเรียบร้อย",style: {
+                    fontSize: '20px',
+                  }, duration: 5 })
                 }
               >
                 บันทึกข้อมูล

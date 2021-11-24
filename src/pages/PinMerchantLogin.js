@@ -17,14 +17,15 @@ const BtnLogOut = styled.button`
   background-color: ${color.Button};
   border-style: none;
   font-size: 22px;
-  border-radius: 20px;
+  height: 45px;
+  border-radius: 99px;
   color: white;
 `;
 const BtnClear = styled.button`
   color: #838282;
   background-color: #e6e6e6;
   font-size: 18px;
-  width: 25%;
+  width: 200px;
   border-radius: 99px;
   border-style: none;
 `;
@@ -114,7 +115,13 @@ class PinMerchantLogin extends Component {
           window.location.href = "/merchant/branch";
 
         } else {
-          message.open({ content: "รหัสผ่านไม่ถูกต้อง", duration: 5 });
+          message.error({
+            content: "PIN ไม่ถูกต้อง",
+            style: {
+              fontSize: '25px',
+            },
+            duration: 5,
+          });
         }
       })
       .catch((error) => {

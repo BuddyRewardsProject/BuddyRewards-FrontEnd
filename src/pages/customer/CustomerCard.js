@@ -52,10 +52,12 @@ class CustomerCard extends Component {
 
         console.log(accessToken);
         this.setState({ accessToken: accessToken });
-        if (liff.getOS() === "web 🖥️") {
-          message.open({ content: "web", duration: 8 });
+        if (liff.getOS() === "android") {
+          message.success({ content: "สวัสดีชาว android", duration: 8 });
         } else if (liff.getOS() === "ios") {
-          message.open({ content: "สวัสดี 📱", duration: 2 });
+          message.success({ content: "สวัสดีชาว ios",style: {
+            fontSize: '20px',
+          }, duration: 3 });
         }
         axios
           .post("/customer/v1/liff", {
