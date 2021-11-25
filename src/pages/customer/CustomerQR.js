@@ -6,11 +6,17 @@ import liff from "@line/liff";
 import message from "antd/lib/message/index";
 import { notification } from "antd";
 import styled from "styled-components";
-import { connect } from "react-redux";
+
 import logo from "../../assets/img/logoC.svg";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
-var cid = "ไม่พบข้อมูล";
+
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { setCustomer } from "../../actions/customerAuthActions";
+
+
+
 
 const antIcon = <LoadingOutlined style={{ fontSize: '80px', color: '#ff7676' }} spin />;
 const Bg = styled.body`
@@ -30,7 +36,7 @@ const TEXT = styled.text`
   font-size: 20px;
   color: #6b6b6b;
 `;
-
+var cid = "ไม่พบข้อมูล";
 class CustomerQR extends Component {
   constructor(props) {
     super(props);
@@ -234,7 +240,7 @@ class CustomerQR extends Component {
                
           <div className="myQRBackBtn WspaceBoxpadding">
             
-          <div className="text-center"> แสดง QR กับร้านค้าเพื่อสะสมแต้ม </div>
+          <div className="text-center fontSize20"> แสดง QR กับร้านค้าเพื่อสะสมแต้ม </div>
           
             <button className="btnQRBack  " onClick={() => goBack()}>
               ย้อนกลับ

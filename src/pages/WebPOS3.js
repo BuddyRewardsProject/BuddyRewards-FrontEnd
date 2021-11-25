@@ -3,7 +3,7 @@ import styled from "styled-components";
 import color from "../config/color";
 import NavTopWebPOS from "../layouts/NavTopWebPOS";
 import "../assets/css/merchantSide/webPOS.css";
-
+import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
 import profile from "../assets/img/icon/profileD.svg";
@@ -164,7 +164,9 @@ class WebPOS3 extends Component {
       <div>
         <NavTopWebPOS></NavTopWebPOS>
         {/* <MarginTop></MarginTop> */}
-
+        <Helmet>
+<title>webPOS | buddyMerchant</title>
+</Helmet>
         <Card className="text-center">
 
           <Cardinfo>

@@ -9,8 +9,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faParking, faStar } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import message from "antd/lib/message/index";
+import { ArrowDownOutlined } from "@ant-design/icons";
+
 import liff from "@line/liff";
 import jwt from 'jsonwebtoken'
+// redux ต้องมีทุกหน้าใน liff
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { setCustomer } from "../../actions/customerAuthActions";
 // import { setCustomer } from "../../actions/customerAuthActions";
 // import { bindActionCreators } from 'redux'
 
@@ -23,10 +29,13 @@ class CustomerCard extends Component {
     super(props);
     this.state = {
       accessToken: null,
+      merchantList: []
+      
     };
   }
   componentDidMount() {
     
+  
     liff
       .init({
         liffId: "1656382933-9DzLvxlE", // Use own liffId
@@ -44,6 +53,8 @@ class CustomerCard extends Component {
   
   console.log(pictureUrl);
   this.setState({ pictureUrl: pictureUrl });
+
+
 })
 .catch((err) => {
   console.log('error', err);
@@ -59,16 +70,44 @@ class CustomerCard extends Component {
             fontSize: '20px',
           }, duration: 3 });
         }
+        console.log(this.props.customerAuth.customer.customerId)
+        console.log('================================ios=================================================')
+
+  axios
+    .post("/customer/v1/merchantdata",{customerId : this.props.customerAuth.customer.customerId})
+    
+    .then((response) => {
+      // handle success
+     
+      console.log(response.data ,"what that <<<<<<<<<");
+     
+      // merchantList: response.data.merchantInfo
+
+      
+      this.setState({
+        merchantList: response.data.merchantInfo
+      })
+      console.log(this.state.merchantList ,"<<<<< that <<<<<<<<<");
+  
+    })
+    .catch((error) => {
+      // handle error
+      console.log(error);
+    })
+    .then(() => {
+      // always executed
+    });
+   
         axios
           .post("/customer/v1/liff", {
             accessToken: accessToken,
           })
           .then((response) => {
-            setTimeout(function(){
-              message.success({ content: "done line",style: {
-                fontSize: '20px',
-              }, duration: 3 });
-          },300)
+          //   setTimeout(function(){
+          //     message.success({ content: "done line",style: {
+          //       fontSize: '20px',
+          //     }, duration: 3 });
+          // },300)
             console.log(response.data);
             if (response.data.status === "error") {
               window.location.href = response.data.redirect;
@@ -77,7 +116,7 @@ class CustomerCard extends Component {
               this.props.setCustomer(jwt.decode(response.data.customerToken)) 
               localStorage.setItem("customerToken", response.data.customerToken);
                
-              
+        
             }
           })
           .catch((error) => {
@@ -88,23 +127,23 @@ class CustomerCard extends Component {
         console.log(err);
       });
 
-    axios
-      .get("/home")
-      .then((response) => {
-        // handle success
-        this.setState({
-          merchantId: response.data.results.merchantId,
-          merchantName: response.data.results.merchantName,
-        });
-        console.log(response.data[0]);
-      })
-      .catch((error) => {
-        // handle error
-        console.log(error);
-      })
-      .then(() => {
-        // always executed
-      });
+    // axios
+    //   .get("/home")
+    //   .then((response) => {
+    //     // handle success
+    //     this.setState({
+    //       merchantId: response.data.results.merchantId,
+    //       merchantName: response.data.results.merchantName,
+    //     });
+    //     console.log(response.data[0]+ "what that <<<<<<<<<");
+    //   })
+    //   .catch((error) => {
+    //     // handle error
+    //     console.log(error);
+    //   })
+    //   .then(() => {
+    //     // always executed
+    //   });
   }
 
   render() {
@@ -117,8 +156,9 @@ class CustomerCard extends Component {
         <Navigation history={this.props.history}></Navigation>
         <div className="container ">
           <div className="margintopforcard">
-          
-            <Link  to="/customer/mycard/detail">
+          {this.state.merchantList.length != 0 && this.state.merchantList.map((merchant,index) =>
+                    
+            <Link key={index} to={`/customer/mycard/detail/${merchant.merchantId}`}>
           <div className="cardBG ">
               <div
                 class="list-group-item d-flex align-items-center shadow-none border-0 cardBG d-flex gap-3 py-3"
@@ -133,18 +173,39 @@ class CustomerCard extends Component {
                 ></img>
                 <div className=" w-100 justify-content-between d-flex align-items-center">
                   <div className="d-flex align-items-center">
-                    <div className="fontSizeMycardTitle">buddyCafe</div>
+                    <div className="fontSizeMycardTitle">{merchant.merchantName}</div>
                   </div>
                   <div className="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1 ">
-                  5<FontAwesomeIcon className=" IconmyCard " icon={faStar} />
+                  {merchant.TotalPoint}<FontAwesomeIcon className=" IconmyCard " icon={faStar} />
                   </div>
                   
                 </div>
               </div>
             </div>
             </Link>
+           
+                    )}
+{this.state.merchantList.length === 0 && 
+<div>
 
-            
+<div className="text-center fontSize20"> คุณพร้อมสะสมแต้มแล้ว คลิกปุ่มสะสมแต้มด้านล่างได้เลย </div>
+<div className="text-center fontSize20"> <ArrowDownOutlined/> </div>
+
+
+</div>
+}
+            {/* {this.state.merchantList.length != 0 && this.state.merchantList.map((merchant,index) =>
+                    <>
+                       
+                      <tr key={index}>
+                        <td scope="row" >{merchant.merchantId}</td>
+                        <td >{merchant.merchantName}</td>
+                        <td >{merchant.TotalPoint}</td>
+
+                      </tr>
+                      
+                      </>
+                    )} */}
 
             
             <Link  to="/customer/mycard/detail">
@@ -162,7 +223,7 @@ class CustomerCard extends Component {
                 ></img>
                 <div className=" w-100 justify-content-between d-flex align-items-center">
                   <div className="d-flex align-items-center">
-                    <div className="fontSizeMycardTitle">kenny hub</div>
+                    <div className="fontSizeMycardTitle">ตัวอย่าง</div>
                   </div>
                   <div className="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1 ">
                   1<FontAwesomeIcon className=" IconmyCard " icon={faStar} />
@@ -172,30 +233,7 @@ class CustomerCard extends Component {
             </div>
             </Link>
 
-            <Link  to="/customer/mycard/detail">
-            <div className="cardBG ">
-              <div
-                class="list-group-item d-flex align-items-center shadow-none border-0 cardBG d-flex gap-3 py-3"
-                aria-current="true"
-              >
-                <img
-                  src={Mlogo}
-                  alt="twbs"
-                  width="60"
-                  height="60"
-                  class="rounded-circle flex-shrink-0"
-                ></img>
-                <div className=" w-100 justify-content-between d-flex align-items-center">
-                  <div className="d-flex align-items-center">
-                    <div className="fontSizeMycardTitle">corgi tea</div>
-                  </div>
-                  <div className="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1 ">
-                  1<FontAwesomeIcon className=" IconmyCard " icon={faStar} />
-                  </div>
-                </div>
-              </div>
-            </div>
-            </Link>
+            
 
             <div className="paddingTop15"></div>
             
@@ -244,5 +282,10 @@ class CustomerCard extends Component {
     );
   }
 }
-
-export default CustomerCard;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ setCustomer }, dispatch);
+}
+const mapStateToProps = (state) => {
+  return state;
+};
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerCard);

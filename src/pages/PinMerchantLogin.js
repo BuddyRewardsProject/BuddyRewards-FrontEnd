@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import color from "../config/color";
 import logo from "../assets/img/merchantLOGO.svg";
+import logoBD from "../assets/img/logoM.svg";
 import { Link } from "react-router-dom";
 import "../assets/css/merchantSide/MerchantLOGO.css";
 import PinInput from "react-pin-input";
@@ -18,6 +19,15 @@ const BtnLogOut = styled.button`
   border-style: none;
   font-size: 22px;
   height: 45px;
+  border-radius: 99px;
+  color: white;
+`;
+const Btntoken = styled.button`
+  background-color: ${color.Button};
+  border-style: none;
+  font-size: 22px;
+  height: 45px;
+  width: 200px;
   border-radius: 99px;
   color: white;
 `;
@@ -134,16 +144,23 @@ class PinMerchantLogin extends Component {
       <>
         {this.state.pinState === null ? (
           <div>
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center text-center">
               <div class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>
               </div>
-            </div>
-            <div>
               <h1>Token Expire</h1>
             </div>
-            <div>
-              <a href="/merchant/login"><button type="button" class="btn btn-primary" onClick={()=> this.backToLogin()}>Back to Login</button></a>
+            <div className= "text-center">
+              
+              <img src={logoBD} width="200px"></img>
+              
+              <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+              
+            </div>
+            <div className="text-center">
+              
+              <a href="/merchant/login"><Btntoken type="button" class="btn btn-primary" onClick={()=> this.backToLogin()}>Back to Login</Btntoken></a>
             </div>
           </div>
 

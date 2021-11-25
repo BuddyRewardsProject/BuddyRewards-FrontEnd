@@ -11,6 +11,7 @@ const BgNavB = styled.div`
   padding: max(env(safe-area-inset-bottom));
   border-radius: 0px 0px 0px 0px;
 `;
+
 //const CurrentPath = window.location.pathname;
 
 const BtnOrange = styled.button`

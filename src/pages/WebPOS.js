@@ -11,7 +11,7 @@ import barcodeScan from "../assets/img/icon/barcodeScan.png";
 import { ScanOutlined,MobileOutlined  } from "@ant-design/icons";
 // import { $CombinedState } from "redux";
 import $ from "jquery"
-
+import { Helmet } from "react-helmet";
 const key = 'updatable';
 
 const BtnOrange = styled.button`
@@ -140,7 +140,9 @@ class WebPOS extends Component {
       <div>
         <NavTopWebPOS></NavTopWebPOS>
         {/* <MarginTop></MarginTop> */}
-
+        <Helmet>
+<title>webPOS | buddyMerchant</title>
+</Helmet>
         <Card className="text-center">
           <div>
           <div className="paddingTop15"/>

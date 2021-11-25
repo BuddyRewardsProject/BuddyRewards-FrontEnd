@@ -10,7 +10,7 @@ import branch from "../assets/img/icon/store.svg";
 import dash from "../assets/img/icon/dashboard.svg";
 import pos from "../assets/img/icon/webpos.svg";
 import staff from "../assets/img/icon/staff.svg";
-
+import { Helmet } from "react-helmet";
 var role = null;
 
 const BtnOrange = styled.button`
@@ -61,6 +61,9 @@ class StaffView extends Component {
     return (
       <div>
         <NavTopWebPOS />
+        <Helmet>
+<title>buddyMerchant beta</title>
+</Helmet>
         <BgGradient>
           <div className="container ">
             <div className=" ">

@@ -27,6 +27,8 @@ class CustomerCardDetail extends Component {
     };
   }
   
+  
+
   componentDidMount() {
     axios
       .get("/home")
@@ -46,7 +48,10 @@ class CustomerCardDetail extends Component {
         // always executed
       });
   }
+
+  
   render() {
+     {
     return (
       <>
         <Helmet>
@@ -70,9 +75,13 @@ class CustomerCardDetail extends Component {
           <div className="text-center ">
                 <button className="btnhistorymiddle">รายละเอียด</button>   
                 </div>
-
+               
         </BgBanner>
-
+        <div>
+        <div>
+     
+    </div>
+    </div>
         <div className="container">
           <h1 className="margintop30">สิทธิประโยชน์ของคุณ</h1>
         <div className="cardBG ">
@@ -101,6 +110,8 @@ class CustomerCardDetail extends Component {
       </>
     );
   }
+}
+
 }
 
 export default CustomerCardDetail;

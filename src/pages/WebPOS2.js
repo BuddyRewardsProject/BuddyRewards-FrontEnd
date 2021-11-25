@@ -9,6 +9,7 @@ import profile from "../assets/img/icon/profileD.svg";
 import axios from "axios"
 import message from 'antd/lib/message/index';
 import $ from "jquery"
+import { Helmet } from "react-helmet";
 
 const key = 'updatable';
 
@@ -171,7 +172,10 @@ class WebPOS2 extends Component {
       <div>
       <NavTopWebPOS></NavTopWebPOS>
         {/* <MarginTop></MarginTop> */}
-
+       
+<Helmet>
+<title>webPOS | buddyMerchant</title>
+</Helmet>
         <Card className="text-center">
 
            <Cardinfo>

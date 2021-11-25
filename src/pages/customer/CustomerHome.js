@@ -13,8 +13,8 @@ import message from "antd/lib/message/index";
 import jwt from "jsonwebtoken";
 import { setCustomer } from "../../actions/customerAuthActions";
 import { bindActionCreators } from "redux";
-import { Spin,Skeleton } from "antd";
-import { LoadingOutlined,StopFilled } from "@ant-design/icons";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 
 const antIcon = <LoadingOutlined style={{ fontSize: '60px', color: '#ff7676' }} spin />;

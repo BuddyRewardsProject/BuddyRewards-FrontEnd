@@ -11,7 +11,7 @@ import PointHistory from "../assets/img/icon/history.svg";
 import dash from "../assets/img/icon/customer.svg";
 import addon from "../assets/img/icon/addon.svg";
 import settings from "../assets/img/icon/settings.svg";
-
+import { Helmet } from "react-helmet";
 
 import {
   
@@ -110,6 +110,9 @@ class Dashboard extends Component {
     return (
       <div>
         <NavTopWebPOS />
+        <Helmet>
+<title>Dashboard | buddyMerchant</title>
+</Helmet>
         <BgGradient>
           <div className="container">
             <div className=" ">
