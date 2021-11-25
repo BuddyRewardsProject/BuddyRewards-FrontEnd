@@ -9,55 +9,17 @@ import axios from "axios"
 import { DatePicker } from "antd";
 import moment from "moment";
 import 'moment-timezone'
-
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
-
 const { RangePicker } = DatePicker;
-
-const BtnBackMain = styled.button`
-  background: ${color.Gradient};
-
-  border-radius: 99px;
-  font-size: 25px;
-  border: 0px solid #f68e1a;
-  color: #ffff;
-  width: 250px;
-  height: 50px;
-  margin: 15px;
-  transition: ease-in-out 0.4s;
-  &:hover {
-    color: #ffff;
-    width: 300px;
-  }
-`;
-
-const BtnOrange = styled.button`
-  background-color: ${color.Button};
-  border-style: none;
-  font-size: 25px;
-  border-radius: 99px;
-  color: white;
-  &:hover {
-    background-color: ${color.ButtonOrange};
-    color: white;
-  }
-`;
 
 const BgGradient = styled.div`
   border-bottom-right-radius: 19px;
   border-bottom-left-radius: 19px;
   background: ${color.Gradient};
 `;
-const BgBox = styled.div`
-  border-radius: 8px;
-  background: ${color.Gradient};
-`;
-// const MarginTop = styled.div`
-//   margin-top: 8%;
-// `;
+
 const BranchNameSize = styled.h2`
   font-size: 48px;
   font-style: bold;
@@ -81,29 +43,20 @@ class pointHistory extends Component {
     this.props.logoutPin();
     window.location.href = "/merchant/login/pin";
   }
-componentDidMount(){
-  var data = {
-    merchantId: this.props.auth.user.merchantId
+
+  componentDidMount() {
+    axios.post('/merchant/v1/pointHistory', { branchId: this.props.auth.user.branchId })
+      .then((response) => {
+        this.setState({
+          pointList: response.data.pointList
+        })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
-  axios.post('/merchant/v1/pointHistory', { branchId: this.props.auth.user.branchId })
-  .then((response) => {
-    console.log(response.data)
-
-    this.setState({
-      pointList: response.data.pointList
-    })
-    
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-}
-
-
 
   render() {
-    
-    console.log(this.state.pointList)
     return (
       <div>
         <NavTopWebPOS />
@@ -142,7 +95,6 @@ componentDidMount(){
             </div>
           </div>
         </div>
-
         <div className=" container">
           <div className="paddingTop15"></div>
           <h2>ประวัติการแจกแต้ม</h2>
@@ -177,7 +129,6 @@ componentDidMount(){
                     />
                   </div>
                 </div>
-
                 <table className="table fromfontsize20">
                   <thead>
                     <tr>
@@ -190,66 +141,8 @@ componentDidMount(){
                     </tr>
                   </thead>
                   <tbody>
-                    {/* <tr>
-                      <td scope="row">22/11/2564</td>
-                      <td>กรธวัช</td>
-                      <td>เกล้า</td>
-                      <td>5</td>
-                      <td>reward</td>
-                      <td>นุ่น</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">22/11/2564</td>
-                      <td>กิตติวัฒน์</td>
-                      <td>ภูมิ</td>
-                      <td>2</td>
-                      <td>reward</td>
-                      <td>นุ่น</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">22/11/2564</td>
-                      <td>ศุภฤกษ์</td>
-                      <td>กอล์ฟ</td>
-                      <td>5</td>
-                      <td>reward</td>
-                      <td>นุ่น</td>
-                    </tr>
-
-                    <tr>
-                      <td scope="row">22/11/2564</td>
-                      <td>กรธวัช</td>
-                      <td>เกล้า</td>
-                      <td>5</td>
-                      <td>reward</td>
-                      <td>นุ่น</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">22/11/2564</td>
-                      <td>กิตติวัฒน์</td>
-                      <td>ภูมิ</td>
-                      <td>2</td>
-                      <td>reward</td>
-                      <td>นุ่น</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">22/11/2564</td>
-                      <td>ศุภฤกษ์</td>
-                      <td>กอล์ฟ</td>
-                      <td>5</td>
-                      <td>reward</td>
-                      <td>นุ่น</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">22/11/2564</td>
-                      <td>ศุภฤกษ์</td>
-                      <td>กอล์ฟ</td>
-                      <td>5</td>
-                      <td>reward</td>
-                      <td>นุ่น</td>
-                    </tr>
- */}
- {this.state.pointList != null && this.state.pointList.map((c) =>
-                      <tr> 
+                    {this.state.pointList != null && this.state.pointList.map((c) =>
+                      <tr>
                         <td scope="row" key={c.time_stamp}>{moment(c.time_stamp).format('DD/MM/YYYY HH:mm')}</td>
                         <td key={c.first_name}>{c.first_name}</td>
                         <td key={c.nick_name}>{c.nick_name}</td>

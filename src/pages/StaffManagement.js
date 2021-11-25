@@ -6,7 +6,6 @@ import logo from "../assets/img/userM.svg";
 import axios from "axios"
 import $ from "jquery"
 import { connect } from 'react-redux'
-
 import message from 'antd/lib/message/index';
 import plus from "../assets/img/plusSM.svg";
 import PinInput from "react-pin-input";
@@ -17,14 +16,13 @@ border-bottom-right-radius: 19px;
 border-bottom-left-radius: 19px;
   background: ${color.Gradient};
 `;
-const MarginTop = styled.div`
-  margin-top: 8%;
-`;
+
 const BranchNameSize = styled.h2`
   font-size: 48px;
   font-style: bold;
   color: white;
 `;
+
 class StaffManagement extends Component {
   constructor(props) {
     super(props);
@@ -82,7 +80,7 @@ class StaffManagement extends Component {
       });
   }
 
-  removeUser(staffId){
+  removeUser(staffId) {
 
     console.log(staffId)
     axios.post('/merchant/v1/branch/staff/remove', {
@@ -169,21 +167,21 @@ class StaffManagement extends Component {
                     type="numeric"
                     inputMode="tel"
                     focus={true}
-                    inputStyle={{ 
+                    inputStyle={{
                       borderColor: "#FFFF",
                       background: "#f3f3f3",
                       borderRadius: "7px",
                       width: "39px",
                       height: "60px",
                     }}
-                      inputFocusStyle={{ borderColor: "#F7931E",background: "#ECF0F1" }}
-                      onComplete={(value, index) => {
-                        //this.loginPin();
-                      }}
-                      autoSelect={true}
-                      regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
-                      ref={(p) => (this.pin = p)}
-                    />
+                    inputFocusStyle={{ borderColor: "#F7931E", background: "#ECF0F1" }}
+                    onComplete={(value, index) => {
+                      //this.loginPin();
+                    }}
+                    autoSelect={true}
+                    regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
+                    ref={(p) => (this.pin = p)}
+                  />
                 </div>
               </div>
               <div class="modal-footer">
@@ -206,8 +204,7 @@ class StaffManagement extends Component {
         <div className=" container">
           <div className="row row-cols-2">
             <div className="cols-2">
-            <h2>ลงชื่อเข้าใช้โดย {this.props.pinAuth.staff.firstName} </h2>
-              
+              <h2>ลงชื่อเข้าใช้โดย {this.props.pinAuth.staff.firstName} </h2>
             </div>
             <div className="cols-2 text-end">
               <h2> {this.props.pinAuth.staff.staffId} </h2>
@@ -216,14 +213,10 @@ class StaffManagement extends Component {
         </div>
         <div className="container">
           <div className="row">
-            
             <div className="col-lg-1 col-md-2" />
-            
             <div className="col">
-            
-            
               <div className="row row-cols-1 row-cols-md-3 row-cols-lg-3  g-3 p-3  text-center">
-              <div className="col">
+                <div className="col">
                   <div className="card h-100 rounded-10 ">
                     <div className="card-body">
                       <div className="iconStaffManagement align-items-center" onClick={(e) => this.openModel(e)}>
@@ -236,7 +229,7 @@ class StaffManagement extends Component {
                     </div>
                   </div>
                 </div>
-                {this.state.staffList !== null && this.state.staffList.map((s,r) =>
+                {this.state.staffList !== null && this.state.staffList.map((s, r) =>
                   <div className="col">
                     <div className="card rounded-10 ">
                       <div className="card-body ">
@@ -254,11 +247,9 @@ class StaffManagement extends Component {
                     </div>
                   </div>
                 )}
-                
               </div>
             </div>
             <div className="col-lg-1 col-md-2" />
-
           </div>
         </div>
       </div>

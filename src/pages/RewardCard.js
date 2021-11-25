@@ -2,56 +2,15 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import color from "../config/color";
 import NavTopWebPOS from "../layouts/NavTopMerchant";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
-import { Layout, Menu, Breadcrumb, PageHeader } from "antd";
-import branch from "../assets/img/icon/branch.svg";
-import dash from "../assets/img/icon/Bdash.svg";
-import pos from "../assets/img/icon/pos.svg";
-import staff from "../assets/img/icon/staff.svg";
 import { Helmet } from "react-helmet";
-import {
-  ShopOutlined,
-  HomeOutlined,
-  TrophyOutlined,
-  UserSwitchOutlined,
-  ShoppingOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
 
 const BGCard = styled.div`
   background: #ffffff;
   box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.09);
   border-radius: 8px;
-`;
-
-const BtnOrange = styled.button`
-  background-color: ${color.Button};
-  border-style: none;
-  font-size: 25px;
-  border-radius: 99px;
-  color: white;
-  &:hover {
-    background-color: ${color.ButtonOrange};
-    color: white;
-  }
-`;
-const BtnEdit = styled.button`
-  background-color: none;
-
-  border-radius: 9px;
-  font-size: 22px;
-  border: 2px solid #f68e1a;
-  color: #f68e1a;
-  width: 100px;
-  margin-right: 5px;
-  &:hover {
-    color: #ffff;
-
-    background-color: #f68e1a;
-  }
 `;
 
 const BtnAdd = styled.button`
@@ -75,13 +34,12 @@ const BgGradient = styled.div`
   border-bottom-left-radius: 19px;
   background: ${color.Gradient};
 `;
+
 const BgBox = styled.div`
 padding-left: 120px;
 padding-right: 120px;
 `;
-// const MarginTop = styled.div`
-//   margin-top: 8%;
-// `;
+
 const BranchNameSize = styled.h2`
   font-size: 48px;
   font-style: bold;
@@ -136,7 +94,6 @@ class RewardCard extends Component {
                 ></button>
               </Link>
             </div>
-
             <div className="container fade-in-image align-items-center  text-center">
               <div className="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1 g-3 ">
                 <h1>การคำนวณแต้ม</h1>
@@ -167,15 +124,12 @@ class RewardCard extends Component {
                       </span>
                     </div>
                   </div>
-               
-
                 <div className="paddingTop15"></div>
                 <BtnAdd href="#" className="   btn  ">
                       บันทึกข้อมูล
                     </BtnAdd>
                 </BgBox>
               </div>
-              
             </div>
           </BGCard>
         </div>

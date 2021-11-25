@@ -2,34 +2,15 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import color from "../config/color";
 import NavTopWebPOS from "../layouts/NavTopMerchant";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
-import { Layout, Menu, Breadcrumb, PageHeader } from 'antd';
-import branch from "../assets/img/icon/branch.svg";
-import dash from "../assets/img/icon/Bdash.svg";
-import pos from "../assets/img/icon/pos.svg";
-import staff from "../assets/img/icon/staff.svg";
 import { Helmet } from "react-helmet";
-import {
-
-  ShopOutlined,
-  HomeOutlined,
-  TrophyOutlined,
-
-  UserSwitchOutlined,
-  ShoppingOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
 import axios from "axios"
 import message from 'antd/lib/message/index';
 import $ from "jquery"
 
 const key = 'updatable';
-
-
-
 
 const BGCard = styled.div`
   background: #ffFFFF;
@@ -38,22 +19,8 @@ const BGCard = styled.div`
   
 `;
 
-
-
-const BtnOrange = styled.button`
-  background-color: ${color.Button};
-  border-style: none;
-  font-size: 25px;
-  border-radius: 99px;
-  color: white;
-  &:hover {
-    background-color: ${color.ButtonOrange};
-    color: white;
-  }
-`;
 const BtnEdit = styled.button`
   background-color: none;
-
   border-radius: 9px;
   font-size: 22px;
   border: 2px solid #f68e1a;
@@ -66,7 +33,6 @@ const BtnEdit = styled.button`
     background-color: #f68e1a;
   }
 `;
-
 
 const BtnAdd = styled.button`
 background: ${color.Gradient};
@@ -81,23 +47,15 @@ height: 50px;
   &:hover {
     color: #ffff;
     width: 250px;
-    
   }
 `;
-
 
 const BgGradient = styled.div`
   border-bottom-right-radius: 19px;
   border-bottom-left-radius: 19px;
   background: ${color.Gradient};
 `;
-const BgBox = styled.div`
-  border-radius: 8px;
-  background: ${color.Gradient};
-`;
-// const MarginTop = styled.div`
-//   margin-top: 8%;
-// `;
+
 const BranchNameSize = styled.h2`
   font-size: 48px;
   font-style: bold;
@@ -247,8 +205,6 @@ class Prize extends Component {
           </div>
         </BgGradient>
         <div className=" container">
-
-
         </div>
         <div className="container fade-in-image align-items-center  ">
           <BGCard>
@@ -257,12 +213,8 @@ class Prize extends Component {
                 <button type="button" class="btn-close" aria-label="Close"></button>
               </Link>
             </div>
-
-
             <div className="container fade-in-image align-items-center  text-center">
-
               <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1 g-3">
-
                 <div class="cols-1 ">
                   {this.props.auth.user.masterAccount !== 0 &&
                     <BtnAdd href="#" className="btn" onClick={(e) => this.openModel(e)}>
@@ -270,7 +222,6 @@ class Prize extends Component {
                     </BtnAdd>
                   }
                   <div>
-
                     {this.state.prizeList != null && this.state.prizeList.map((p) =>
                       <div className="menuCard">
                         <div className="text-start">

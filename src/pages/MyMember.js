@@ -9,40 +9,7 @@ import { DatePicker } from "antd";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios"
-import message from 'antd/lib/message/index';
-import $ from "jquery"
 import moment from "moment";
-
-const { RangePicker } = DatePicker;
-
-const BtnBackMain = styled.button`
-  background: ${color.Gradient};
-
-  border-radius: 99px;
-  font-size: 25px;
-  border: 0px solid #f68e1a;
-  color: #ffff;
-  width: 250px;
-  height: 50px;
-  margin: 15px;
-  transition: ease-in-out 0.4s;
-  &:hover {
-    color: #ffff;
-    width: 300px;
-  }
-`;
-
-const BtnOrange = styled.button`
-  background-color: ${color.Button};
-  border-style: none;
-  font-size: 25px;
-  border-radius: 99px;
-  color: white;
-  &:hover {
-    background-color: ${color.ButtonOrange};
-    color: white;
-  }
-`;
 
 const BgGradient = styled.div`
   border-bottom-right-radius: 19px;
@@ -53,9 +20,7 @@ const BgBox = styled.div`
   border-radius: 8px;
   background: ${color.Gradient};
 `;
-// const MarginTop = styled.div`
-//   margin-top: 8%;
-// `;
+
 const BranchNameSize = styled.h2`
   font-size: 48px;
   font-style: bold;
@@ -85,8 +50,8 @@ class MyMember extends Component {
   }
 
   componentDidMount() {
-  
-    axios.post('/merchant/v1/myMember',{token: localStorage.getItem("branchToken")})
+
+    axios.post('/merchant/v1/myMember', { token: localStorage.getItem("branchToken") })
       .then((response) => {
         console.log(response.data)
         this.setState({
@@ -97,11 +62,12 @@ class MyMember extends Component {
         console.log(error);
       });
   }
+
   renderGender(gender) {
     switch (gender) {
       case "Female":
         return "หญิง";
-      case 	"Male":
+      case "Male":
         return "ชาย";
       case "not de":
         return "ไม่ระบุ";
@@ -123,9 +89,6 @@ class MyMember extends Component {
             </div>
           </div>
         </BgGradient>
-
-
-
         <div className=" container">
           <div className="paddingTop15"></div>
           <h2>ลูกค้าทั้งหมดที่เป็นสมาชิก</h2>
@@ -142,12 +105,9 @@ class MyMember extends Component {
                       </h5>
                     </Link>
                   </div>
-
                   <div class="cols-2 text-end">
-
                   </div>
                 </div>
-
                 <table className="table fromfontsize20 table-striped ">
                   <thead>
                     <tr>
@@ -161,21 +121,21 @@ class MyMember extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {this.state.customerList != null && this.state.customerList.map((c,index) =>
-                    <>
-                       {c.totalPoint > 0 &&
-                      <tr key={index}>
-                        <td scope="row" >{c.first_name}</td>
-                        <td >{c.last_name}</td>
-                        <td >{c.nick_name}</td>
-                        <td >{c.phone}</td>
-                        <td >{this.renderGender(c.gender)}</td>
-                        <td >{moment(c.date_of_birth).format('DD/MM/YYYY')}</td>
-                        <td >{c.totalPoint}</td>
-                        
-                        {/* <td key={c.customer_id}>{this.state.customerPoint}</td> */}
-                      </tr>
-                      }
+                    {this.state.customerList != null && this.state.customerList.map((c, index) =>
+                      <>
+                        {c.totalPoint > 0 &&
+                          <tr key={index}>
+                            <td scope="row" >{c.first_name}</td>
+                            <td >{c.last_name}</td>
+                            <td >{c.nick_name}</td>
+                            <td >{c.phone}</td>
+                            <td >{this.renderGender(c.gender)}</td>
+                            <td >{moment(c.date_of_birth).format('DD/MM/YYYY')}</td>
+                            <td >{c.totalPoint}</td>
+
+                            {/* <td key={c.customer_id}>{this.state.customerPoint}</td> */}
+                          </tr>
+                        }
                       </>
                     )}
                   </tbody>
