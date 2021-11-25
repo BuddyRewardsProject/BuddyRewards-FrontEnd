@@ -14,8 +14,8 @@ const key = 'updatable';
 
 const BtnOrange = styled.button`
   background-color: ${color.Button};
+  height: 50px;
   width: 290px;
-
   border-style: none;
   font-size: 25px;
   border-radius: 99px;
@@ -25,7 +25,7 @@ const BtnOrange = styled.button`
     color: white;
   }
 `
-const BtnRedeem = styled.button`
+const BtnRedeemActive = styled.button`
   background-color: #f68e1a;
 
   border-style: none;
@@ -36,6 +36,19 @@ const BtnRedeem = styled.button`
     color: #ffff;
 
     background-color: ${color.ButtonOrange};
+  }
+`;
+const BtnRedeem = styled.button`
+  background-color: #BDBFCD;
+
+  border-style: none;
+  font-size: 20px;
+  border-radius: 9px;
+  color: #ffff;
+  &:hover {
+    color: #ffff;
+
+    background-color: #E8E8E8;
   }
 `;
 const BtnClear = styled.button`
@@ -50,8 +63,8 @@ const BtnClear = styled.button`
 `
 const BtnOK = styled.button`
   background-color: #59DD9A;
+  height: 50px;
   width: 290px;
-  
   border-style: none;
   font-size: 25px;
   border-radius: 99px;
@@ -115,17 +128,31 @@ class WebPOS2 extends Component {
               point: response.data.resultPoint
             }
           })
-          message.success({ content: 'สำเร็จแล้ว!', key, duration: 2 });
+          message.success({
+            content: 'พบข้อมูล',
+            style: {
+              fontSize: '25px',
+            },
+            duration: 1,
+          });
           
         } else {
-          message.error({ content: 'เกิดข้อผิดพลาด!', key, duration: 2 });
+          message.error({
+            content: 'เกิดข้อผิดพลาด',
+            style: {
+              fontSize: '25px',
+            },
+            duration: 3,
+          });
         }
       })
       .catch((error) => {
         console.log(error);
       });
   }
-  
+  componentDidMount() {
+    $('#price').focus()
+  }
   
   render() {
     
@@ -148,28 +175,30 @@ class WebPOS2 extends Component {
         <Card className="text-center">
 
            <Cardinfo>
+           <div className="paddingTop15"></div>
            <img
-              src={profile}
-              class="img-fluid paddingBarCodeIcon"
+              src={this.props.location.state.customer.pictureUrl}
+              class="  rounded-circle fade-in-image"
               alt="barcodeScan"
-              width="99px"
+              width="80px"
             />
-            <div className="cardInfoWebPOS1">คุณ {this.props.location.state.customer.customerNickName} #{this.props.location.state.customer.customerId}</div>
-            <div className="cardInfoWebPOS2">วันเกิด {this.props.location.state.customer.customerDOB}. </div>
+            <div className="cardInfoWebPOS1">คุณ {this.props.location.state.customer.customerNickName} {this.props.location.state.customer.customerFirstName} {this.props.location.state.customer.customerLastName}</div>
+            <div className="cardInfoWebPOS2">วันเกิด {this.props.location.state.customer.customerDOB}   </div>
             <div className="cardInfoWebPOS3">เบอร์ติดต่อ {this.props.location.state.customer.customerPhone}</div>
           </Cardinfo>
          
           <div className="HeaderWebPOS">ระบุบยอดชำระ</div>
           
           <div className="outterInputPrice">
-            <input type="numeric"
+            <input type="numeric"  pattern="[0-9]+" 
                         inputMode="number"  pattern="[0-9]*" type="text"  className="inPutWidth2 inputFontSize DbBold" id="price"></input></div>
-          <div className="paddingBtm"><BtnClear onClick={() => goBack()}>ย้อนกลับ</BtnClear></div>
-          <div className="paddingBtm"><BtnOK onClick={(e) => this.calculate(e)} >ถัดไป</BtnOK></div>
          
+          <div className="paddingBtm"><BtnOK onClick={(e) => this.calculate(e)} >ถัดไป</BtnOK></div>
+          
+          <div className=""><BtnClear onClick={() => goBack()}>ย้อนกลับ</BtnClear></div>
          
           <div className="HeaderWebPOS text-start">รางวัลที่คุณ {this.props.location.state.customer.customerNickName} {this.props.location.state.point}แลกได้</div>
-          <div className="paddingBtm text-center">
+          <div className="paddingBtm text-start">
             
           
 
@@ -182,9 +211,9 @@ class WebPOS2 extends Component {
                 </div>
                 <div className="card-footer text-end">
                   <div className="  text-end">
-                    <BtnRedeem href="#" className="   btn  ">
-                      สามารถแลกได้
-                    </BtnRedeem>
+                    <BtnRedeemActive href="#" className="   btn  ">
+                      สามารถแลกรางวัลได้
+                    </BtnRedeemActive>
                   </div>
                 </div>
               </div>
@@ -213,7 +242,7 @@ class WebPOS2 extends Component {
                 <div className="card-footer text-end">
                   <div className="  text-end">
                     <BtnRedeem href="#" className="   btn  ">
-                      สามารถแลกได้
+                    ไม่พร้อม
                     </BtnRedeem>
                   </div>
                 </div>

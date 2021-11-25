@@ -8,8 +8,12 @@ import { logoutPin } from "../actions/pinActions";
 import axios from "axios"
 import { DatePicker } from "antd";
 import moment from "moment";
+import 'moment-timezone'
+
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+
 
 const { RangePicker } = DatePicker;
 
@@ -98,6 +102,7 @@ componentDidMount(){
 
 
   render() {
+    
     console.log(this.state.pointList)
     return (
       <div>
@@ -244,8 +249,8 @@ componentDidMount(){
                     </tr>
  */}
  {this.state.pointList != null && this.state.pointList.map((c) =>
-                      <tr>
-                        <td scope="row" key={c.time_stamp}>{moment(c.time_stamp).format('DD/MM/YYYY เมื่อเวลา LTS ')}</td>
+                      <tr> 
+                        <td scope="row" key={c.time_stamp}>{moment(c.time_stamp).format('DD/MM/YYYY HH:mm')}</td>
                         <td key={c.first_name}>{c.first_name}</td>
                         <td key={c.nick_name}>{c.nick_name}</td>
                         <td key={c.point}>{c.point}</td>

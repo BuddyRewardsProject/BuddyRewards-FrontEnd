@@ -75,7 +75,7 @@ class Login extends Component {
           style: {
             fontSize: '25px',
           },
-          duration: 20000,
+          duration: 3,
         })
         , setTimeout(function(){
           window.location.href = "/merchant/login";

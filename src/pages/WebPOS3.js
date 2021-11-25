@@ -19,8 +19,8 @@ const key = 'updatable';
 
 const BtnOrange = styled.button`
   background-color: ${color.Button};
+  height: 50px;
   width: 290px;
-
   border-style: none;
   font-size: 25px;
   border-radius: 99px;
@@ -43,8 +43,8 @@ const BtnClear = styled.button`
 `
 const BtnOK = styled.button`
   background-color: #59DD9A;
+  height: 50px;
   width: 290px;
-  
   border-style: none;
   font-size: 25px;
   border-radius: 99px;
@@ -92,10 +92,22 @@ class WebPOS3 extends Component {
           this.setState({
             totalPoint: response.data.customerPoint + this.props.location.state.point
           })
-          message.success({ content: 'คำนวณแล้วจ้ะ', key, duration: 2 });
+          message.success({
+            content: "คำนวญแต้มเรียบร้อย",
+            style: {
+              fontSize: '25px',
+            },
+            duration: 3,
+          })
 
         } else {
-          message.error({ content: 'เกิดข้อผิดพลาด!', key, duration: 2 });
+          message.error({
+            content: "เกิดข้อผิดพลาด",
+            style: {
+              fontSize: '25px',
+            },
+            duration: 3,
+          });
         }
       })
       .catch((error) => {
@@ -124,10 +136,10 @@ class WebPOS3 extends Component {
               point: response.data.resultPoint
             }
           })
-           setTimeout(function(){
-            window.location.href = "/merchant/branch/webPOS/done";
+        //    setTimeout(function(){
+        //     window.location.href = "/merchant/branch/webPOS/done";
            
-        },300);
+        // },300);
         } else {
           message.error({ content: 'เกิดข้อผิดพลาด!', key, duration: 2 });
         }
@@ -156,13 +168,14 @@ class WebPOS3 extends Component {
         <Card className="text-center">
 
           <Cardinfo>
-            <img
-              src={profile}
-              class="img-fluid paddingBarCodeIcon"
+          <div className="paddingTop15"></div>
+           <img
+              src={this.props.location.state.customer.pictureUrl}
+              class="  rounded-circle fade-in-image"
               alt="barcodeScan"
-              width="99px"
+              width="80px"
             />
-            <div className="cardInfoWebPOS1">คุณ {this.props.location.state.customer.customerNickName} #{this.props.location.state.customer.customerId}</div>
+            <div className="cardInfoWebPOS1">คุณ {this.props.location.state.customer.customerNickName} {this.props.location.state.customer.customerFirstName} {this.props.location.state.customer.customerLastName}</div>
             <div className="cardInfoWebPOS2">วันเกิด {this.props.location.state.customer.customerDOB} </div>
             <div className="cardInfoWebPOS3">เบอร์ติดต่อ {this.props.location.state.customer.customerPhone}</div>
           </Cardinfo>

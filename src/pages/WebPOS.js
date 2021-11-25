@@ -16,8 +16,8 @@ const key = 'updatable';
 
 const BtnOrange = styled.button`
   background-color: ${color.Button};
+  height: 50px;
   width: 290px;
-
   border-style: none;
   font-size: 25px;
   border-radius: 99px;
@@ -40,8 +40,8 @@ const BtnClear = styled.button`
 `
 const BtnOK = styled.button`
   background-color: #59DD9A;
+  height: 50px;
   width: 290px;
-  
   border-style: none;
   font-size: 25px;
   border-radius: 99px;
@@ -109,7 +109,13 @@ class WebPOS extends Component {
 
 }else{
   console.log("not found naja")
-  message.open({ content: 'ไม่พบข้อมูล โปรดลองใหม่อีกครั้ง', key, duration: 3 });
+  message.error({
+    content: 'ไม่พบข้อมูลลูกค้า',
+    style: {
+      fontSize: '25px',
+    },
+    duration: 2,
+  });
   setTimeout(function(){
     window.location.href = "/merchant/branch/webPOS";
    
@@ -143,7 +149,7 @@ class WebPOS extends Component {
           <div className="paddingTop15"/>
           <div className="paddingTop15"/>
           <ScanOutlined style={{ fontSize: '140px', color: '#F7931E' }} />
-          <MobileOutlined style={{ fontSize: '140px', color: '#F7931E' }}  />
+         
           <div className="paddingTop15"/>
           <div className="paddingTop15"/>
           <div className="paddingTop15"/>
@@ -156,8 +162,8 @@ class WebPOS extends Component {
             /> */}
           </div>
           <div className="HeaderWebPOS">สแกนรหัสจาก QR ลูกค้า</div>
-          <h3> ลงชื่อเข้าใช้ {this.props.pinAuth.staff.firstName}</h3>
-          <h5> #{this.props.pinAuth.staff.staffId}</h5>
+          <h3> ลงชื่อเข้าใช้โดย {this.props.pinAuth.staff.firstName} #{this.props.pinAuth.staff.staffId}</h3>
+          <h5> </h5>
           <div className="outterInput"><form id="myForm"><input className="inPutWidth inputFontSize DbBold" id="customerIDD"  onChange={event => {this.setState({query: event.target.value})}}
     onKeyPress={event => {
                 if (event.key === 'Enter') {

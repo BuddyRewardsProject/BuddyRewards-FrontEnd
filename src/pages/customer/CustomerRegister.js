@@ -224,7 +224,7 @@ class CustomerRegister extends Component {
                 required
               ></input>
             </div>
-            <div className="text-left fromfontsize20">E-mail</div>
+            {/* <div className="text-left fromfontsize20">E-mail</div>
             <div className="">
               <input
                 type="text"
@@ -259,7 +259,7 @@ class CustomerRegister extends Component {
                 onChange={(e) => this.onRepeatPasswordInput(e)}
                 required
               ></input>
-            </div>
+            </div> */}
 
             <div className="text-left fromfontsize20">เบอร์โทรศัพท์</div>
             <div className="">

@@ -46,7 +46,8 @@ class CustomerHome extends Component {
   }
   handleClick(e) {
     e.preventDefault();
-    this.props.logoutCustomer();
+    //this.props.logoutCustomer();
+    window.location.href = "/customer/register";
   }
   componentDidMount() {
     liff.getProfile()
@@ -59,9 +60,9 @@ class CustomerHome extends Component {
           console.log('error', err);
         });
         
-    if (this.props.customerAuth.isAuthenticated === true) {
-      return;
-    }
+    // if (this.props.customerAuth.isAuthenticated === true) {
+    //   return;
+    // }
     liff
       .init({
         liffId: "1656382933-9DzLvxlE", // Use own liffId
@@ -112,7 +113,9 @@ class CustomerHome extends Component {
                 "customerToken",
                 response.data.customerToken
               );
-              message.open({ content: "hello", duration: 5 });
+              message.success({ content: "done line",style: {
+                fontSize: '20px',
+              }, duration: 3 });
             }
           })
           .catch((error) => {
@@ -258,7 +261,7 @@ class CustomerHome extends Component {
               </button>
             </div>
 
-            {/* <div className="paddingTop15">
+            <div className="paddingTop15">
               <button
                 type="button"
                 className="  btnEditProfile"
@@ -266,7 +269,7 @@ class CustomerHome extends Component {
               >
                 บันทึกข้อมูล
               </button>
-            </div> */}
+            </div>
             
             <div className="paddingTop15"></div>
             <div className="paddingTop15"></div>

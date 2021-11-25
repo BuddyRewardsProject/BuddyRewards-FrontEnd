@@ -17,6 +17,7 @@ const key = "updatable";
 
 const BtnOrange = styled.button`
   background-color: ${color.Button};
+  height: 50px;
   width: 290px;
 
   border-style: none;
@@ -44,6 +45,7 @@ const BtnClear = styled.button`
 `;
 const BtnOK = styled.button`
   background-color: #59dd9a;
+  height: 50px;
   width: 290px;
 
   border-style: none;
@@ -137,13 +139,18 @@ console.log(this.state.totalPoint)
           <Cardinfo className="text-center">
 
           <Result status="success"/>
-            <h1>สำเร็จ! </h1>
+            <h1 className="DBB">เพิ่มแต้มสำเร็จแล้ว!👌</h1>
             
-            
-            {this.state.totalPoint === null ? <Spin  indicator={antIcon} /> : <div className="cardInfoWebPOS1">คุณ ภูมิ มี แต้มคงเหลืออยู่ที่ {this.state.totalPoint} แต้ม</div> }
-            
+            <div className="paddingTop15"></div>
+            {this.state.totalPoint === null ? <Spin  indicator={antIcon} /> : <div className="cardInfoWebPOS1">คุณ {this.props.location.state.customer.customerNickName} มีแต้มทั้งหมดอยู่ {this.state.totalPoint} แต้ม</div> }
+            <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+           
           </Cardinfo>
-
+          <div className="paddingTop15"></div>
+          <div className="paddingTop15"></div>
+          <h5 className="text-center">เคล็ดลับ✨ บอกลูกชื่อลูกค้าและจำนวนแต้มคงเหลือเพื่อให้ลูกค้าทราบ</h5>
           
           <div className="paddingBtm text-center">
             
@@ -153,7 +160,7 @@ console.log(this.state.totalPoint)
           </div>
           <div className="paddingBtm text-center">
           <Link to="/merchant/branch/webPOS">
-            <BtnOK > ไปยังหน้าหลัก</BtnOK>
+            <BtnOK > ไปยังหน้าแรก webPOS</BtnOK>
             </Link>
           </div>
         </Card>

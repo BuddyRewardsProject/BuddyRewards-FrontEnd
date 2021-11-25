@@ -64,7 +64,11 @@ class CustomerCard extends Component {
             accessToken: accessToken,
           })
           .then((response) => {
-            
+            setTimeout(function(){
+              message.success({ content: "done line",style: {
+                fontSize: '20px',
+              }, duration: 3 });
+          },300)
             console.log(response.data);
             if (response.data.status === "error") {
               window.location.href = response.data.redirect;
@@ -72,6 +76,7 @@ class CustomerCard extends Component {
             }else{
               this.props.setCustomer(jwt.decode(response.data.customerToken)) 
               localStorage.setItem("customerToken", response.data.customerToken);
+               
               
             }
           })
