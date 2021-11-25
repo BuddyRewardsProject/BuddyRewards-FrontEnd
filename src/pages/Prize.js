@@ -140,7 +140,7 @@ class Prize extends Component {
       prizeName: prizeName,
       prizeDetail: prizeDetail,
       prizePointCost: prizePointCost,
-      branchId: this.props.auth.user.branchId
+      merchantId: this.props.auth.user.merchantId
     }
 
     axios.post('/merchant/v1/createPrize', {
@@ -159,8 +159,8 @@ class Prize extends Component {
       });
   }
 
-  componentDidMount(){
-    axios.post('/merchant/v1/prizeInit', { branchId: this.props.auth.user.branchId })
+  componentDidMount() {
+    axios.post('/merchant/v1/prizeInit', { merchantId: this.props.auth.user.merchantId })
       .then((response) => {
         console.log(response.data)
         this.setState({
@@ -171,7 +171,7 @@ class Prize extends Component {
         console.log(error);
       });
   }
-  removePrize(prizeId){ 
+  removePrize(prizeId) {
     axios.post('/merchant/v1/removePrize', {
       prizeId: prizeId
     })
@@ -262,29 +262,33 @@ class Prize extends Component {
             <div className="container fade-in-image align-items-center  text-center">
 
               <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1 g-3">
+
                 <div class="cols-1 ">
-                  <BtnAdd href="#" className="btn" onClick={(e) => this.openModel(e)}>
-                    สร้างรางวัล
-                  </BtnAdd>
+                  {this.props.auth.user.masterAccount !== 0 &&
+                    <BtnAdd href="#" className="btn" onClick={(e) => this.openModel(e)}>
+                      สร้างรางวัล
+                    </BtnAdd>
+                  }
                   <div>
+
                     {this.state.prizeList != null && this.state.prizeList.map((p) =>
-                    <div className="menuCard">
-                      <div className="text-start">
-                        <h3 className="" key={p.prize_name}>ชื่อสิทธิพิเศษ: {p.prize_name}</h3>
-                        <h5 className=" " key={p.prize_detail}>รายละเอียด: {p.prize_detail}</h5>
-                        <h5 className=" " key={p.prize_pointcost}>แต้มที่ใช้: {p.prize_pointcost} แต้ม</h5>
-                      </div>
-                      <div className=" text-start">
-                        <div className="  text-start ">
-                          <BtnEdit href="#" className="btn">
-                            แก้ไข
-                          </BtnEdit>
-                          <BtnEdit href="#" className="btn" onClick={() => this.removePrize(p.prize_id)}>
-                            ลบ
-                          </BtnEdit>
+                      <div className="menuCard">
+                        <div className="text-start">
+                          <h3 className="" key={p.prize_name}>ชื่อสิทธิพิเศษ: {p.prize_name}</h3>
+                          <h5 className=" " key={p.prize_detail}>รายละเอียด: {p.prize_detail}</h5>
+                          <h5 className=" " key={p.prize_pointcost}>แต้มที่ใช้: {p.prize_pointcost} แต้ม</h5>
+                        </div>
+                        <div className=" text-start">
+                          <div className="  text-start ">
+                            <BtnEdit href="#" className="btn">
+                              แก้ไข
+                            </BtnEdit>
+                            <BtnEdit href="#" className="btn" onClick={() => this.removePrize(p.prize_id)}>
+                              ลบ
+                            </BtnEdit>
+                          </div>
                         </div>
                       </div>
-                    </div>
                     )}
                   </div>
                 </div>
