@@ -93,7 +93,7 @@ class WebPOS3 extends Component {
             totalPoint: response.data.customerPoint + this.props.location.state.point
           })
           message.success({
-            content: "คำนวญแต้มเรียบร้อย",
+            content: "คำนวณแต้มเรียบร้อย",
             style: {
               fontSize: '25px',
             },

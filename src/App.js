@@ -137,7 +137,7 @@ class App extends Component {
 
             <Route
               exact
-              path="/customer/merchant/history"
+              path="/customer/merchant/history/:merchantId"
               component={CustomerDetailHistory}
             />
             <Route
