@@ -123,7 +123,7 @@ class CustomerCardDetail extends Component {
       case "reward":
         return "+";
       case "redeem":
-        return "แลกใช้รางวัล";
+        return "-";
 
     }
   }
