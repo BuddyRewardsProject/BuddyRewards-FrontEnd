@@ -30,7 +30,8 @@ class pointHistory extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pointList: []
+      pointList: [],
+      prizeList: []
     }
   }
   onCollapse = (collapsed) => {
@@ -44,12 +45,38 @@ class pointHistory extends Component {
     window.location.href = "/merchant/login/pin";
   }
 
+  getPrize() {
+    axios.post('/merchant/v1/prizeInit', { merchantId: this.props.auth.user.merchantId })
+      .then((response) => {
+        this.setState({
+          prizeList: response.data.prizeList
+        })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   componentDidMount() {
     axios.post('/merchant/v1/pointHistory', { branchId: this.props.auth.user.branchId })
       .then((response) => {
-        this.setState({
-          pointList: response.data.pointList
-        })
+        const results = response.data.pointList;
+        axios.post('/merchant/v1/prizeInit', { merchantId: this.props.auth.user.merchantId })
+          .then((res) => {
+            for (let i = 0; i < results.length; i++) {
+              for (let j = 0; j < res.data.prizeList.length; j++) {
+                if (results[i].prize_id === res.data.prizeList[j].prize_id) {
+                  results[i].prizeName = res.data.prizeList[j].prize_name
+                }
+              }
+            }
+            this.setState({
+              pointList: results
+            })
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
         console.log(error);
@@ -138,6 +165,7 @@ class pointHistory extends Component {
                       <th scope="col">point</th>
                       <th scope="col">สถานะ</th>
                       <th scope="col">ผู้ดำเนินการ</th>
+                      <th scope="col">หมายเหตุ</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -149,7 +177,7 @@ class pointHistory extends Component {
                         <td key={c.point}>{c.point}</td>
                         <td key={c.point_status}>{c.point_status}</td>
                         <td key={c.staffFirstname}>{c.staffFirstname}</td>
-                        {/* <td key={c.customer_id}>{this.state.customerPoint}</td> */}
+                        <td key={c.prizeId}>{c.prizeName}</td>
                       </tr>
                     )}
                   </tbody>
