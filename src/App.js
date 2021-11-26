@@ -8,6 +8,7 @@ import CustomerRegister from "./pages/customer/CustomerRegister";
 import CustomerLogin from "./pages/customer/CustomerLogin";
 import CustomerCard from "./pages/customer/CustomerCard";
 import CustomerCardDetail from "./pages/customer/CustomerCardDetail";
+import CustomerDetailHistory from "./pages/customer/CustomerDetailHistory";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Prize from "./pages/Prize";
@@ -136,7 +137,12 @@ class App extends Component {
 
             <Route
               exact
-              path="/customer/mycard/detail"
+              path="/customer/merchant/history"
+              component={CustomerDetailHistory}
+            />
+            <Route
+              exact
+              path="/customer/mycard/detail/:merchantId"
               component={CustomerCardDetail}
             />
             <Route exact path="/merchant/branch/webPOS" component={WebPOS} />

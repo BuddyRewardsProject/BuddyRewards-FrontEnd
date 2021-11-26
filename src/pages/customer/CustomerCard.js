@@ -6,7 +6,7 @@ import "../../assets/css/CustomerSide/Customer.css";
 import Navigation from "../../layouts/Navigation";
 import Mlogo from "../../assets/img/icon/merchantPreLoad.svg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faParking, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import message from "antd/lib/message/index";
 import { ArrowDownOutlined } from "@ant-design/icons";
@@ -215,11 +215,11 @@ class CustomerCard extends Component {
             
 
             <div className="paddingTop15"></div>
-{this.state.merchantList.length === 0 && 
-<div className="text-center">
+{this.state.merchantList.length   === 0 && 
+<div className="text-center welcomeCard">
 
 
-<Spin  indicator={antIcon} />
+<h1>พร้อมสำหรับการสะสมแต้มแล้ว</h1>
 
 
 </div>

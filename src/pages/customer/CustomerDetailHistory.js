@@ -25,7 +25,7 @@ const Card = styled.div`
 
 `;
 
-class CustomerDetailHistory extends Component {
+class CustomerCardDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -216,4 +216,4 @@ class CustomerDetailHistory extends Component {
 const mapStateToProps = (state) => {
   return state;
 };
-export default connect(mapStateToProps, mapDispatchToProps)(CustomerDetailHistory);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerCardDetail);

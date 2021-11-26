@@ -189,3 +189,16 @@
   0% {opacity:0;}
   100% {opacity:1;}
 }
+.welcomeCard{
+  
+
+
+padding: 12px;
+width: auto;
+height: auto;
+/* filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.061)); */
+border-radius: 9px;
+background: #ffedd9;
+
+transition:ease-in-out 0.4s;
+}

@@ -73,3 +73,18 @@
   
 
 }
+.btnRedeemDisable{
+  background-color: rgb(75, 79, 88);
+
+  border-style: none;
+  font-size: 20px;
+  border-radius: 9px;
+  color: #ffff;
+
+
+}
+.btnRedeemDisable:hover,
+.btnRedeemDisable:focus {
+  color: rgb(49, 49, 49);
+  text-shadow: none; /* Prevent inheritance from `body` */
+}

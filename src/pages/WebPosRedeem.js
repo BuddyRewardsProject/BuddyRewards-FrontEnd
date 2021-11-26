@@ -12,9 +12,13 @@ import $ from "jquery";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faParking, faStar } from "@fortawesome/free-solid-svg-icons";
+import { Result} from 'antd';
+
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const key = "updatable";
-
+const antIcon = <LoadingOutlined style={{ fontSize: '60px', color: '#ff7676' }} spin />;
 const BtnOrange = styled.button`
   background-color: ${color.Button};
   width: 290px;
@@ -79,6 +83,11 @@ const Cardinfo = styled.div`
 class WebPosRedeem extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      
+      prizeList: [],
+      selectedPrize: null
+    }
   }
 
   handleClick(e) {
@@ -95,32 +104,52 @@ class WebPosRedeem extends Component {
       merchantId: this.props.auth.user.merchantId,
       price: price,
     };
-    axios
-      .post("/merchant/v1/calculate", {
-        data,
-      })
-      .then((response) => {
-        if (response.data.status === "success") {
-          this.props.history.push({
-            pathname: "/merchant/branch/WebPOS3",
-            state: {
-              customer: this.props.location.state.customer,
-              point: response.data.resultPoint,
-            },
-          });
-          message.success({ content: "สำเร็จแล้ว!", key, duration: 2 });
-        } else {
-          message.error({ content: "เกิดข้อผิดพลาด!", key, duration: 2 });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  //   axios
+  //     .post("/merchant/v1/calculate", {
+  //       data,
+  //     })
+  //     .then((response) => {
+  //       if (response.data.status === "success") {
+  //         this.props.history.push({
+  //           pathname: "/merchant/branch/WebPOS3",
+  //           state: {
+  //             customer: this.props.location.state.customer,
+  //             point: response.data.resultPoint,
+  //           },
+  //         });
+  //         message.success({ content: "สำเร็จแล้ว!", key, duration: 2 });
+  //       } else {
+  //         message.error({ content: "เกิดข้อผิดพลาด!", key, duration: 2 });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+}
+componentDidMount() {
+
+
+console.log(this.props.state)
+console.log(this.props.location.state.selectedPrize,'<------')
+
+
+message.open({
+  content: 'แลกสิทธิพิเศษให้แล้วจ้ะ ✨',
+  style: {
+    fontSize: '25px',
+  },
+  duration: 2,
+});
+
+
+
+
+
+}
 
   render() {
     document.body.style.backgroundColor = "#F5F6FA";
-
+    console.log(this.state)
     function goBack() {
       window.history.back();
     }
@@ -129,77 +158,42 @@ class WebPosRedeem extends Component {
     }
 
     return (
+      
       <div>
         <NavTopWebPOS></NavTopWebPOS>
-        <MarginTop></MarginTop>
+      
 
         <Card>
           <Cardinfo className="text-center">
-            <img
-              src={profile}
-              className="img-fluid paddingBarCodeIcon"
-              alt="barcodeScan"
-              width="99px"
-            />
-            <div className="cardInfoWebPOS1">คุณ </div>
-            <div className="cardInfoWebPOS2">วันเกิด </div>
-            <div className="cardInfoWebPOS3">เบอร์ติดต่อ</div>
-          </Cardinfo>
 
-          <div className="HeaderWebPOS text-start">รางวัลที่คุณ NickName แลกได้</div>
+          <Result status="success"/>
+            <h1 className="DBB">ใช้สิทธิพิเศษเรียบร้อย 🏆</h1>
+            
+            <div className="paddingTop15"></div>
+            {this.state.totalPoint != null ? <Spin  indicator={antIcon} /> : <div className="cardInfoWebPOS1">คุณ {this.props.location.state.customer.customerNickName} มีแต้มคงเหลืออยู่ {(this.props.location.state.totalPoint) - (this.props.location.state.selectedPrize == null ? 0 : this.props.location.state.selectedPrize)} แต้ม</div> }
+            <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+            {/* <div>{this.props.location.state.totalPoint} 1</div>
+            <div>{this.props.location.state.selectedPrize} 2</div>
+            {(this.props.location.state.totalPoint) - (this.props.location.state.selectedPrize == null ? 0 : this.props.location.state.selectedPrize)}
+           */}
+          </Cardinfo>
+          <div className="paddingTop15"></div>
+          <div className="paddingTop15"></div>
+          <h5 className="text-center">เคล็ดลับ✨ บอกชื่อลูกค้าและจำนวนแต้มคงเหลือเพื่อให้ลูกค้าทราบ</h5>
+          
           <div className="paddingBtm text-center">
             
           
 
-          <div className="row row-cols-1 row-cols-md-4 g-3">
-            <div className="col">
-              <div className="card h-100">
-                <div className="card-body">
-                  <h3 className="card-title">prize Name</h3>
-                  <h5 className="card-title ">ใช้ 10 แต้ม</h5>
-                </div>
-                <div className="card-footer text-end">
-                  <div className="  text-end">
-                    <BtnClear href="#" className="   btn  ">
-                      สามารถแลกได้
-                    </BtnClear>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col">
-              <div className="card h-100">
-                <div className="card-body">
-                  <h3 className="card-title">prize Name</h3>
-                  <h5 className="card-title">ใช้ 10 แต้ม</h5>
-                </div>
-                <div className="card-footer text-end">
-                  <div className="  text-end">
-                    <BtnClear href="#" className="   btn  ">
-                      สามารถแลกได้
-                    </BtnClear>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col">
-              <div className="card h-100">
-                <div className="card-body">
-                  <h3 className="card-title">prize Name</h3>
-                  <h5 className="card-title">ใช้ 10 แต้ม</h5>
-                </div>
-                <div className="card-footer text-end">
-                  <div className="  text-end">
-                    <BtnClear href="#" className="   btn  ">
-                      สามารถแลกได้
-                    </BtnClear>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
          
+          </div>
+          <div className="paddingBtm text-center">
+          <Link to="/merchant/branch/webPOS">
+            <BtnOK > ไปยังหน้าแรก webPOS</BtnOK>
+            </Link>
+          </div>
         </Card>
         <div className="text-center">
           <BtnOrange

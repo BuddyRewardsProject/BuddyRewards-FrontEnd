@@ -172,13 +172,13 @@ class WebPOS3 extends Component {
           <Cardinfo>
           <div className="paddingTop15"></div>
            <img
-              src={this.props.location.state.customer.pictureUrl}
+               src={this.props.location.state.customer.customerPic}
               class="  rounded-circle fade-in-image"
-              alt="barcodeScan"
+              alt="customerPic"
               width="80px"
             />
             <div className="cardInfoWebPOS1">คุณ {this.props.location.state.customer.customerNickName} {this.props.location.state.customer.customerFirstName} {this.props.location.state.customer.customerLastName}</div>
-            <div className="cardInfoWebPOS2">วันเกิด {this.props.location.state.customer.customerDOB} </div>
+            <div className="cardInfoWebPOS2">วันเกิด 🎂 {this.props.location.state.customer.customerDOB} </div>
             <div className="cardInfoWebPOS3">เบอร์ติดต่อ {this.props.location.state.customer.customerPhone}</div>
           </Cardinfo>
 

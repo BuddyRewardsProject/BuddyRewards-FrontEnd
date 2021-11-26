@@ -9,10 +9,10 @@ import profile from "../assets/img/icon/profileD.svg";
 import axios from "axios";
 import message from "antd/lib/message/index";
 import $ from "jquery";
-import { Result, Button } from 'antd';
+import { Result} from 'antd';
 import { Link } from "react-router-dom";
-import { Spin,Skeleton } from "antd";
-import { LoadingOutlined,StopFilled } from "@ant-design/icons";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 const key = "updatable";
 
 const BtnOrange = styled.button`
@@ -150,7 +150,7 @@ console.log(this.state.totalPoint)
           </Cardinfo>
           <div className="paddingTop15"></div>
           <div className="paddingTop15"></div>
-          <h5 className="text-center">เคล็ดลับ✨ บอกลูกชื่อลูกค้าและจำนวนแต้มคงเหลือเพื่อให้ลูกค้าทราบ</h5>
+          <h5 className="text-center">เคล็ดลับ✨ บอกชื่อลูกค้าและจำนวนแต้มคงเหลือเพื่อให้ลูกค้าทราบ</h5>
           
           <div className="paddingBtm text-center">
             
