@@ -20,17 +20,16 @@ import { setCustomer } from "../../actions/customerAuthActions";
 // import { setCustomer } from "../../actions/customerAuthActions";
 // import { bindActionCreators } from 'redux'
 
-
-import { notification } from 'antd';
-
-
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+const antIcon = <LoadingOutlined style={{ fontSize: '60px', color: '#ff7676' }} spin />;
 class CustomerCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       accessToken: null,
-      merchantList: []
-      
+      merchantList: [],
+
     };
   }
   componentDidMount() {
@@ -54,7 +53,31 @@ class CustomerCard extends Component {
   console.log(pictureUrl);
   this.setState({ pictureUrl: pictureUrl });
 
+  axios
+  .post("/customer/v1/merchantdata",{customerId : this.props.customerAuth.customer.customerId})
+  
+  .then((response) => {
+    // handle success
+   
+    console.log(response.data ,"what that <<<<<<<<<");
+   
+    // merchantList: response.data.merchantInfo
 
+    
+    this.setState({
+      merchantList: response.data.merchantInfo
+    })
+    console.log(this.state.merchantList ,"<<<<< that <<<<<<<<<");
+
+  })
+  .catch((error) => {
+    // handle error
+    console.log(error);
+  })
+  .then(() => {
+    // always executed
+  });
+  
 })
 .catch((err) => {
   console.log('error', err);
@@ -73,30 +96,7 @@ class CustomerCard extends Component {
         console.log(this.props.customerAuth.customer.customerId)
         console.log('================================ios=================================================')
 
-  axios
-    .post("/customer/v1/merchantdata",{customerId : this.props.customerAuth.customer.customerId})
-    
-    .then((response) => {
-      // handle success
-     
-      console.log(response.data ,"what that <<<<<<<<<");
-     
-      // merchantList: response.data.merchantInfo
-
-      
-      this.setState({
-        merchantList: response.data.merchantInfo
-      })
-      console.log(this.state.merchantList ,"<<<<< that <<<<<<<<<");
   
-    })
-    .catch((error) => {
-      // handle error
-      console.log(error);
-    })
-    .then(() => {
-      // always executed
-    });
    
         axios
           .post("/customer/v1/liff", {
@@ -156,6 +156,8 @@ class CustomerCard extends Component {
         <Navigation history={this.props.history}></Navigation>
         <div className="container ">
           <div className="margintopforcard">
+          {/* {this.state.merchantList.length === 0 ? <div> loading </div> : <div> content </div> } */}
+
           {this.state.merchantList.length != 0 && this.state.merchantList.map((merchant,index) =>
                     
             <Link key={index} to={`/customer/mycard/detail/${merchant.merchantId}`}>
@@ -185,30 +187,7 @@ class CustomerCard extends Component {
             </Link>
            
                     )}
-{this.state.merchantList.length === 0 && 
-<div>
-
-<div className="text-center fontSize20"> คุณพร้อมสะสมแต้มแล้ว คลิกปุ่มสะสมแต้มด้านล่างได้เลย </div>
-<div className="text-center fontSize20"> <ArrowDownOutlined/> </div>
-
-
-</div>
-}
-            {/* {this.state.merchantList.length != 0 && this.state.merchantList.map((merchant,index) =>
-                    <>
-                       
-                      <tr key={index}>
-                        <td scope="row" >{merchant.merchantId}</td>
-                        <td >{merchant.merchantName}</td>
-                        <td >{merchant.TotalPoint}</td>
-
-                      </tr>
-                      
-                      </>
-                    )} */}
-
-            
-            <Link  to="/customer/mycard/detail">
+                    <Link  to="/customer/mycard/detail">
             <div className="cardBG ">
               <div
                 class="list-group-item d-flex align-items-center shadow-none border-0 cardBG d-flex gap-3 py-3"
@@ -236,6 +215,30 @@ class CustomerCard extends Component {
             
 
             <div className="paddingTop15"></div>
+{this.state.merchantList.length === 0 && 
+<div className="text-center">
+
+
+<Spin  indicator={antIcon} />
+
+
+</div>
+}
+            {/* {this.state.merchantList.length != 0 && this.state.merchantList.map((merchant,index) =>
+                    <>
+                       
+                      <tr key={index}>
+                        <td scope="row" >{merchant.merchantId}</td>
+                        <td >{merchant.merchantName}</td>
+                        <td >{merchant.TotalPoint}</td>
+
+                      </tr>
+                      
+                      </>
+                    )} */}
+
+            
+            
             
             {/* <button
                 type="button"
