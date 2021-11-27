@@ -169,10 +169,11 @@ class CustomerCardDetail extends Component {
                 <div className=" cardBGforDetailHistory ">
                   <div className="row ">
                     <div className="col-6 DetailHistoryblock">
+                      
                       {moment(historyInfo.time_stamp).format(
                         "DD/MM/YYYY HH:mm"
                       )}
-                      {historyInfo.divider}
+                      
                     </div>
                     <div className="col-6 text-end DetailHistoryblockStatus">
                       {this.renderStatus(historyInfo.point_status)}{" "}

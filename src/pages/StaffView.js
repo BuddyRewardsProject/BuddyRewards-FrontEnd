@@ -107,7 +107,7 @@ class StaffView extends Component {
                 </Link>
               </div>
             }
-            {this.props.pinAuth.staff.roleId < 3 &&
+            {this.props.pinAuth.staff.roleId < 2 &&
               <div class="cols-2">
                 <Link to="/merchant/branch/branch-Management">
                   <div className="menuCard">

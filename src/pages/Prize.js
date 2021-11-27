@@ -22,7 +22,8 @@ const BGCard = styled.div`
 const BtnEdit = styled.button`
   background-color: none;
   border-radius: 9px;
-  font-size: 22px;
+  font-size: 20px;
+  height: 45px;
   border: 2px solid #f68e1a;
   color: #f68e1a;
   width: 100px;
@@ -158,7 +159,10 @@ class Prize extends Component {
                 <h5 class="modal-title" id="addStaffLabel">
                   Add Prize
                 </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                
+                  <button type="button" className="btn-close " data-bs-dismiss="modal" aria-label="Close" ></button>
+                 
+                
               </div>
               <div class="modal-body">
                 <contains>
@@ -210,7 +214,7 @@ class Prize extends Component {
           <BGCard>
             <div>
               <Link to="/merchant/branch/settings">
-                <button type="button" class="btn-close" aria-label="Close"></button>
+                <button type="button" class="btn-close DashXBackBtn" aria-label="Close"></button>
               </Link>
             </div>
             <div className="container fade-in-image align-items-center  text-center">
@@ -223,11 +227,12 @@ class Prize extends Component {
                   }
                   <div>
                     {this.state.prizeList != null && this.state.prizeList.map((p) =>
+                    <div className="paddingTop15">
                       <div className="menuCard">
                         <div className="text-start">
                           <h3 className="" key={p.prize_name}>ชื่อสิทธิพิเศษ: {p.prize_name}</h3>
                           <h5 className=" " key={p.prize_detail}>รายละเอียด: {p.prize_detail}</h5>
-                          <h5 className=" " key={p.prize_pointcost}>แต้มที่ใช้: {p.prize_pointcost} แต้ม</h5>
+                          <h5 className=" " key={p.prize_pointcost}>จำนวนแต้มที่ใช้: {p.prize_pointcost} แต้ม</h5>
                         </div>
                         <div className=" text-start">
                           <div className="  text-start ">
@@ -239,6 +244,7 @@ class Prize extends Component {
                             </BtnEdit>
                           </div>
                         </div>
+                      </div>
                       </div>
                     )}
                   </div>

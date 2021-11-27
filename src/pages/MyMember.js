@@ -98,11 +98,9 @@ class MyMember extends Component {
             <div class=" ">
               <div className="menuCard">
                 <div class="row row-cols-2 row-cols-xs-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 g-3">
-                  <div class="cols-2 text-start ">
+                  <div class="cols-2 text-start">
                     <Link to="/merchant/branch/dashboard">
-                      <h5>
-                        <FontAwesomeIcon icon={faChevronLeft} /> ย้อนกลับ
-                      </h5>
+                    <button type="button" class="btn-close DashXBackBtn" aria-label="Close"></button>
                     </Link>
                   </div>
                   <div class="cols-2 text-end">

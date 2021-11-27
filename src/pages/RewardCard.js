@@ -85,11 +85,11 @@ class RewardCard extends Component {
         <div className=" container"></div>
         <div className="container fade-in-image align-items-center  ">
           <BGCard>
-            <div>
+            <div className="DashBackBtn">
               <Link to="/merchant/branch/settings">
                 <button
                   type="button"
-                  class="btn-close"
+                  class="btn-close DashXBackBtn"
                   aria-label="Close"
                 ></button>
               </Link>

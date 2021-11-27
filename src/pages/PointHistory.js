@@ -19,7 +19,17 @@ const BgGradient = styled.div`
   border-bottom-left-radius: 19px;
   background: ${color.Gradient};
 `;
-
+const BtnOrange = styled.button`
+  background-color: #FFFF;
+  border: solid 2px;
+  border-color: ${color.Button};
+  font-size: 20px;
+  height: 45px;
+  width: 80px;
+  border-radius: 8px;
+  color: ${color.Button};
+  padding: 5px;
+`;
 const BranchNameSize = styled.h2`
   font-size: 48px;
   font-style: bold;
@@ -98,7 +108,7 @@ class pointHistory extends Component {
             </div>
           </div>
         </BgGradient>
-        <div className=" container">
+        {/* <div className=" container">
           <h2>Quick Look</h2>
         </div>
         <div className="container fade-in-image align-items-center  text-center">
@@ -121,26 +131,26 @@ class pointHistory extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className=" container">
           <div className="paddingTop15"></div>
           <h2>ประวัติการแจกแต้ม</h2>
         </div>
         <div className="container fade-in-image align-items-center  text-start">
-          <div class=" g-3">
+          <div class=" ">
             <div class=" ">
               <div className="menuCard">
                 <div class="row row-cols-2 row-cols-xs-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 g-3">
-                  <div class="cols-2 text-start ">
+                  <div class="cols-2 text-start">
                     <Link to="/merchant/branch/dashboard">
-                      <h5>
-                        <FontAwesomeIcon icon={faChevronLeft} /> ย้อนกลับ
-                      </h5>
+                    <button type="button" class="btn-close DashXBackBtn" aria-label="Close"></button>
                     </Link>
                   </div>
 
-                  <div class="cols-2 text-end">
-                    <RangePicker
+                  <div class="cols-2 text-end ">
+                    <BtnOrange>ส่งออก</BtnOrange>
+                    
+                    {/* <RangePicker
                       dateRender={(current) => {
                         const style = {};
                         if (current.date() === 1) {
@@ -153,7 +163,7 @@ class pointHistory extends Component {
                           </div>
                         );
                       }}
-                    />
+                    /> */}
                   </div>
                 </div>
                 <table className="table fromfontsize20">
