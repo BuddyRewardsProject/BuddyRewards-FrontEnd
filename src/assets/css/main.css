@@ -326,6 +326,17 @@ background-color: #ffffff!important;
  
 }
 
+.btnQRBack{
+  color: #FB8549;
+  background-color: #FFEBD9;
+  font-size: 25px;
+  border-radius: 9px;
+  border: none;
+  width: 100%;
+  height: 59px;
+ 
+}
+
 .mobile-nav {
 	position: -webkit-sticky; /* Safari */
 	position: sticky;

@@ -9,6 +9,8 @@ import { setCustomer } from "../../actions/customerAuthActions";
 import prize from "../../assets/img/icon/prize.svg";
 import liff from "@line/liff";
 import jwt from "jsonwebtoken";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 // redux ต้องมีทุกหน้าใน liff
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
@@ -16,6 +18,12 @@ import { connect } from "react-redux";
 import message from "antd/lib/message/index";
 import merchantLOGO from "../../assets/img/icon/merchantPreLoad.svg";
 import { Alert } from "antd";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+
+const antIcon = (
+  <LoadingOutlined style={{ fontSize: "60px", color: "#F7931E" }} spin />
+);
 const BgBanner = styled.div`
   height: 300px;
   background: ${color.Gradient};
@@ -171,12 +179,14 @@ class CustomerDetailHistory extends Component {
           ) : (
             <div className="cardInfoWebPOS1"></div>
           )}
-
+{this.state.prizeInfoList.length === 0 && (
+              <div className="text-center">
+                <Spin indicator={antIcon} />
+              </div>
+            )}
           {this.state.prizeInfoList.length != 0 &&
             this.state.prizeInfoList.map((prizeInfo, index) => (
-              <Link
-                to={`/customer/mycard/detail/${prizeInfo.prize_id}and${prizeInfo.merchant_id}`}
-              >
+              
                 <div className="cardBG " key={index}>
                   <div
                     class="list-group-item d-flex align-items-center shadow-none border-0 cardBG d-flex gap-3 py-3"
@@ -197,20 +207,35 @@ class CustomerDetailHistory extends Component {
                       </div>
                       <div class=" justify-content-between d-flex align-items-center  d-flex ">
                         {prizeInfo.prize_pointcost <= this.state.TotalPoint ? (
-                          <div className="labelRedeemPoint">
-                            {prizeInfo.prize_pointcost} แต้ม
+                          <div className="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1">
+                            {prizeInfo.prize_pointcost}{" "}
+                            <FontAwesomeIcon
+                              className="IconmyCard"
+                              icon={faStar}
+                            />
                           </div>
                         ) : (
-                          <div className="labelRedeemPointDisable ">
-                            {prizeInfo.prize_pointcost} แต้ม
+                          <div className="labelCurrentPointDisable justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1">
+                            {prizeInfo.prize_pointcost}{" "}
+                            <FontAwesomeIcon
+                              className="IconStarDisable"
+                              icon={faStar}
+                            />
                           </div>
                         )}
                       </div>
                     </div>
                   </div>
                 </div>
-              </Link>
+              
             ))}
+
+          <div className="paddingTop15"></div>
+          <div className="paddingTop15"></div>
+          <div className="paddingTop15"></div>
+          <div className="paddingTop15"></div>
+          <div className="paddingTop15"></div>
+          <div className="paddingTop15"></div>
         </div>
       </>
     );

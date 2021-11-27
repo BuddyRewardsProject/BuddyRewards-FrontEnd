@@ -113,9 +113,9 @@ class CustomerHome extends Component {
                 "customerToken",
                 response.data.customerToken
               );
-              message.success({ content: "done line",style: {
-                fontSize: '20px',
-              }, duration: 3 });
+              // message.success({ content: "สำเร็จ!",style: {
+              //   fontSize: '20px',
+              // }, duration: 3 });
             }
           })
           .catch((error) => {

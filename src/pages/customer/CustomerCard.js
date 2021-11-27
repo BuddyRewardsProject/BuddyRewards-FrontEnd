@@ -9,8 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import message from "antd/lib/message/index";
-import { DownOutlined } from "@ant-design/icons";
-
+import { DownCircleOutlined } from "@ant-design/icons";
+import welcome from "../../assets/img/icon/welcome.png";
 import liff from "@line/liff";
 import jwt from "jsonwebtoken";
 // redux ต้องมีทุกหน้าใน liff
@@ -23,7 +23,7 @@ import { setCustomer } from "../../actions/customerAuthActions";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 const antIcon = (
-  <LoadingOutlined style={{ fontSize: "40px", color: "#ff7676" }} spin />
+  <LoadingOutlined style={{ fontSize: "60px", color: "#F7931E" }} spin />
 );
 
 class CustomerCard extends Component {
@@ -85,7 +85,13 @@ class CustomerCard extends Component {
         console.log(accessToken);
         this.setState({ accessToken: accessToken });
         if (liff.getOS() === "android") {
-          message.success({ content: "สวัสดีชาว android", duration: 8 });
+          message.success({
+            content: "สวัสดีชาว Android",
+            style: {
+              fontSize: "20px",
+            },
+            duration: 3,
+          });
         } else if (liff.getOS() === "ios") {
           message.success({
             content: "สวัสดีชาว ios",
@@ -127,6 +133,7 @@ class CustomerCard extends Component {
   }
 
   render() {
+    
     return (
       <>
         <Helmet>
@@ -177,12 +184,34 @@ class CustomerCard extends Component {
 
             <div className="paddingTop15"></div>
             {this.state.merchantList.length === 0 && (
-              <div className="text-start welcomeCard">
-                <h1>เย้ คุณพร้อมสะสมแต้มแล้ว</h1>
-                <h3>คลิกปุ่มสะสมแต้มด้านล่างได้เลย</h3>
-                <DownOutlined style={{ fontSize: "40px", color: "#ff7676" }} />
+             <div>{this.state.loaded ? null : (
+              <div className="text-center">
+                <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+                <Spin  indicator={antIcon} />
               </div>
             )}
+            <img src={welcome} className="img-fluid fade-in-image"
+              onLoad={() => this.setState({ loaded: true })}
+            />
+</div>
+            )}
+
+
+{/* <div>{this.state.loaded ? null : (
+                  <div>
+                    <Spin  indicator={antIcon} />
+                  </div>
+                )}
+                <img src={welcome} className="img-fluid fade-in-image"
+                  onLoad={() => this.setState({ loaded: true })}
+                />
+</div> */}
+
+
+
             {/* {this.state.merchantList.length != 0 && this.state.merchantList.map((merchant,index) =>
                     <>
                        

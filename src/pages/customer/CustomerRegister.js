@@ -8,8 +8,11 @@ import $ from "jquery";
 import message from "antd/lib/message/index";
 import color from "../../config/color";
 import liff from "@line/liff";
-const key = "updatable";
+import "../../assets/css/CustomerSide/Customer.css";
 
+
+
+const key = "updatable";
 // const success = () => {
 //   message.success({
 //     content: '‏‏‎‏‏‎สำเร็จ',
@@ -23,11 +26,16 @@ const key = "updatable";
 //   });
 // };
 const ButtonSubmit = styled.button`
+
+
+  color: rgb(255, 255, 255);
+  height: 50px;
   color: white;
-  background-color: ${color.Button};
-  font-size: "15px";
+  background: linear-gradient(180deg, #F7931E 0%, #FF7676 100%);
+  border-radius: 9px;
+  font-size: "25px";
   &:hover {
-    background-color: ${color.ButtonOrange};
+    background-color: ${color.Button};
   }
 `;
 
@@ -40,11 +48,8 @@ class CustomerRegister extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      repeatPassword: null,
-      formValidation: {
-        repeatPassword: true,
-        buttonState: "",
-      },
+     
+      
     };
   }
 
@@ -66,9 +71,9 @@ class CustomerRegister extends Component {
     var customerFirstName = $("#firstName").val();
     var customerLastName = $("#lastName").val();
     var customerNickName = $("#nickName").val();
-    var customerEmail = $("#email").val();
-    var customerPassword = $("#password").val();
-    var customerRepeatPassword = $("#repeatPassword").val();
+    // var customerEmail = $("#email").val();
+    // var customerPassword = $("#password").val();
+    // var customerRepeatPassword = $("#repeatPassword").val();
     var customerPhone = $("#phone").val();
     var customerGender = $("#gender").val();
     var customerDOB = $("#dob").val();
@@ -92,9 +97,6 @@ class CustomerRegister extends Component {
           customerFirstName: customerFirstName,
           customerLastName: customerLastName,
           customerNickName: customerNickName,
-          customerEmail: customerEmail,
-          customerPassword: customerPassword,
-          customerRepeatPassword: customerRepeatPassword,
           customerPhone: customerPhone,
           customerGender: customerGender,
           customerDOB: customerDOB,
@@ -107,8 +109,14 @@ class CustomerRegister extends Component {
           })
           .then((response) => {
             if (response.data.status === "success") {
-              message.success({ content: "สำเร็จแล้ว!", key, duration: 2 });
-              window.location.href = "/customer/home";
+              message.success({
+                content: "สมัครสมาชิกเรียบร้อย!",
+                style: {
+                  fontSize: "20px",
+                },
+                duration: 3,
+              });
+              window.location.href = "/customer";
             } else {
               message.error({ content: "เกิดข้อผิดพลาด!", key, duration: 2 });
             }
@@ -121,33 +129,33 @@ class CustomerRegister extends Component {
 
 
   
-  onRepeatPasswordInput(e) {
-    var password = $("#password").val();
-    if (!password || password.length === 0 || password === null) return false;
-    if (password === e.target.value) {
-      this.setState((prevState) => ({
-        formValidation: {
-          // object that we want to update
-          ...prevState.formValidation, // keep all other key-value pairs
-          repeatPassword: true,
-          buttonState: "active", // update the value of specific key
-        },
-      }));
-      $("#repeatPassword").removeClass("is-invalid");
-      $("#repeatPassword").addClass("is-valid");
-    } else {
-      this.setState((prevState) => ({
-        formValidation: {
-          // object that we want to update
-          ...prevState.formValidation, // keep all other key-value pairs
-          repeatPassword: false,
-          buttonState: "", // update the value of specific key
-        },
-      }));
-      $("#repeatPassword").addClass("is-invalid");
-      $("#repeatPassword").removeClass("is-valid");
-    }
-  }
+  // onRepeatPasswordInput(e) {
+  //   var password = $("#password").val();
+  //   if (!password || password.length === 0 || password === null) return false;
+  //   if (password === e.target.value) {
+  //     this.setState((prevState) => ({
+  //       formValidation: {
+  //         // object that we want to update
+  //         ...prevState.formValidation, // keep all other key-value pairs
+  //         repeatPassword: true,
+  //         buttonState: "active", // update the value of specific key
+  //       },
+  //     }));
+  //     $("#repeatPassword").removeClass("is-invalid");
+  //     $("#repeatPassword").addClass("is-valid");
+  //   } else {
+  //     this.setState((prevState) => ({
+  //       formValidation: {
+  //         // object that we want to update
+  //         ...prevState.formValidation, // keep all other key-value pairs
+  //         repeatPassword: false,
+  //         buttonState: "", // update the value of specific key
+  //       },
+  //     }));
+  //     $("#repeatPassword").addClass("is-invalid");
+  //     $("#repeatPassword").removeClass("is-valid");
+  //   }
+  // }
   /*
   componentDidMount = async () => {
     await window.liff.init({ liffId: "1656382933-9DzLvxlE" }).catch((err) => {
@@ -182,22 +190,16 @@ class CustomerRegister extends Component {
             </div>
             <div className="text-center"></div>
             <HEADER className=" paddingTop15 ">สมัครสามาชิก</HEADER>
-            <div className="paddingTop15">
-              <button
-                type="button"
-                className="  btnEditProfile"
-                onClick={() =>  liff.login()}
-              >
-                login LINE
-              </button>
-            </div>
+            {/* <div className="paddingTop15">
+           
+            </div> */}
             <div className="">
               <div className="text-left fromfontsize20">ชื่อเล่นของคุณ</div>
               <input
                 type="text"
                 name="nickname"
                 id="nickName"
-                className="form-control  fromfontsize15"
+                className="form-control  fromRegisterfontsize"
                 placeholder="ชื่อเล่นของคุณ"
                 required
               ></input>
@@ -208,7 +210,7 @@ class CustomerRegister extends Component {
                 type="text"
                 name="firstname"
                 id="firstName"
-                className="form-control"
+                className="form-control fromRegisterfontsize"
                 placeholder="ชื่อจริง"
                 required
               ></input>
@@ -219,7 +221,7 @@ class CustomerRegister extends Component {
                 type="text"
                 name="LastName"
                 id="lastName"
-                className="form-control"
+                className="form-control fromRegisterfontsize"
                 placeholder="นามสุกล"
                 required
               ></input>
@@ -267,14 +269,14 @@ class CustomerRegister extends Component {
                 type="tel"
                 name="Phone"
                 id="phone"
-                className="form-control"
+                className="form-control fromRegisterfontsize"
                 placeholder="เบอร์โทรศัพท์"
                 required
               ></input>
             </div>
             <div className="text-left fromfontsize20">เพศ</div>
             <div>
-              <select class="form-select" id="gender" required>
+              <select class="form-select fromRegisterfontsize" id="gender" required>
                 <option selected>โปรดระบุเพศ</option>
                 <option value="Male">ชาย</option>
                 <option value="Female">หญิง</option>
@@ -286,7 +288,7 @@ class CustomerRegister extends Component {
               <input
                 type="date"
                 id="dob"
-                className="form-control"
+                className="form-control fromRegisterfontsize"
                 min="1000-01-01"
                 max="2019-12-31"
               ></input>
@@ -294,9 +296,9 @@ class CustomerRegister extends Component {
             <div className="paddingTop15">
               <ButtonSubmit
                 type="button"
-                className="btnQRBack"
+                className="btnRegister"
                 onClick={(e) => this.handleClick(e)}
-                disabled={!this.state.formValidation.buttonState}
+    
               >
                 ยืนยัน
               </ButtonSubmit>

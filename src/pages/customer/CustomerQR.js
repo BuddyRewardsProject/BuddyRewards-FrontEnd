@@ -36,7 +36,7 @@ const TEXT = styled.text`
   font-size: 20px;
   color: #6b6b6b;
 `;
-var cid = "ไม่พบข้อมูล";
+var cid = "กำลังโหลด";
 class CustomerQR extends Component {
   constructor(props) {
     super(props);

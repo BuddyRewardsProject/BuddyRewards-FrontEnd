@@ -14,11 +14,16 @@ import jwt from "jsonwebtoken";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import moment from "moment";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
+const antIcon = (
+  <LoadingOutlined style={{ fontSize: "60px", color: "#F7931E" }} spin />
+);
 const BgBanner = styled.div`
-  height: 50px;
+  height: 90px;
   background: ${color.Gradient};
-  border-radius: 0px 0px 25px 25px;
+  border-radius: 0px 0px 20px 20px;
 `;
 const Card = styled.div``;
 
@@ -29,6 +34,7 @@ class CustomerCardDetail extends Component {
       merchantId: null,
       merchantName: null,
       historyList: [],
+      divider: null,
     };
   }
 
@@ -73,6 +79,7 @@ class CustomerCardDetail extends Component {
 
                 this.setState({
                   historyList: response.data.historyList,
+                  divider: response.data.historyList[0].divider,
                 });
 
                 console.log(this.state.historyList, "<<<<< that <<<<<<<<<");
@@ -124,7 +131,6 @@ class CustomerCardDetail extends Component {
         return "+";
       case "redeem":
         return "-";
-
     }
   }
   render() {
@@ -136,31 +142,41 @@ class CustomerCardDetail extends Component {
 
         <Navigation history={this.props.history}></Navigation>
         <BgBanner className="container ">
-          <Card className="text-start">
-            <div className="DetailHistoryHeaderText">ประวัติการสะสมแต้ม</div>
+          <Card className="">
+          <div className="DetailHistoryHeaderText text-start">
+                  ประวัติการสะสมแต้ม 
+                </div>
+                <div className="DetailHistoryHeaderText2 text-end">
+                  ทุก {this.state.divider} บาท = 1 แต้ม
+                </div>
           </Card>
-         
+
           <div className="text-center "></div>
         </BgBanner>
         <div>
           <div></div>
         </div>
         <div className="container">
-          <div className="margintop30"></div>
-
+          <div className="margForHistoryDetail"></div>
+          {this.state.historyList.length === 0 && (
+              <div className="text-center">
+                <Spin indicator={antIcon} />
+              </div>
+            )}
           {this.state.historyList.length != 0 &&
             this.state.historyList.map((historyInfo, index) => (
-              <div className="margintop30" key={index}>
+              <div className="margForHistoryDetail" key={index}>
                 <div className=" cardBGforDetailHistory ">
                   <div className="row ">
                     <div className="col-6 DetailHistoryblock">
                       {moment(historyInfo.time_stamp).format(
                         "DD/MM/YYYY HH:mm"
                       )}
+                      {historyInfo.divider}
                     </div>
                     <div className="col-6 text-end DetailHistoryblockStatus">
-                      {this.renderStatus(historyInfo.point_status)} {historyInfo.point}{" "}
-                      แต้ม
+                      {this.renderStatus(historyInfo.point_status)}{" "}
+                      {historyInfo.point} แต้ม
                     </div>
                     <div className="col DetailHistoryblock">
                       {" "}
