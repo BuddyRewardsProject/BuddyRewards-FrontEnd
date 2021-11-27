@@ -118,6 +118,7 @@ class CustomerRegister extends Component {
               });
               window.location.href = "/customer";
             } else {
+              console.log(response.data)
               message.error({ content: "เกิดข้อผิดพลาด!", key, duration: 2 });
             }
           })
