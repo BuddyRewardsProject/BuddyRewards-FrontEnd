@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import color from "../config/color";
-import Navbar2 from "../layouts/Navbar2";
+import NavTopWebPOS from "../layouts/NavTopMerchant";
 import logo from "../assets/img/merchantLOGO.svg";
 import plus from "../assets/img/plusSM.svg";
 import axios from "axios"
@@ -12,17 +12,14 @@ import message from 'antd/lib/message/index';
 const key = 'updatable';
 
 const BgGradient = styled.div`
-  height: 200px;
+border-bottom-right-radius: 19px;
+border-bottom-left-radius: 19px;
   background: ${color.Gradient};
 `;
-
 const BranchNameSize = styled.h2`
   font-size: 48px;
   font-style: bold;
   color: white;
-`;
-const MarginTop = styled.div`
-  margin-top: 15vh;
 `;
 
 class BranchManagement extends Component {
@@ -99,7 +96,6 @@ class BranchManagement extends Component {
   }
 
   removeBranch(branchId) {
-    console.log(branchId)
     axios.post('/merchant/v1/branch/branchmanagement/remove', {
       branchId: branchId
     })
@@ -119,7 +115,6 @@ class BranchManagement extends Component {
   componentDidMount() {
     axios.post('/merchant/v1/branch/branchmanagement/init', { branchId: this.props.auth.user.merchantId })
       .then((response) => {
-        console.log(response.data)
         this.setState({
           categories: response.data.categories,
           provinces: response.data.provinces,
@@ -236,15 +231,13 @@ class BranchManagement extends Component {
           </div>
         </div>
 
-        <Navbar2 />
+        <NavTopWebPOS />
         <BgGradient>
           <div className="container">
-            <div className="row align-items-center">
-              <div className="col-lg-1 col-md-2"></div>
-              <MarginTop className="col">
-                <BranchNameSize>Branch Management</BranchNameSize>
-              </MarginTop>
-              <div className="col-lg-1 col-md-2"></div>
+            <div className=" ">
+              <div className=""></div>
+              <BranchNameSize className="text-center align-items-center headcoverpadding">Branch management</BranchNameSize>
+              <div className=""></div>
             </div>
           </div>
         </BgGradient>
@@ -282,9 +275,9 @@ class BranchManagement extends Component {
                         <div className="iconStaffManagement align-items-center">
                           <img src={logo} alt="logo" />
                         </div>
-                        <h5 className="card-title mt-3 mb-1" key={s.branch_name}>{s.branch_name}</h5>
+                        <h5 className="card-title mt-3 mb-1" key={s.branch_name}>{this.props.auth.user.userName} {s.branch_name}</h5>
                         <h6 className="card-title" key={s.master_account}>
-                          {s.master_account === 0 ? "สาขาย่อย" : null}{s.master_account === 1 ? "สาขาหลัก" : null}
+                          {s.master_account === 0 ? "สาขา" : null}{s.master_account === 1 ? "สาขาหลัก" : null}
                         </h6>
                       </div>
                     </div>

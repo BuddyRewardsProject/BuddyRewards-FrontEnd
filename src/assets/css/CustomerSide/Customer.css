@@ -1,4 +1,4 @@
-.cardBG {
+.cardBGC {
   height: 100px;
   border-radius: 9px;
   box-shadow: #b0b0b08f 0px 0px 9px 0px;
@@ -7,13 +7,156 @@
 .topSpace {
   height: 40px;
 }
+.fontSizeMycardTitle{
+  
+  font-size: 25px;
+
+}
+
+.fontSizeMycardTitle35{
+  
+  font-size: 35px;
+
+}
+.IconmyCard {
+  font-size: 12px;
+
+  color:#ff9665;
+  
+}
+
+.IconStarDisable {
+  font-size: 12px;
+
+  color:#7a7a7a;
+  
+}
+
+.fontSizeMycardEnd{
+  
+  font-size: 29px;
+  
+  
+
+}
+.messageclass{
+  margin-top: 20px;
+  width: 600px;
+  color: aqua;
+}
+
+.labelCurrentPoint{
+  color: #FB8549;
+  background-color: #FFEBD9;
+  font-size: 25px;
+  
+  border-radius: 59px;
+  border: none;
+  padding-left: 9px;
+  padding-right: 9px;
+  height: 30px;
+ 
+}
+
+.labelCurrentPointDisable{
+  color: #7a7a7a;
+  background-color: #e6e6e6;
+  font-size: 25px;
+  
+  border-radius: 59px;
+  border: none;
+  padding-left: 9px;
+  padding-right: 9px;
+  height: 30px;
+ 
+}
+
+.labelRedeemPoint{
+  color: #ffffff;
+  background-color: #ff6d24;
+  font-size: 20px;
+  
+  border-radius: 59px;
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 30px;
+ 
+}
+.labelRedeemPointDisable{
+  color: #5d5d5d;
+  background-color: #dadada;
+  font-size: 20px;
+  
+  border-radius: 59px;
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 30px;
+ 
+}
+
+.btnEditProfile{
+  color: #FB8549;
+  background-color: #FFEBD9;
+  font-size: 25px;
+  border-radius: 7px;
+  border: none;
+  width: 100%;
+  height: 55px;
+ 
+}
+.WspaceBoxpadding{
+  padding-left: 10px;
+  padding-right: 10px;
+  
+}
+.myQRBackBtn{
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+  
+}
 
 .margintopforcard {
- margin-top:80px;
+ margin-top: 80px;
 }
 .margintop30 {
   margin-top:30px;
  }
+
+ .margForHistoryDetail {
+  margin-top:15px;
+ }
+
+.btnRegister{
+
+  font-size: 25px;
+  border-radius: 9px;
+  border: none;
+  width: 100%;
+  height: 50px;
+ 
+}
+
+.btnRegisterCustomer{
+  color: rgb(255, 255, 255);
+  background: linear-gradient(180deg, #F7931E 0%, #FF7676 100%);
+  font-size: 25px;
+  border-radius: 9px;
+  height: 50px;
+  
+ }
+.fromRegisterfontsize {
+  font-size: 22px !important;
+
+}
+
+
+
+
+
+
 .margintopforhome {
   margin-top:120px;
  }
@@ -39,12 +182,63 @@
  }
  .HistoryBtn {
   height: 40px;
-  
   width: 160px;
   border-radius: 100px;
   box-shadow: #b0b0b08f 0px 0px 9px 0px;
   background: #ffffff;
 }
+ .cardNamemiddleforDetail{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  
+ }
+ .cardBGforDetail {
+  margin-left: 15px;
+  margin-right: 15px;
+  height: 45px;
+  border-radius: 99px;
+  box-shadow: #66666659 0px 0px 9px 0px;
+  background: #ffffff;
+}
+
+
+.cardBGforDetailHistory {
+  
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border-radius: 8px;
+  box-shadow: #66666631 0px 0px 9px 0px;
+  background: #ffffff;
+}
+ .cardDetialHeaderText{
+  font-size: 39px;
+  color:#ffffff;
+ }
+
+
+ .DetailHistoryHeaderText{
+  font-size: 30px;
+  color:#ffffff;
+ }
+ .DetailHistoryHeaderText2{
+  font-size: 23px;
+  color:#ffffff;
+ }
+
+ .DetailHistoryblock{
+  font-size: 20px;
+  
+ }
+ .DetailHistoryblockStatus{
+  font-size: 25px;
+  
+ }
+
  .cardNamemiddleforDetial{
   flex: 1;
   display: flex;
@@ -53,15 +247,54 @@
   font-size: 30px;
   margin-top: 1px;
  }
- .cardBGforDetial {
-  margin-left: 15px;
-  margin-right: 15px;
-  height: 60px;
-  border-radius: 9px;
-  box-shadow: #b0b0b08f 0px 0px 9px 0px;
+
+
+.btnhistorymiddle{
+  color: rgb(255, 91, 25);
   background: #ffffff;
-}
- .cardDetialHeaderText{
-  font-size: 39px;
-  color:#ffffff;
+  font-size: 20px;
+  border-radius: 50px;
+  border: 0px;
+  margin-top: 18px;
+  width: 110px;
+  
  }
+ .blink{
+  width: 60px;
+  height: 60px;
+  border:0;
+  border-color: rgba(240, 255, 255, 0);
+  
+  background-color: rgb(228, 228, 228);
+  animation-name: example;
+  animation-duration: 1s;
+  animation-direction: alternate-reverse;
+  animation-iteration-count: infinite;
+ }
+ @keyframes example {
+  0%   {background-color:rgb(255, 222, 196);}
+
+  100%  {background-color:rgb(255, 146, 96);}
+}
+.fade-in-image {
+  animation: fadeIn 1s;
+  -webkit-animation: fadeIn 1s;
+  -moz-animation: fadeIn 1s;
+  -o-animation: fadeIn 1s;
+  -ms-animation: fadeIn 1s;
+}
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+.welcomeCard{
+  
+padding: 12px;
+width: auto;
+height: auto;
+/* filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.061)); */
+border-radius: 9px;
+background: #ffeedb;
+
+transition:ease-in-out 0.4s;
+}

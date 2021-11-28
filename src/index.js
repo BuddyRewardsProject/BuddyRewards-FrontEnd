@@ -8,13 +8,17 @@ import jwt from 'jsonwebtoken'
 import rootReducer from './rootReducer'
 import { setUser } from './actions/authActions'
 import { setStaff } from './actions/pinActions'
+import { setCustomer } from './actions/customerAuthActions'
 import axios from 'axios'
 import App from './App';
 
 import './assets/css/main.css';
 
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 
+
+
+//axios.defaults.baseURL = "https://api.buddyrewards.me/";
 axios.defaults.baseURL = "http://localhost:3001/";
 const store = createStore(
   rootReducer,
@@ -41,6 +45,12 @@ const pinToken = localStorage.getItem("pinToken");
 if (pinToken) {
   store.dispatch(setStaff(jwt.decode(pinToken)))
 }
+
+const customerToken = localStorage.getItem("customerToken");
+if (customerToken) {  
+  store.dispatch(setCustomer(jwt.decode(customerToken)))
+}
+
 
 ReactDOM.render(
   <React.StrictMode>

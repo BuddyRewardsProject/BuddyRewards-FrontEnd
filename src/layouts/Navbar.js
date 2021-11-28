@@ -1,4 +1,4 @@
-import logo from '../assets/img/logoMB.svg';
+import logo from '../assets/img/logoC.svg';
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
@@ -9,7 +9,7 @@ export default function Navbar() {
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             <div>
-              <img src={logo} className="logo-padding" alt="buddyrewards" width="280" />
+              <img src={logo} className="logo-padding" alt="buddyrewards" width="180" />
             </div>
           </Link>
           <div className="collapse navbar-collapse justify-content-end" id="navbar">

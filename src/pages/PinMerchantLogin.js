@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import color from "../config/color";
 import logo from "../assets/img/merchantLOGO.svg";
+import logoBD from "../assets/img/logoM.svg";
 import { Link } from "react-router-dom";
 import "../assets/css/merchantSide/MerchantLOGO.css";
 import PinInput from "react-pin-input";
@@ -17,18 +18,26 @@ const BtnLogOut = styled.button`
   background-color: ${color.Button};
   border-style: none;
   font-size: 22px;
-  border-radius: 20px;
+  height: 45px;
+  border-radius: 99px;
   color: white;
-
+`;
+const Btntoken = styled.button`
+  background-color: ${color.Button};
+  border-style: none;
+  font-size: 22px;
+  height: 45px;
+  width: 200px;
+  border-radius: 99px;
+  color: white;
 `;
 const BtnClear = styled.button`
   color: #838282;
   background-color: #e6e6e6;
   font-size: 18px;
-  width: 25%;
+  width: 200px;
   border-radius: 99px;
   border-style: none;
-  
 `;
 const BgG = styled.div`
   height: 300px;
@@ -67,6 +76,11 @@ class PinMerchantLogin extends Component {
   handleClick(e) {
     e.preventDefault();
     this.props.logout();
+    window.location.href = "/merchant/login/";
+  }
+
+  backToLogin(){
+    window.location.reload();
   }
 
   componentWillMount() {
@@ -99,6 +113,7 @@ class PinMerchantLogin extends Component {
   loginPin() {
     var data = {
       pincode: this.state.pin,
+
     };
 
     axios
@@ -108,8 +123,15 @@ class PinMerchantLogin extends Component {
           this.props.setStaff(jwt.decode(response.data.pinToken));
           localStorage.setItem("pinToken", response.data.pinToken);
           window.location.href = "/merchant/branch";
+
         } else {
-          message.error({ content: "เกิดข้อผิดพลาด!", duration: 2 });
+          message.error({
+            content: "PIN ไม่ถูกต้อง",
+            style: {
+              fontSize: '25px',
+            },
+            duration: 5,
+          });
         }
       })
       .catch((error) => {
@@ -121,12 +143,27 @@ class PinMerchantLogin extends Component {
     return (
       <>
         {this.state.pinState === null ? (
-          <div class="d-flex justify-content-center">
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
+          <div>
+            <div class="d-flex justify-content-center text-center">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <h1>Token Expire</h1>
             </div>
-
+            <div className= "text-center">
+              
+              <img src={logoBD} width="200px"></img>
+              
+              <div className="paddingTop15"></div>
+            <div className="paddingTop15"></div>
+              
+            </div>
+            <div className="text-center">
+              
+              <a href="/merchant/login"><Btntoken type="button" class="btn btn-primary" onClick={()=> this.backToLogin()}>Back to Login</Btntoken></a>
+            </div>
           </div>
+
         ) : (
           <BgG>
             <div className="container">
@@ -139,22 +176,32 @@ class PinMerchantLogin extends Component {
                         <img src={logo} alt="logo" />
                       </Link>
                     </div>
-                    <h1 className="text-center mt-3 mb-3">Merchant Name</h1>
+                    <h1 className="text-center mt-3 mb-3">
+                    {this.props.auth.user.merchantName}{" "}
+                      {this.props.auth.user.branchName}
+                    </h1>
                     <h4 className="text-center mt-3 mb-3">
                       กรอก PIN เพื่อเข้าใช้งาน
                     </h4>
-                    <div className="text-center fontSizePin ">
-                      <PinInput 
+                    <div className="text-center fontSizePin  hidepintext ">
+                      <PinInput
                         length={6}
                         initialValue=""
-                        secret={true}
                         onChange={(v) => this.onChange(v)}
-                        type="alphanumeric"
-                        inputmode="tel"
+                        type="numeric"
+                        inputMode="number"
                         focus={true}
-                        style={{ padding: "10px"}}
-                        inputStyle={{ borderColor: "#c2c2c2" }}
-                        inputFocusStyle={{ borderColor: "#c2c2c2" }}
+                        style={{padding: "8px"}}
+                        inputStyle={{ 
+                        borderColor: "#FFFF",
+                       
+                        background: "#f3f3f3",
+                        borderRadius: "7px",
+                        width: "37px",
+                        height: "60px",
+                        WebkitTextSecurity: "disc",
+                      }}
+                        inputFocusStyle={{ borderColor: "#F7931E",background: "#FFFF" }}
                         onComplete={(value, index) => {
                           this.loginPin();
                         }}
@@ -162,9 +209,7 @@ class PinMerchantLogin extends Component {
                         regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
                         ref={(p) => (this.pin = p)}
                       />
-
                     </div>
-                    <div className="text-center">{this.state.pin}</div>
                     <div className="text-center">
                       <BtnClear
                         className=""
