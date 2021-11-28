@@ -40,7 +40,6 @@ background: ${color.Gradient};
   }
 `;
 
-
 const BgGradient = styled.div`
   border-bottom-right-radius: 19px;
   border-bottom-left-radius: 19px;

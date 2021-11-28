@@ -7,9 +7,7 @@ import axios from "axios"
 import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
 import message from 'antd/lib/message/index';
-import barcodeScan from "../assets/img/icon/barcodeScan.png";
-import { ScanOutlined,MobileOutlined  } from "@ant-design/icons";
-// import { $CombinedState } from "redux";
+import { ScanOutlined, MobileOutlined } from "@ant-design/icons";
 import $ from "jquery"
 import { Helmet } from "react-helmet";
 const key = 'updatable';
@@ -58,37 +56,24 @@ const Card = styled.div`
   margin: 15px;
 `;
 
-
-
-
 class WebPOS extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      customer:{}
+      customer: {}
     }
   }
   handleClick(e) {
     e.preventDefault();
-  
+
     this.props.logoutPin();
-    
+
     window.location.href = "/merchant/login/pin";
   }
 
-  // handleReset(r) {
-  //   r.preventDefault();
-  //   setReset("");
-  
-  // }
-
-  
-  sendCustomerID(b){ 
-    //console.log(b,"fffffff")
+  sendCustomerID(b) {
     b.preventDefault();
-    
     var customerId = $('#customerIDD').val()
-   
     var data = {
       customerId: customerId,
     }
@@ -96,39 +81,33 @@ class WebPOS extends Component {
       data
     })
       .then((response) => {
-        console.log("ข้อมูลอยู่ข้างล่างจ้าา");
         console.log(response.data.customerInfo);
-        this.setState({ 
+        this.setState({
           customer: response.data.customerInfo
         })
-        if (response.data.customerInfo != undefined){
+        if (response.data.customerInfo != undefined) {
           this.props.history.push({
             pathname: '/merchant/branch/webPOS2',
             state: { customer: response.data.customerInfo }
           })
 
-}else{
-  console.log("not found naja")
-  message.error({
-    content: 'ไม่พบข้อมูลลูกค้า',
-    style: {
-      fontSize: '25px',
-    },
-    duration: 2,
-  });
-  setTimeout(function(){
-    window.location.href = "/merchant/branch/webPOS";
-   
-},1000);
-  
-}
-      
+        } else {
+          message.error({
+            content: 'ไม่พบข้อมูลลูกค้า',
+            style: {
+              fontSize: '25px',
+            },
+            duration: 2,
+          });
+          setTimeout(function () {
+            window.location.href = "/merchant/branch/webPOS";
+          }, 1000);
+        }
       })
       .catch((error) => {
-        console.log("ไม่พบข้อมูลจ้าาาา");
         console.log(error);
       });
-  
+
   }
   componentDidMount() {
     $('#customerIDD').focus()
@@ -139,44 +118,37 @@ class WebPOS extends Component {
     return (
       <div>
         <NavTopWebPOS></NavTopWebPOS>
-        {/* <MarginTop></MarginTop> */}
         <Helmet>
-<title>webPOS | buddyMerchant</title>
-</Helmet>
+          <title>webPOS | buddyMerchant</title>
+        </Helmet>
         <Card className="text-center">
           <div>
-          <div className="paddingTop15"/>
-          <div className="paddingTop15"/>
-          <div className="paddingTop15"/>
-          <div className="paddingTop15"/>
-          <div className="paddingTop15"/>
-          <ScanOutlined style={{ fontSize: '140px', color: '#F7931E' }} />
-         
-          <div className="paddingTop15"/>
-          <div className="paddingTop15"/>
-          <div className="paddingTop15"/>
-          <div className="paddingTop15"/>
-            {/* <img
-              src={barcodeScan}
-              class="img-fluid paddingBarCodeIcon"
-              alt="barcodeScan"
-              width="450px"
-            /> */}
+            <div className="paddingTop15" />
+            <div className="paddingTop15" />
+            <div className="paddingTop15" />
+            <div className="paddingTop15" />
+            <div className="paddingTop15" />
+            <ScanOutlined style={{ fontSize: '140px', color: '#F7931E' }} />
+
+            <div className="paddingTop15" />
+            <div className="paddingTop15" />
+            <div className="paddingTop15" />
+            <div className="paddingTop15" />
           </div>
           <div className="HeaderWebPOS">สแกนรหัสจาก QR ลูกค้า</div>
           <h3> ลงชื่อเข้าใช้โดย {this.props.pinAuth.staff.firstName} #{this.props.pinAuth.staff.staffId}</h3>
           <h5> </h5>
-          <div className="outterInput"><form id="myForm"><input className="inPutWidth inputFontSize DbBold" id="customerIDD"  onChange={event => {this.setState({query: event.target.value})}}
-    onKeyPress={event => {
-                if (event.key === 'Enter') {
-                 console.log("enter แล้ววว")
-                 this.sendCustomerID(event)
-                }
-              }}
-              ></input>
-              </form>
-              </div>
-          <div className="paddingBtm"><BtnOK onClick={(b) => this.sendCustomerID(b)} >ตกลง</BtnOK></div>   
+          <div className="outterInput"><form id="myForm"><input className="inPutWidth inputFontSize DbBold" id="customerIDD" onChange={event => { this.setState({ query: event.target.value }) }}
+            onKeyPress={event => {
+              if (event.key === 'Enter') {
+                console.log("enter แล้ววว")
+                this.sendCustomerID(event)
+              }
+            }}
+          ></input>
+          </form>
+          </div>
+          <div className="paddingBtm"><BtnOK onClick={(b) => this.sendCustomerID(b)} >ตกลง</BtnOK></div>
           <h2>{this.state.customer && this.state.customer.customerNickName}</h2>
           <h2>{this.state.customer && this.state.customer.customerFirstName}</h2>
         </Card>

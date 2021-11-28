@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Navigation from "../../layouts/Navigation";
 import { connect } from "react-redux";
-import { logoutCustomer } from "../../actions/customerAuthActions";
 import liff from "@line/liff";
-// import NavTop from "../../layouts/NavTop";
 import { Helmet } from "react-helmet";
 import "../../assets/css/CustomerSide/Customer.css";
 import { notification } from "antd";
@@ -16,24 +14,12 @@ import { bindActionCreators } from "redux";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
-
 const antIcon = <LoadingOutlined style={{ fontSize: '60px', color: '#ff7676' }} spin />;
-// import logo from "../../assets/img/logoC.svg";
-// import logoKMUTT from "../../assets/img/kmutt.svg";
-// import profile from "../../assets/img/icon/profileD.svg";
-// import { Redirect } from "react-router";
 
 const HEADER = styled.text`
   font-size: 40px;
   color: #6b6b6b;
 `;
-// const Cardinfo = styled.div`
-//   background: #ffffff;
-
-//   border-radius: 12px;
-//   margin-left: 15px;
-//   margin-right: 15px;
-// `;
 
 class CustomerHome extends Component {
   constructor(props) {
@@ -60,9 +46,6 @@ class CustomerHome extends Component {
           console.log('error', err);
         });
         
-    // if (this.props.customerAuth.isAuthenticated === true) {
-    //   return;
-    // }
     liff
       .init({
         liffId: "1656382933-9DzLvxlE", // Use own liffId
@@ -81,17 +64,11 @@ class CustomerHome extends Component {
               marginTop: '200vh',
             },
             className: "messageclass",
-            // style: {
-            //   marginTop: '1px',
-            //   width: 600,
-            //   color: "Green",
-            // },
           });
         };
 
         const accessToken = liff.getAccessToken();
 
-        console.log(accessToken);
         this.setState({ accessToken: accessToken });
        
         const saveNotification = () => {
@@ -103,7 +80,6 @@ class CustomerHome extends Component {
             accessToken: accessToken,
           })
           .then((response) => {
-            console.log(response.data);
             if (response.data.status === "error") {
               window.location.href = response.data.redirect;
               return;
@@ -134,15 +110,11 @@ class CustomerHome extends Component {
           merchantId: response.data.results.merchantId,
           merchantName: response.data.results.merchantName,
         });
-        console.log(response.data[0]);
       })
       .catch((error) => {
         // handle error
         console.log(error);
       })
-      .then(() => {
-        // always executed
-      });
   }
 
   render() {
@@ -162,13 +134,10 @@ class CustomerHome extends Component {
                 <div className="text-end fade-in-image paddingTop15">
                 {this.state.loaded ? null : (
                   <div >
-                   
-                   
                     <Spin  indicator={antIcon} />
                   </div>
                 )}
-                <img
-                  
+                <img  
                   style={this.state.loaded ? {} : { display: "none" }}
                   src={this.state.pictureUrl}
                   className="rounded-circle fade-in-image"

@@ -1,10 +1,7 @@
 import React from "react";
-
 import styled from "styled-components";
 import color from "../config/colorNavTop";
 import "../assets/css/CustomerSide/NavTop.css";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/img/logoC.svg";
 const BgNav = styled.div`
 height: 65px;
@@ -24,17 +21,9 @@ const NavbarTopMyCard = () => {
           <img src={logo} alt="buddyrewards" width="150" />
           </div>
           <div className="text-end col-4 MyCardNavTopColorAndIconSize">
-            {/* <FontAwesomeIcon icon={faSearch} /> */}
-            
           </div>
         </div>
       </div>
-
-      {/*  <MarginTop className="bg-white shadow p-3 mb-5 bg-body rounded-7">
-                <div>
-                  <img src={logo} alt="buddyrewards" width="120" />
-                </div>
-              </MarginTop>*/}
     </BgNav>
   );
 };

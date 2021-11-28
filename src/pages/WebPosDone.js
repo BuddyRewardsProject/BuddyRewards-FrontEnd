@@ -5,11 +5,9 @@ import NavTopWebPOS from "../layouts/NavTopWebPOS";
 import "../assets/css/merchantSide/webPOS.css";
 import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
-import profile from "../assets/img/icon/profileD.svg";
 import axios from "axios";
 import message from "antd/lib/message/index";
-import $ from "jquery";
-import { Result} from 'antd';
+import { Result } from 'antd';
 import { Link } from "react-router-dom";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
@@ -30,19 +28,6 @@ const BtnOrange = styled.button`
   }
 `;
 
-const BtnClear = styled.button`
-  background-color: #f68e1a;
-
-  border-style: none;
-  font-size: 20px;
-  border-radius: 9px;
-  color: #ffff;
-  &:hover {
-    color: #ffff;
-
-    background-color: ${color.ButtonOrange};
-  }
-`;
 const BtnOK = styled.button`
   background-color: #59dd9a;
   height: 50px;
@@ -53,9 +38,6 @@ const BtnOK = styled.button`
   border-radius: 99px;
   color: white;
 `;
-const MarginTop = styled.div`
-  margin: 130px;
-`;
 
 const Card = styled.div`
   background: #f7f7f7;
@@ -65,11 +47,6 @@ const Card = styled.div`
   padding-top: 15px;
   padding-left: 15px;
   padding-right: 15px;
-`;
-
-const RedeemCard = styled.div`
-  background: #ffffff;
-  width: 18rem;
 `;
 
 const Cardinfo = styled.div`
@@ -86,7 +63,6 @@ class WebPosDone extends Component {
       totalPoint: null,
     };
   }
-// defalut
 
   handleClick(e) {
     e.preventDefault();
@@ -106,9 +82,8 @@ class WebPosDone extends Component {
         if (response.data.status === "success") {
           this.setState({
             totalPoint: response.data.customerPoint
-            
+
           })
-console.log(this.state.totalPoint)
           message.success({ content: 'คำนวณแล้วจ้ะ', key, duration: 2 });
 
         } else {
@@ -123,44 +98,29 @@ console.log(this.state.totalPoint)
   render() {
     document.body.style.backgroundColor = "#F5F6FA";
 
-    function goBack() {
-      window.history.back();
-    }
-    function goNext() {
-      //window.location.href = "/merchant/branch/WebPOS3";
-    }
-
     return (
       <div>
         <NavTopWebPOS></NavTopWebPOS>
-      
+
 
         <Card>
           <Cardinfo className="text-center">
-
-          <Result status="success"/>
+            <Result status="success" />
             <h1 className="DBB">เพิ่มแต้มสำเร็จแล้ว!👌</h1>
-            
             <div className="paddingTop15"></div>
-            {this.state.totalPoint === null ? <Spin  indicator={antIcon} /> : <div className="cardInfoWebPOS1">คุณ {this.props.location.state.customer.customerNickName} มีแต้มทั้งหมดอยู่ {this.state.totalPoint} แต้ม</div> }
-            <div className="paddingTop15"></div>
+            {this.state.totalPoint === null ? <Spin indicator={antIcon} /> : <div className="cardInfoWebPOS1">คุณ {this.props.location.state.customer.customerNickName} มีแต้มทั้งหมดอยู่ {this.state.totalPoint} แต้ม</div>}
             <div className="paddingTop15"></div>
             <div className="paddingTop15"></div>
-           
+            <div className="paddingTop15"></div>
           </Cardinfo>
           <div className="paddingTop15"></div>
           <div className="paddingTop15"></div>
           <h5 className="text-center">เคล็ดลับ✨ บอกชื่อลูกค้าและจำนวนแต้มคงเหลือเพื่อให้ลูกค้าทราบ</h5>
-          
           <div className="paddingBtm text-center">
-            
-          
-
-         
           </div>
           <div className="paddingBtm text-center">
-          <Link to="/merchant/branch/webPOS">
-            <BtnOK > ไปยังหน้าแรก webPOS</BtnOK>
+            <Link to="/merchant/branch/webPOS">
+              <BtnOK > ไปยังหน้าแรก webPOS</BtnOK>
             </Link>
           </div>
         </Card>

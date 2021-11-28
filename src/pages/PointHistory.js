@@ -9,8 +9,6 @@ import axios from "axios"
 import { DatePicker } from "antd";
 import moment from "moment";
 import 'moment-timezone'
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const { RangePicker } = DatePicker;
 
@@ -108,30 +106,6 @@ class pointHistory extends Component {
             </div>
           </div>
         </BgGradient>
-        {/* <div className=" container">
-          <h2>Quick Look</h2>
-        </div>
-        <div className="container fade-in-image align-items-center  text-center">
-          <div class="row row-cols-2 row-cols-xs-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 g-3">
-            <div class="cols-2 ">
-              <div className="menuCard">
-                <h3 className="card-title mt-2 mb-2 text-start">
-                  แต้มที่แจกวันนี้
-                </h3>
-                <h1 className="card-title mt-2 mb-2 text-end">100 แต้ม</h1>
-              </div>
-            </div>
-
-            <div class="cols-2 ">
-              <div className="menuCard">
-                <h3 className="card-title mt-2 mb-2 text-start">
-                  ยอดขายจากแต้มวันนี้
-                </h3>
-                <h1 className="card-title mt-2 mb-2 text-end">100 บาท</h1>
-              </div>
-            </div>
-          </div>
-        </div> */}
         <div className=" container">
           <div className="paddingTop15"></div>
           <h2>ประวัติการแจกแต้ม</h2>
@@ -143,27 +117,12 @@ class pointHistory extends Component {
                 <div class="row row-cols-2 row-cols-xs-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 g-3">
                   <div class="cols-2 text-start">
                     <Link to="/merchant/branch/dashboard">
-                    <button type="button" class="btn-close DashXBackBtn" aria-label="Close"></button>
+                      <button type="button" class="btn-close DashXBackBtn" aria-label="Close"></button>
                     </Link>
                   </div>
 
                   <div class="cols-2 text-end ">
                     <BtnOrange>ส่งออก</BtnOrange>
-                    
-                    {/* <RangePicker
-                      dateRender={(current) => {
-                        const style = {};
-                        if (current.date() === 1) {
-                          style.border = "1px solid #F7931E";
-                          style.borderRadius = "50%";
-                        }
-                        return (
-                          <div className="ant-picker-cell-inner" style={style}>
-                            {current.date()}
-                          </div>
-                        );
-                      }}
-                    /> */}
                   </div>
                 </div>
                 <table className="table fromfontsize20">

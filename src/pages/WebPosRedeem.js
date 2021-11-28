@@ -10,9 +10,7 @@ import axios from "axios";
 import message from "antd/lib/message/index";
 import $ from "jquery";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faParking, faStar } from "@fortawesome/free-solid-svg-icons";
-import { Result} from 'antd';
+import { Result } from 'antd';
 
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
@@ -33,19 +31,6 @@ const BtnOrange = styled.button`
   }
 `;
 
-const BtnClear = styled.button`
-  background-color: #f68e1a;
-
-  border-style: none;
-  font-size: 20px;
-  border-radius: 9px;
-  color: #ffff;
-  &:hover {
-    color: #ffff;
-
-    background-color: ${color.ButtonOrange};
-  }
-`;
 const BtnOK = styled.button`
   background-color: #59dd9a;
   width: 290px;
@@ -54,9 +39,6 @@ const BtnOK = styled.button`
   font-size: 25px;
   border-radius: 99px;
   color: white;
-`;
-const MarginTop = styled.div`
-  margin: 130px;
 `;
 
 const Card = styled.div`
@@ -69,10 +51,6 @@ const Card = styled.div`
   padding-right: 15px;
 `;
 
-const RedeemCard = styled.div`
-  background: #ffffff;
-  width: 18rem;
-`;
 
 const Cardinfo = styled.div`
   background: #ffffff;
@@ -84,7 +62,7 @@ class WebPosRedeem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+
       prizeList: [],
       selectedPrize: null
     }
@@ -104,48 +82,18 @@ class WebPosRedeem extends Component {
       merchantId: this.props.auth.user.merchantId,
       price: price,
     };
-  //   axios
-  //     .post("/merchant/v1/calculate", {
-  //       data,
-  //     })
-  //     .then((response) => {
-  //       if (response.data.status === "success") {
-  //         this.props.history.push({
-  //           pathname: "/merchant/branch/WebPOS3",
-  //           state: {
-  //             customer: this.props.location.state.customer,
-  //             point: response.data.resultPoint,
-  //           },
-  //         });
-  //         message.success({ content: "สำเร็จแล้ว!", key, duration: 2 });
-  //       } else {
-  //         message.error({ content: "เกิดข้อผิดพลาด!", key, duration: 2 });
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-}
-componentDidMount() {
+  }
+  componentDidMount() {
 
+    message.open({
+      content: 'แลกสิทธิพิเศษให้แล้วจ้ะ ✨',
+      style: {
+        fontSize: '25px',
+      },
+      duration: 2,
+    });
 
-console.log(this.props.state)
-console.log(this.props.location.state.selectedPrize,'<------')
-
-
-message.open({
-  content: 'แลกสิทธิพิเศษให้แล้วจ้ะ ✨',
-  style: {
-    fontSize: '25px',
-  },
-  duration: 2,
-});
-
-
-
-
-
-}
+  }
 
   render() {
     document.body.style.backgroundColor = "#F5F6FA";
@@ -153,45 +101,33 @@ message.open({
     function goBack() {
       window.history.back();
     }
-    function goNext() {
-      //window.location.href = "/merchant/branch/WebPOS3";
-    }
 
     return (
-      
+
       <div>
         <NavTopWebPOS></NavTopWebPOS>
-      
+
 
         <Card>
           <Cardinfo className="text-center">
 
-          <Result status="success"/>
+            <Result status="success" />
             <h1 className="DBB">ใช้สิทธิพิเศษเรียบร้อย 🏆</h1>
-            
+
             <div className="paddingTop15"></div>
-            {this.state.totalPoint != null ? <Spin  indicator={antIcon} /> : <div className="cardInfoWebPOS1">คุณ {this.props.location.state.customer.customerNickName} มีแต้มคงเหลืออยู่ {(this.props.location.state.totalPoint) - (this.props.location.state.selectedPrize == null ? 0 : this.props.location.state.selectedPrize)} แต้ม</div> }
+            {this.state.totalPoint != null ? <Spin indicator={antIcon} /> : <div className="cardInfoWebPOS1">คุณ {this.props.location.state.customer.customerNickName} มีแต้มคงเหลืออยู่ {(this.props.location.state.totalPoint) - (this.props.location.state.selectedPrize == null ? 0 : this.props.location.state.selectedPrize)} แต้ม</div>}
             <div className="paddingTop15"></div>
             <div className="paddingTop15"></div>
             <div className="paddingTop15"></div>
-            {/* <div>{this.props.location.state.totalPoint} 1</div>
-            <div>{this.props.location.state.selectedPrize} 2</div>
-            {(this.props.location.state.totalPoint) - (this.props.location.state.selectedPrize == null ? 0 : this.props.location.state.selectedPrize)}
-           */}
           </Cardinfo>
           <div className="paddingTop15"></div>
           <div className="paddingTop15"></div>
           <h5 className="text-center">เคล็ดลับ✨ บอกชื่อลูกค้าและจำนวนแต้มคงเหลือเพื่อให้ลูกค้าทราบ</h5>
-          
           <div className="paddingBtm text-center">
-            
-          
-
-         
           </div>
           <div className="paddingBtm text-center">
-          <Link to="/merchant/branch/webPOS">
-            <BtnOK > ไปยังหน้าแรก webPOS</BtnOK>
+            <Link to="/merchant/branch/webPOS">
+              <BtnOK > ไปยังหน้าแรก webPOS</BtnOK>
             </Link>
           </div>
         </Card>

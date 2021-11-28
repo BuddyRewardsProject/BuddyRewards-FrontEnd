@@ -12,8 +12,6 @@ const BgNavB = styled.div`
   border-radius: 0px 0px 0px 0px;
 `;
 
-//const CurrentPath = window.location.pathname;
-
 const BtnOrange = styled.button`
   background-color: ${colorNavBottom.Button};
   border-style: none;
@@ -44,7 +42,6 @@ class Navigation extends Component {
 
   currentNav() {
     var currentPath = window.location.pathname;
-    console.log(currentPath);
     this.setState({ currentNav: currentPath });
   }
 

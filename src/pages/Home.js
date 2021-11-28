@@ -2,23 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import NavbarNew from "../layouts/NavbarNew";
 import { Link } from "react-router-dom";
-import logo from "../assets/img/logoC.svg";
-// import styled from "styled-components";
-// import color from "../config/color";
-
-
-// const BgBox = styled.div`
-//   height: 300px;
-//   background-color: #f9f9f9;
-//   border-radius: 8px;
-// `;
-// const SgBox = styled.div`
-//   margin-top: 10px;
-  
-//   background: ${color.Grey};
-//   border-radius: 8px;
-// `;
-
 
 class Home extends Component {
   constructor(props) {
@@ -107,7 +90,6 @@ class Home extends Component {
      <img src="https://media.discordapp.net/attachments/493061190113820672/914214980839153714/Group_451.png"  width="250" ></img>
      <img src="https://media.discordapp.net/attachments/493061190113820672/914214981095014450/Group_452.png"  width="250" ></img>
             <div className="paddingTop15"></div>
-
 
     </marquee>
 </div>

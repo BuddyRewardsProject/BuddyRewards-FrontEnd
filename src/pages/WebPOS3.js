@@ -6,14 +6,10 @@ import "../assets/css/merchantSide/webPOS.css";
 import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
-import profile from "../assets/img/icon/profileD.svg";
-import {
-  faArrowAltCircleRight, faStar,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowAltCircleRight, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios"
 import message from 'antd/lib/message/index';
-import $ from "jquery"
 
 const key = 'updatable';
 
@@ -51,10 +47,6 @@ const BtnOK = styled.button`
   color: white;
  
 `
-const MarginTop = styled.div`
-  margin: 130px;
-`
-
 const Card = styled.div`
   background: #f7f7f7;
   box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.10);
@@ -131,15 +123,11 @@ class WebPOS3 extends Component {
           message.success({ content: 'สะสมสำเร็จแล้ว!นะจ้ะ', key, duration: 2 });
           this.props.history.push({
             pathname: '/merchant/branch/webPOS/done',
-            state: { 
+            state: {
               customer: this.props.location.state.customer,
               point: response.data.resultPoint
             }
           })
-        //    setTimeout(function(){
-        //     window.location.href = "/merchant/branch/webPOS/done";
-           
-        // },300);
         } else {
           message.error({ content: 'เกิดข้อผิดพลาด!', key, duration: 2 });
         }
@@ -163,16 +151,15 @@ class WebPOS3 extends Component {
     return (
       <div>
         <NavTopWebPOS></NavTopWebPOS>
-        {/* <MarginTop></MarginTop> */}
         <Helmet>
-<title>webPOS | buddyMerchant</title>
-</Helmet>
+          <title>webPOS | buddyMerchant</title>
+        </Helmet>
         <Card className="text-center">
 
           <Cardinfo>
-          <div className="paddingTop15"></div>
-           <img
-               src={this.props.location.state.customer.customerPic}
+            <div className="paddingTop15"></div>
+            <img
+              src={this.props.location.state.customer.customerPic}
               class="  rounded-circle fade-in-image"
               alt="customerPic"
               width="80px"
@@ -189,7 +176,6 @@ class WebPOS3 extends Component {
               <FontAwesomeIcon icon={['fas', 'home']} /></div>
             <div class="col textPointWebPOS">{this.state.totalPoint} <FontAwesomeIcon className="WebPosStarIconSize" icon={faStar} /></div>
           </div>
-
           <div className="paddingBtm"><BtnClear onClick={() => goBack()} >ย้อนกลับ</BtnClear></div>
           <div className="paddingBtm"><BtnOK onClick={() => this.addPoint()}>ยืนยันเพิ่มแต้ม</BtnOK></div>
 

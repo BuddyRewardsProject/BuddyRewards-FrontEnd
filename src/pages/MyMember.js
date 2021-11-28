@@ -5,19 +5,12 @@ import NavTopWebPOS from "../layouts/NavTopMerchant";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutPin } from "../actions/pinActions";
-import { DatePicker } from "antd";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios"
 import moment from "moment";
 
 const BgGradient = styled.div`
   border-bottom-right-radius: 19px;
   border-bottom-left-radius: 19px;
-  background: ${color.Gradient};
-`;
-const BgBox = styled.div`
-  border-radius: 8px;
   background: ${color.Gradient};
 `;
 
@@ -39,7 +32,6 @@ class MyMember extends Component {
   };
 
   onCollapse = (collapsed) => {
-    console.log(collapsed);
     this.setState({ collapsed });
   };
 
@@ -130,8 +122,6 @@ class MyMember extends Component {
                             <td >{this.renderGender(c.gender)}</td>
                             <td >{moment(c.date_of_birth).format('DD/MM/YYYY')}</td>
                             <td >{c.totalPoint}</td>
-
-                            {/* <td key={c.customer_id}>{this.state.customerPoint}</td> */}
                           </tr>
                         }
                       </>
