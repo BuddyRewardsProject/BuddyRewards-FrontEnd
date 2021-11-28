@@ -3,31 +3,15 @@ import axios from "axios";
 import logoKMUTT from "../../assets/img/kmutt.svg";
 import logo from "../../assets/img/logoC.svg";
 import styled from "styled-components";
-// import { Link } from "react-router-dom";
 import $ from "jquery";
 import message from "antd/lib/message/index";
 import color from "../../config/color";
 import liff from "@line/liff";
 import "../../assets/css/CustomerSide/Customer.css";
 
-
-
 const key = "updatable";
-// const success = () => {
-//   message.success({
-//     content: '‏‏‎‏‏‎สำเร็จ',
-//     duration: 3,
-//     className: 'custom-class',
-//     style: {
-//       color: '#FB8549',
-//       icon:'info',
-//       fontSize: '15px',
-//     },
-//   });
-// };
+
 const ButtonSubmit = styled.button`
-
-
   color: rgb(255, 255, 255);
   height: 50px;
   color: white;
@@ -48,38 +32,32 @@ class CustomerRegister extends Component {
   constructor(props) {
     super(props);
     this.state = {
-     
-      
+
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     liff
-    .init({
-      liffId: "1656382933-9DzLvxlE",
-    })
-    .then(() => {
-      if (!liff.isLoggedIn()) {
-        liff.login();
-        console.log("fffffffffffffffff")
+      .init({
+        liffId: "1656382933-9DzLvxlE",
+      })
+      .then(() => {
+        if (!liff.isLoggedIn()) {
+          liff.login();
+          console.log("fffffffffffffffff")
+        }
       }
-    }
-    )
+      )
   }
   handleClick(e) {
     e.preventDefault();
     var customerFirstName = $("#firstName").val();
     var customerLastName = $("#lastName").val();
     var customerNickName = $("#nickName").val();
-    // var customerEmail = $("#email").val();
-    // var customerPassword = $("#password").val();
-    // var customerRepeatPassword = $("#repeatPassword").val();
     var customerPhone = $("#phone").val();
     var customerGender = $("#gender").val();
     var customerDOB = $("#dob").val();
 
-
-    
     liff
       .init({
         liffId: "1656382933-9DzLvxlE",
@@ -102,7 +80,7 @@ class CustomerRegister extends Component {
           customerDOB: customerDOB,
           customerToken: accessToken,
         };
-        
+
         axios
           .post("/customer/v1/register", {
             data,
@@ -128,52 +106,6 @@ class CustomerRegister extends Component {
       });
   }
 
-
-  
-  // onRepeatPasswordInput(e) {
-  //   var password = $("#password").val();
-  //   if (!password || password.length === 0 || password === null) return false;
-  //   if (password === e.target.value) {
-  //     this.setState((prevState) => ({
-  //       formValidation: {
-  //         // object that we want to update
-  //         ...prevState.formValidation, // keep all other key-value pairs
-  //         repeatPassword: true,
-  //         buttonState: "active", // update the value of specific key
-  //       },
-  //     }));
-  //     $("#repeatPassword").removeClass("is-invalid");
-  //     $("#repeatPassword").addClass("is-valid");
-  //   } else {
-  //     this.setState((prevState) => ({
-  //       formValidation: {
-  //         // object that we want to update
-  //         ...prevState.formValidation, // keep all other key-value pairs
-  //         repeatPassword: false,
-  //         buttonState: "", // update the value of specific key
-  //       },
-  //     }));
-  //     $("#repeatPassword").addClass("is-invalid");
-  //     $("#repeatPassword").removeClass("is-valid");
-  //   }
-  // }
-  /*
-  componentDidMount = async () => {
-    await window.liff.init({ liffId: "1656382933-9DzLvxlE" }).catch((err) => {
-      alert(err);
-    });
-    if (window.liff.isLoggedIn()) {
-      let user = await window.liff.getProfile();
-      const accessToken = window.liff.getAccessToken();
-      console.log(accessToken);
-      this.setState({
-        user: user,
-      });
-    } else {
-      window.liff.login();
-    }
-  };
- */
   render() {
     return (
       <>
@@ -191,9 +123,6 @@ class CustomerRegister extends Component {
             </div>
             <div className="text-center"></div>
             <HEADER className=" paddingTop15 ">สมัครสามาชิก</HEADER>
-            {/* <div className="paddingTop15">
-           
-            </div> */}
             <div className="">
               <div className="text-left fromfontsize20">ชื่อเล่นของคุณ</div>
               <input
@@ -227,43 +156,6 @@ class CustomerRegister extends Component {
                 required
               ></input>
             </div>
-            {/* <div className="text-left fromfontsize20">E-mail</div>
-            <div className="">
-              <input
-                type="text"
-                name="Email"
-                id="email"
-                className="form-control"
-                placeholder="E-mail"
-                required
-              ></input>
-            </div>
-
-            <div className="text-left fromfontsize20">Password</div>
-            <div className="">
-              <input
-                type="Password"
-                name="Password"
-                id="password"
-                className="form-control"
-                placeholder="Password"
-                required
-              ></input>
-            </div>
-
-            <div className="text-left fromfontsize20">Re Password</div>
-            <div className="">
-              <input
-                type="Password"
-                name="Password"
-                id="repeatPassword"
-                className="form-control"
-                placeholder="Re-Password"
-                onChange={(e) => this.onRepeatPasswordInput(e)}
-                required
-              ></input>
-            </div> */}
-
             <div className="text-left fromfontsize20">เบอร์โทรศัพท์</div>
             <div className="">
               <input
@@ -299,7 +191,6 @@ class CustomerRegister extends Component {
                 type="button"
                 className="btnRegister"
                 onClick={(e) => this.handleClick(e)}
-    
               >
                 ยืนยัน
               </ButtonSubmit>

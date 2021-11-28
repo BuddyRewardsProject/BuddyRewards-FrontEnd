@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-//import axios from "axios";
 import logoKMUTT from "../../assets/img/kmutt.svg";
 import logo from "../../assets/img/logoC.svg";
 import Cover from "../../assets/img/CoverPreRegister.png";
@@ -48,37 +47,14 @@ class CustomerRegister extends Component {
       pictureUrl: "",
     };
   }
-  /*
-  componentDidMount = async () => {
-    await window.liff.init({ liffId: "1656382933-9DzLvxlE" }).catch((err) => {
-      alert(err);
-    });
-    if (window.liff.isLoggedIn()) {
-      let user = await window.liff.getProfile();
-      const accessToken = window.liff.getAccessToken();
-      console.log(accessToken);
-      this.setState({
-        user: user,
-      });
-    } else {
-      window.liff.login();
-    }
-  };
- */
+
   render() {
-    
+
     return (
       <>
         <div className="container">
           <div className="row ">
-            <HeaderImage>
-
-
-            
-            </HeaderImage>
-              
-           
-        
+            <HeaderImage></HeaderImage>
             <div class="container marginTopM50">
               <div class="row row-cols-2">
                 <div className="leftPD ">
@@ -91,7 +67,7 @@ class CustomerRegister extends Component {
             </div>
             <div className=""></div>
             <HEADER className=" paddingTop15 ">รวมบัตรสะสมแต้มไว้ในที่เดียว</HEADER>
-<h3>พร้อมรับสิทธิ์ประโยชน์จาก ร้านค้าอีกมากมาย</h3>
+            <h3>พร้อมรับสิทธิ์ประโยชน์จาก ร้านค้าอีกมากมาย</h3>
             <div className="text-center paddingTop15">
               <button
                 type="button"

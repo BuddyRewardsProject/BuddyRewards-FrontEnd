@@ -18,27 +18,16 @@ z-index: 2;
 
 
 const NavTopWebPOS = () => {
-  
+
   return (
     <BgNav className=" navbar "><div className=" AllPD ">
-            <img src={logo} class="img-fluid "  alt="" width="250" onClick={() => window.location.href = "/merchant/branch/webPOS"} />
-           
-          </div> 
-          <div className="body">
-        
+      <img src={logo} class="img-fluid " alt="" width="250" onClick={() => window.location.href = "/merchant/branch/webPOS"} />
+    </div>
+      <div className="body">
         <div className="row row-cols-2 AllPD justify-content-end">
-        
-        <button className="btn btnNavtop btn-md NavTopMerchantColor " type="button" onClick={() => window.location.href = "/merchant/branch/"} ><FontAwesomeIcon class="NavTopMerchantColor" icon={faThLarge} /></button>
-       
+          <button className="btn btnNavtop btn-md NavTopMerchantColor " type="button" onClick={() => window.location.href = "/merchant/branch/"} ><FontAwesomeIcon class="NavTopMerchantColor" icon={faThLarge} /></button>
         </div>
-
       </div>
-
-      {/*  <MarginTop className="bg-white shadow p-3 mb-5 bg-body rounded-7">
-                <div>
-                  <img src={logo} alt="buddyrewards" width="120" />
-                </div>
-              </MarginTop>*/}
     </BgNav>
   );
 };

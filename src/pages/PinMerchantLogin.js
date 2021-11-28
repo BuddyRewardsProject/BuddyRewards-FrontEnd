@@ -210,7 +210,6 @@ class PinMerchantLogin extends Component {
                         ref={(p) => (this.pin = p)}
                       />
                     </div>
-                    {/* <div className="text-center">{this.state.pin}</div> */}
                     <div className="text-center">
                       <BtnClear
                         className=""

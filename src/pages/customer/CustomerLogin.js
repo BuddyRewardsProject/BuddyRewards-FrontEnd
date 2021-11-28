@@ -62,7 +62,6 @@ class CustomerLogin extends Component {
         this.login(email, hash.hex())
       }
     });
-    console.log(this.props)
   }
 
   render() {

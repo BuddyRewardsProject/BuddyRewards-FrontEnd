@@ -6,11 +6,9 @@ import "../../assets/css/CustomerSide/Customer.css";
 import Navigation from "../../layouts/Navigation";
 import styled from "styled-components";
 import { setCustomer } from "../../actions/customerAuthActions";
-
 import liff from "@line/liff";
 import jwt from "jsonwebtoken";
 // redux ต้องมีทุกหน้าใน liff
-
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import moment from "moment";
@@ -39,10 +37,6 @@ class CustomerCardDetail extends Component {
   }
 
   componentDidMount() {
-    //  console.log(this.props.match.params.merchantId)
-
-    //  console.log("this.props.match.params.merchantId")
-
     liff
       .init({
         liffId: "1656382933-9DzLvxlE", // Use own liffId
@@ -68,35 +62,19 @@ class CustomerCardDetail extends Component {
               })
 
               .then((response) => {
-                // handle success
-
-                console.log(response.data);
-                // this.setState({
-                //   merchantName: response.data.merchantInfo.merchantName,
-                //   TotalPoint: response.data.merchantInfo.TotalPoint,
-
-                // })
-
                 this.setState({
                   historyList: response.data.historyList,
                   divider: response.data.historyList[0].divider,
                 });
-
-                console.log(this.state.historyList, "<<<<< that <<<<<<<<<");
               })
               .catch((error) => {
                 // handle error
                 console.log(error);
               })
-              .then(() => {
-                // always executed
-              });
           })
           .catch((err) => {
             console.log("error", err);
           });
-
-        console.log(accessToken);
 
         axios
           .post("/customer/v1/liff", {
@@ -124,7 +102,6 @@ class CustomerCardDetail extends Component {
       });
   }
 
-  // render() { return (<h1>{this.props.match.params.merchantId}</h1>);}
   renderStatus(pointStatus) {
     switch (pointStatus) {
       case "reward":

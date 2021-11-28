@@ -159,10 +159,8 @@ class Prize extends Component {
                 <h5 class="modal-title" id="addStaffLabel">
                   Add Prize
                 </h5>
-                
-                  <button type="button" className="btn-close " data-bs-dismiss="modal" aria-label="Close" ></button>
-                 
-                
+
+                <button type="button" className="btn-close " data-bs-dismiss="modal" aria-label="Close" ></button>
               </div>
               <div class="modal-body">
                 <contains>
@@ -227,24 +225,24 @@ class Prize extends Component {
                   }
                   <div>
                     {this.state.prizeList != null && this.state.prizeList.map((p) =>
-                    <div className="paddingTop15">
-                      <div className="menuCard">
-                        <div className="text-start">
-                          <h3 className="" key={p.prize_name}>ชื่อสิทธิพิเศษ: {p.prize_name}</h3>
-                          <h5 className=" " key={p.prize_detail}>รายละเอียด: {p.prize_detail}</h5>
-                          <h5 className=" " key={p.prize_pointcost}>จำนวนแต้มที่ใช้: {p.prize_pointcost} แต้ม</h5>
-                        </div>
-                        <div className=" text-start">
-                          <div className="  text-start ">
-                            <BtnEdit href="#" className="btn">
-                              แก้ไข
-                            </BtnEdit>
-                            <BtnEdit href="#" className="btn" onClick={() => this.removePrize(p.prize_id)}>
-                              ลบ
-                            </BtnEdit>
+                      <div className="paddingTop15">
+                        <div className="menuCard">
+                          <div className="text-start">
+                            <h3 className="" key={p.prize_name}>ชื่อสิทธิพิเศษ: {p.prize_name}</h3>
+                            <h5 className=" " key={p.prize_detail}>รายละเอียด: {p.prize_detail}</h5>
+                            <h5 className=" " key={p.prize_pointcost}>จำนวนแต้มที่ใช้: {p.prize_pointcost} แต้ม</h5>
+                          </div>
+                          <div className=" text-start">
+                            <div className="  text-start ">
+                              <BtnEdit href="#" className="btn">
+                                แก้ไข
+                              </BtnEdit>
+                              <BtnEdit href="#" className="btn" onClick={() => this.removePrize(p.prize_id)}>
+                                ลบ
+                              </BtnEdit>
+                            </div>
                           </div>
                         </div>
-                      </div>
                       </div>
                     )}
                   </div>

@@ -16,16 +16,11 @@ border-bottom-right-radius: 19px;
 border-bottom-left-radius: 19px;
   background: ${color.Gradient};
 `;
-const MarginTop = styled.div`
-  margin-top: 8%;
-`;
 const BranchNameSize = styled.h2`
   font-size: 48px;
   font-style: bold;
   color: white;
 `;
-
-
 
 class BranchManagement extends Component {
   constructor(props) {
@@ -101,7 +96,6 @@ class BranchManagement extends Component {
   }
 
   removeBranch(branchId) {
-    console.log(branchId)
     axios.post('/merchant/v1/branch/branchmanagement/remove', {
       branchId: branchId
     })
@@ -121,7 +115,6 @@ class BranchManagement extends Component {
   componentDidMount() {
     axios.post('/merchant/v1/branch/branchmanagement/init', { branchId: this.props.auth.user.merchantId })
       .then((response) => {
-        console.log(response.data)
         this.setState({
           categories: response.data.categories,
           provinces: response.data.provinces,

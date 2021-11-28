@@ -212,7 +212,6 @@ class WebPOS2 extends Component {
             },
           });
           window.location.reload();
-          console.log(this.state, "<------state-------------");
         } else {
           message.error({ content: "เกิดข้อผิดพลาด!", key, duration: 2 });
         }
@@ -227,7 +226,6 @@ class WebPOS2 extends Component {
     function goBack() {
       window.history.back();
     }
-    console.log(this.props.location.state.customer);
     return (
       <div>
         <Helmet>

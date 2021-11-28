@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import message from "antd/lib/message/index";
-import { DownCircleOutlined } from "@ant-design/icons";
 import welcome from "../../assets/img/icon/welcome.png";
 import liff from "@line/liff";
 import jwt from "jsonwebtoken";
@@ -17,9 +16,6 @@ import jwt from "jsonwebtoken";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { setCustomer } from "../../actions/customerAuthActions";
-// import { setCustomer } from "../../actions/customerAuthActions";
-// import { bindActionCreators } from 'redux'
-
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 const antIcon = (
@@ -50,7 +46,6 @@ class CustomerCard extends Component {
           .then((profile) => {
             const pictureUrl = profile.pictureUrl;
 
-            console.log(pictureUrl);
             this.setState({ pictureUrl: pictureUrl });
 
             axios
@@ -59,30 +54,19 @@ class CustomerCard extends Component {
               })
 
               .then((response) => {
-                // handle success
-
-                console.log(response.data, "what that <<<<<<<<<");
-
-                // merchantList: response.data.merchantInfo
-
                 this.setState({
                   merchantList: response.data.merchantInfo,
                 });
-                console.log(this.state.merchantList, "<<<<< that <<<<<<<<<");
               })
               .catch((error) => {
                 // handle error
                 console.log(error);
               })
-              .then(() => {
-                // always executed
-              });
           })
           .catch((err) => {
             console.log("error", err);
           });
 
-        console.log(accessToken);
         this.setState({ accessToken: accessToken });
         if (liff.getOS() === "android") {
           message.success({
@@ -101,17 +85,12 @@ class CustomerCard extends Component {
             duration: 3,
           });
         }
-        console.log(this.props.customerAuth.customer.customerId);
-        console.log(
-          "================================ios================================================="
-        );
 
         axios
           .post("/customer/v1/liff", {
             accessToken: accessToken,
           })
           .then((response) => {
-            console.log(response.data);
             if (response.data.status === "error") {
               window.location.href = response.data.redirect;
               return;
@@ -143,8 +122,6 @@ class CustomerCard extends Component {
         <Navigation history={this.props.history}></Navigation>
         <div className="container ">
           <div className="margintopforcard">
-            {/* {this.state.merchantList.length === 0 ? <div> loading </div> : <div> content </div> } */}
-
             {this.state.merchantList.length != 0 &&
               this.state.merchantList.map((merchant, index) => (
                 <Link
@@ -198,60 +175,6 @@ class CustomerCard extends Component {
             />
 </div>
             )}
-
-
-{/* <div>{this.state.loaded ? null : (
-                  <div>
-                    <Spin  indicator={antIcon} />
-                  </div>
-                )}
-                <img src={welcome} className="img-fluid fade-in-image"
-                  onLoad={() => this.setState({ loaded: true })}
-                />
-</div> */}
-
-
-
-            {/* {this.state.merchantList.length != 0 && this.state.merchantList.map((merchant,index) =>
-                    <>
-                       
-                      <tr key={index}>
-                        <td scope="row" >{merchant.merchantId}</td>
-                        <td >{merchant.merchantName}</td>
-                        <td >{merchant.TotalPoint}</td>
-
-                      </tr>
-                      
-                      </>
-                    )} */}
-
-            {/* <button
-                type="button"
-                className="  btnEditProfile"
-                onClick={() =>  liff.closeWindow()}
-              >
-                กลับไปยังไลน์
-              </button>
-
-              <div className="paddingTop15"></div>
-            
-            <button
-                type="button"
-                className="  btnEditProfile"
-                onClick={() => liff.shareTargetPicker(
-                  [
-                    {
-                      type: "text",
-                      text: "Hello, World!",
-                    },
-                  ],
-                  {
-                    isMultiple: true,
-                  }
-                )}
-              >
-             
-              </button> */}
 
             <div className="paddingTop15"></div>
             <div className="paddingTop15"></div>

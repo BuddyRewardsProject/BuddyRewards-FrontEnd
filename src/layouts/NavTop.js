@@ -19,22 +19,12 @@ const NavbarTop = () => {
         <div class="row row-cols-2">
           <div className="leftPD ">
             <img src={logo} alt="buddyrewards" width="140" />
-          </div> 
+          </div>
           <Link to="/customer/login" className="text-end  NavTopColorAndIconSize" >
-         
             <FontAwesomeIcon icon={faUserCircle} />
-            
-            
           </Link>
-         
         </div>
       </div>
-
-      {/*  <MarginTop className="bg-white shadow p-3 mb-5 bg-body rounded-7">
-                <div>
-                  <img src={logo} alt="buddyrewards" width="120" />
-                </div>
-              </MarginTop>*/}
     </BgNav>
   );
 };

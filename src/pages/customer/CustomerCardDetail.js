@@ -15,9 +15,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import message from "antd/lib/message/index";
 import merchantLOGO from "../../assets/img/icon/merchantPreLoad.svg";
-import { Alert } from "antd";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
@@ -42,10 +40,6 @@ class CustomerDetailHistory extends Component {
   }
 
   componentDidMount() {
-    //  console.log(this.props.match.params.merchantId)
-
-    //  console.log("this.props.match.params.merchantId")
-
     liff
       .init({
         liffId: "1656382933-9DzLvxlE", // Use own liffId
@@ -60,8 +54,6 @@ class CustomerDetailHistory extends Component {
           .getProfile()
           .then((profile) => {
             const pictureUrl = profile.pictureUrl;
-
-            //console.log(pictureUrl);
             this.setState({ pictureUrl: pictureUrl });
 
             axios
@@ -82,34 +74,21 @@ class CustomerDetailHistory extends Component {
                 this.setState({
                   prizeInfoList: response.data.prizeInfo,
                 });
-                console.log(this.state.prizeInfoList, "<<<<< that <<<<<<<<<");
               })
               .catch((error) => {
-                // handle error
                 console.log(error);
               })
-              .then(() => {
-                // always executed
-              });
           })
           .catch((err) => {
             console.log("error", err);
           });
-
-        console.log(accessToken);
-        this.setState({ accessToken: accessToken });
-
-        console.log(this.props.customerAuth.customer.customerId);
-        console.log(
-          "================================ios================================================="
-        );
 
         axios
           .post("/customer/v1/liff", {
             accessToken: accessToken,
           })
           .then((response) => {
-            console.log(response.data);
+
             if (response.data.status === "error") {
               window.location.href = response.data.redirect;
               return;
@@ -130,7 +109,6 @@ class CustomerDetailHistory extends Component {
       });
   }
 
-  // render() { return (<h1>{this.props.match.params.merchantId}</h1>);}
   renderStatus(pointcost) {
     switch (pointcost) {
       case "reward":
@@ -179,57 +157,55 @@ class CustomerDetailHistory extends Component {
           ) : (
             <div className="cardInfoWebPOS1"></div>
           )}
-{this.state.prizeInfoList.length === 0 && (
-              <div className="text-center">
-                <Spin indicator={antIcon} />
-              </div>
-            )}
+          {this.state.prizeInfoList.length === 0 && (
+            <div className="text-center">
+              <Spin indicator={antIcon} />
+            </div>
+          )}
           {this.state.prizeInfoList.length != 0 &&
             this.state.prizeInfoList.map((prizeInfo, index) => (
-              
-                <div className="cardBG " key={index}>
-                  <div
-                    class="list-group-item d-flex align-items-center shadow-none border-0 cardBG d-flex gap-3 py-3"
-                    aria-current="true"
-                  >
-                    <img
-                      src={prize}
-                      alt="twbs"
-                      width="60"
-                      height="60"
-                      class="rounded-circle flex-shrink-0"
-                    ></img>
-                    <div class=" w-100 justify-content-between d-flex align-items-center">
-                      <div class="d-flex align-items-center">
-                        <div class="fontSizeMycardTitle">
-                          {prizeInfo.prize_name}
+
+              <div className="cardBG " key={index}>
+                <div
+                  class="list-group-item d-flex align-items-center shadow-none border-0 cardBG d-flex gap-3 py-3"
+                  aria-current="true"
+                >
+                  <img
+                    src={prize}
+                    alt="twbs"
+                    width="60"
+                    height="60"
+                    class="rounded-circle flex-shrink-0"
+                  ></img>
+                  <div class=" w-100 justify-content-between d-flex align-items-center">
+                    <div class="d-flex align-items-center">
+                      <div class="fontSizeMycardTitle">
+                        {prizeInfo.prize_name}
+                      </div>
+                    </div>
+                    <div class=" justify-content-between d-flex align-items-center  d-flex ">
+                      {prizeInfo.prize_pointcost <= this.state.TotalPoint ? (
+                        <div className="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1">
+                          {prizeInfo.prize_pointcost}{" "}
+                          <FontAwesomeIcon
+                            className="IconmyCard"
+                            icon={faStar}
+                          />
                         </div>
-                      </div>
-                      <div class=" justify-content-between d-flex align-items-center  d-flex ">
-                        {prizeInfo.prize_pointcost <= this.state.TotalPoint ? (
-                          <div className="labelCurrentPoint justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1">
-                            {prizeInfo.prize_pointcost}{" "}
-                            <FontAwesomeIcon
-                              className="IconmyCard"
-                              icon={faStar}
-                            />
-                          </div>
-                        ) : (
-                          <div className="labelCurrentPointDisable justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1">
-                            {prizeInfo.prize_pointcost}{" "}
-                            <FontAwesomeIcon
-                              className="IconStarDisable"
-                              icon={faStar}
-                            />
-                          </div>
-                        )}
-                      </div>
+                      ) : (
+                        <div className="labelCurrentPointDisable justify-content-between d-flex align-items-center fontSizeMycardEnd d-flex gap-1">
+                          {prizeInfo.prize_pointcost}{" "}
+                          <FontAwesomeIcon
+                            className="IconStarDisable"
+                            icon={faStar}
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
-              
+              </div>
             ))}
-
           <div className="paddingTop15"></div>
           <div className="paddingTop15"></div>
           <div className="paddingTop15"></div>
