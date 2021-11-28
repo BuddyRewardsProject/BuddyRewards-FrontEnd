@@ -122,7 +122,7 @@ class CustomerRegister extends Component {
               </div>
             </div>
             <div className="text-center"></div>
-            <HEADER className=" paddingTop15 ">สมัครสามาชิก</HEADER>
+            <HEADER className=" paddingTop15 ">สมัครสมาชิก</HEADER>
             <div className="">
               <div className="text-left fromfontsize20">ชื่อเล่นของคุณ</div>
               <input
